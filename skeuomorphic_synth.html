@@ -1,4 +1,11 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>FORMA SY-1</title>
+</head>
+<body>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@300;400;500;600&display=swap');
 
@@ -364,8 +371,20 @@
     padding: 6px 6px 0;
     overflow: hidden;
     box-shadow: 0 3px 8px rgba(0,0,0,0.6) inset;
-    gap: 1px;
+    gap: 0;
     touch-action: manipulation;
+  }
+
+  .keyboard-track {
+    display: flex;
+    position: relative;
+    flex: 1 1 auto;
+    align-self: stretch;
+    min-width: 100%;
+    width: 100%;
+    height: 100%;
+    gap: 1px;
+    box-sizing: border-box;
   }
 
   .white-key {
@@ -563,6 +582,43 @@
     }
     .brand-name {
       font-size: clamp(16px, 5vw, 22px);
+    }
+
+    .keyboard {
+      height: clamp(148px, 42vmin, 210px);
+      padding: 10px 8px 0;
+      overflow-x: auto;
+      overflow-y: hidden;
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior-x: contain;
+      touch-action: pan-x;
+      scrollbar-width: thin;
+    }
+
+    .keyboard-track {
+      flex: 1 0 auto;
+      width: auto;
+      min-width: 100%;
+      gap: 4px;
+      padding-bottom: 2px;
+    }
+
+    .white-key {
+      flex: 1 0 auto;
+      min-width: 44px;
+      padding-bottom: 10px;
+    }
+
+    .white-key .key-note {
+      font-size: 10px;
+    }
+
+    .black-key {
+      width: 4.5%;
+      min-width: 26px;
+      max-width: 40px;
+      height: 56%;
+      top: 8px;
     }
   }
 
@@ -836,6 +892,9 @@ function noteToMidi(semitone, oct) { return (oct * 12) + semitone + 12; }
 
 function buildKeyboard() {
   const kb = document.getElementById('keyboard');
+  const track = document.createElement('div');
+  track.className = 'keyboard-track';
+  kb.appendChild(track);
   WHITE_NOTES.forEach((semi, i) => {
     const oct = BASE_OCT + Math.floor(semi / 12);
     const s = semi % 12;
@@ -849,7 +908,7 @@ function buildKeyboard() {
     key.addEventListener('pointerdown', e => { e.preventDefault(); playNote(semi, true); });
     key.addEventListener('pointerup', () => stopNote(semi));
     key.addEventListener('pointerleave', () => stopNote(semi));
-    kb.appendChild(key);
+    track.appendChild(key);
   });
   Object.entries(BLACK_PCT).forEach(([semi, pct]) => {
     const s = parseInt(semi) % 12;
@@ -860,7 +919,7 @@ function buildKeyboard() {
     key.addEventListener('pointerdown', e => { e.preventDefault(); playNote(parseInt(semi), true); });
     key.addEventListener('pointerup', () => stopNote(parseInt(semi)));
     key.addEventListener('pointerleave', () => stopNote(parseInt(semi)));
-    kb.appendChild(key);
+    track.appendChild(key);
   });
 }
 
@@ -1179,3 +1238,5 @@ buildKeyboard();
 initKnobs();
 stopViz();
 </script>
+</body>
+</html>
