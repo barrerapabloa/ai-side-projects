@@ -10,6 +10,9 @@ type Props = {
 
 export function SwipeCarousel({ title, subtitle, children }: Props) {
   const scrollerRef = useRef<HTMLDivElement | null>(null);
+  const childCount = useMemo(() => {
+    return Array.isArray(children) ? children.length : 1;
+  }, [children]);
   const drag = useRef<{
     on: boolean;
     startX: number;
@@ -33,6 +36,9 @@ export function SwipeCarousel({ title, subtitle, children }: Props) {
   useEffect(() => {
     const el = scrollerRef.current;
     if (!el) return;
+    // When content changes (e.g. new recommendations), snap back to the start
+    // so the first card is always visible without scrolling.
+    el.scrollLeft = 0;
     updateArrows();
     const onScroll = () => updateArrows();
     const onResize = () => updateArrows();
@@ -42,7 +48,7 @@ export function SwipeCarousel({ title, subtitle, children }: Props) {
       el.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onResize);
     };
-  }, [updateArrows]);
+  }, [updateArrows, childCount, title]);
 
   const nudge = (dir: -1 | 1) => {
     const el = scrollerRef.current;
@@ -98,16 +104,16 @@ export function SwipeCarousel({ title, subtitle, children }: Props) {
       <div className="relative">
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-[var(--bg)] to-transparent"
+          className="pointer-events-none absolute inset-y-0 left-0 z-10 w-10 bg-gradient-to-r from-[var(--bg)] to-transparent"
         />
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-[var(--bg)] to-transparent"
+          className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-gradient-to-l from-[var(--bg)] to-transparent"
         />
 
         <div
           ref={scrollerRef}
-          className="no-scrollbar snap-x flex gap-4 overflow-x-auto overflow-y-visible py-3"
+          className="no-scrollbar snap-x flex gap-4 overflow-x-auto overflow-y-visible px-10 py-3"
           role="region"
           aria-label={typeof title === "string" ? title : "Carousel"}
           onPointerDown={(e) => {

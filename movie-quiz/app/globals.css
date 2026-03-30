@@ -131,3 +131,170 @@ body::after {
     );
   mix-blend-mode: overlay;
 }
+
+/* Radar HUD (bottom-left) */
+.radar-bare {
+  /* Make the render box huge so it never "hard-crops" in view */
+  --radar-size: 3600px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: var(--radar-size);
+  height: var(--radar-size);
+  transform: translate(-50%, 50%);
+  isolation: isolate;
+  opacity: 0.52;
+  mix-blend-mode: screen;
+  /* Avoid filter-based compositor edges */
+  filter: none;
+  /* Extra-soft perimeter falloff (avoid any hard/tangent edge) */
+  mask-image: radial-gradient(
+    circle,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 1) 48%,
+    rgba(0, 0, 0, 0.55) 66%,
+    rgba(0, 0, 0, 0.22) 76%,
+    rgba(0, 0, 0, 0.10) 84%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  -webkit-mask-image: radial-gradient(
+    circle,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 1) 48%,
+    rgba(0, 0, 0, 0.55) 66%,
+    rgba(0, 0, 0, 0.22) 76%,
+    rgba(0, 0, 0, 0.10) 84%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+.radar-bare::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(34, 197, 94, 0.12), transparent 58%),
+    radial-gradient(circle at 50% 50%, rgba(232, 234, 238, 0.06), transparent 52%);
+  opacity: 1;
+}
+
+/* Outer ring removed — it extended too far behind the quiz column */
+.radar__ring {
+  position: absolute;
+  inset: calc(var(--radar-size) * 0.16);
+  border-radius: 9999px;
+  border: none;
+  box-shadow: none;
+}
+
+.radar__ring::before,
+.radar__ring::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  border: 1px solid rgba(232, 234, 238, 0.10);
+  transform: scale(0.66);
+}
+
+.radar__ring::after {
+  transform: scale(0.33);
+  border-color: rgba(232, 234, 238, 0.12);
+}
+
+.radar__dot {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: calc(var(--radar-size) * 0.018);
+  height: calc(var(--radar-size) * 0.018);
+  margin-left: calc(var(--radar-size) * -0.009);
+  margin-top: calc(var(--radar-size) * -0.009);
+  border-radius: 9999px;
+  opacity: 0;
+  background: rgba(232, 234, 238, 0.92);
+  box-shadow:
+    0 0 0 2px rgba(11, 12, 15, 0.65),
+    0 0 26px rgba(34, 197, 94, 0.62);
+}
+
+.radar__sweep {
+  position: absolute;
+  inset: calc(var(--radar-size) * -0.24);
+  transform-origin: center center;
+  animation: radarSweep 2.6s linear infinite;
+}
+
+.radar__sweep::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: conic-gradient(
+    from 0deg,
+    rgba(34, 197, 94, 0) 0deg,
+    rgba(34, 197, 94, 0) 314deg,
+    rgba(34, 197, 94, 0.08) 326deg,
+    rgba(34, 197, 94, 0.22) 340deg,
+    rgba(34, 197, 94, 0.10) 348deg,
+    rgba(34, 197, 94, 0) 360deg
+  );
+  filter: blur(0.15px);
+}
+
+@media (max-width: 640px) {
+  .radar__dot {
+    width: calc(var(--radar-size) * 0.012);
+    height: calc(var(--radar-size) * 0.012);
+    margin-left: calc(var(--radar-size) * -0.006);
+    margin-top: calc(var(--radar-size) * -0.006);
+  }
+}
+
+.radar__ping {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: calc(var(--radar-size) * 0.024);
+  height: calc(var(--radar-size) * 0.024);
+  margin-left: calc(var(--radar-size) * -0.012);
+  margin-top: calc(var(--radar-size) * -0.012);
+  border-radius: 9999px;
+  border: 1px solid rgba(34, 197, 94, 0.48);
+  opacity: 0;
+  animation: radarPing 2.6s ease-out infinite;
+}
+
+@keyframes radarSweep {
+  from {
+    transform: rotate(-90deg);
+  }
+  to {
+    transform: rotate(270deg);
+  }
+}
+
+@keyframes radarPing {
+  0% {
+    transform: translate(-6px, -10px) scale(0.2);
+    opacity: 0;
+  }
+  12% {
+    opacity: 0.55;
+  }
+  40% {
+    transform: translate(-6px, -10px) scale(2.3);
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .radar__sweep,
+  .radar__ping {
+    animation: none;
+  }
+}

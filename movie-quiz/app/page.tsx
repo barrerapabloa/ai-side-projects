@@ -97,6 +97,7 @@ export default function Home() {
 
   return (
     <div className="app-shell">
+      {view !== "results" ? <RadarHud /> : null}
       <div
         className={`mx-auto min-h-[100dvh] px-8 py-16 ${
           view === "results"
@@ -195,8 +196,8 @@ export default function Home() {
 function LeftCopy() {
   return (
     <div className="lg:sticky lg:top-16">
-      <p className="text-[11px] font-semibold tracking-[0.18em] text-[var(--text-faint)]">
-        YOUR NEXT WATCH
+      <p className="text-[12px] font-semibold tracking-[-0.02em] text-[var(--text)]">
+        ReelRadar
       </p>
       <h1 className="mt-5 text-[44px] font-semibold leading-[1.02] tracking-[-0.03em] text-[var(--text)] sm:text-[54px]">
         Studio‑quality
@@ -211,13 +212,16 @@ function LeftCopy() {
       </p>
 
       <div className="mt-7 flex flex-wrap items-center gap-2 text-[12px] text-[var(--text-faint)]">
-        <span className="rounded-[10px] border border-[rgba(232,234,238,0.10)] bg-[rgba(232,234,238,0.03)] px-3 py-1.5">
+        <span className="inline-flex items-center gap-2">
+          <IconClock />
           30 seconds
         </span>
-        <span className="rounded-[10px] border border-[rgba(232,234,238,0.10)] bg-[rgba(232,234,238,0.03)] px-3 py-1.5">
+        <span className="inline-flex items-center gap-2">
+          <IconUser />
           No account
         </span>
-        <span className="rounded-[10px] border border-[rgba(232,234,238,0.10)] bg-[rgba(232,234,238,0.03)] px-3 py-1.5">
+        <span className="inline-flex items-center gap-2">
+          <IconSwipe />
           Swipe/drag reveal
         </span>
       </div>
@@ -225,7 +229,75 @@ function LeftCopy() {
   );
 }
 
+function RadarHud() {
+  return (
+    <div className="pointer-events-none fixed bottom-0 left-0 z-0">
+      <div className="radar-bare" aria-hidden>
+        <div className="radar__ring" />
+        <div className="radar__sweep" />
+        <div className="radar__ping" />
+        <div className="radar__dot" />
+      </div>
+    </div>
+  );
+}
+
 // Intentionally removed: previous left-side mosaic for "discovery" styling.
+
+function IconClock() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.6}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="h-4 w-4 text-[rgba(232,234,238,0.55)]"
+      aria-hidden
+    >
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 7v5l3 2" />
+    </svg>
+  );
+}
+
+function IconUser() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.6}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="h-4 w-4 text-[rgba(232,234,238,0.55)]"
+      aria-hidden
+    >
+      <path d="M20 21a8 8 0 0 0-16 0" />
+      <circle cx="12" cy="8" r="4" />
+    </svg>
+  );
+}
+
+function IconSwipe() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.6}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="h-4 w-4 text-[rgba(232,234,238,0.55)]"
+      aria-hidden
+    >
+      <path d="M7 12h10" />
+      <path d="M10 9l-3 3 3 3" />
+      <path d="M14 9l3 3-3 3" />
+    </svg>
+  );
+}
 
 function QuizStep({
   stepId,
@@ -365,7 +437,7 @@ function BigTitleCard({ item }: { item: TitleItem }) {
   const format = item.format === "series" ? "Series" : "Movie";
 
   return (
-    <article className="snap-item w-[84vw] max-w-[520px] shrink-0">
+    <article className="snap-item w-[84vw] max-w-[520px] shrink-0 lg:w-[460px] lg:max-w-none">
       <div className="group relative rounded-[28px]">
         <div className="relative overflow-hidden rounded-[28px] border border-[rgba(255,255,255,0.10)] bg-[#0c0c11] p-5 shadow-[0_1px_0_rgba(255,255,255,0.06)_inset,0_30px_70px_rgba(0,0,0,0.55)]">
           <div className="pointer-events-none absolute inset-0 opacity-[0.55]">
@@ -412,7 +484,7 @@ function BigTitleCard({ item }: { item: TitleItem }) {
           </div>
 
           <div className="mt-5 flex flex-wrap gap-2">
-            {extractChips(item.tags).slice(0, 4).map((c) => (
+            {extractChips(item.tags).slice(0, 3).map((c) => (
               <span
                 key={c}
                 className="rounded-[10px] border border-[rgba(232,234,238,0.10)] bg-[rgba(232,234,238,0.03)] px-3 py-1.5 text-[12px] font-semibold text-[rgba(232,234,238,0.70)]"
