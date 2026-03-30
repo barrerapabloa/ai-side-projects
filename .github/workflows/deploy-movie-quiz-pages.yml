@@ -40,10 +40,16 @@ jobs:
           npm ci
           npm run build
 
+      - name: Stage artifact under /radar-reel
+        run: |
+          rm -rf _site
+          mkdir -p _site/radar-reel
+          cp -R movie-quiz/out/. _site/radar-reel/
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: movie-quiz/out
+          path: _site
 
   deploy:
     needs: build

@@ -2,13 +2,14 @@ import type { NextConfig } from "next";
 
 // GitHub Pages project URL: https://<user>.github.io/<repo>/
 const repoSlug = "ai-side-projects";
+const pagesSubpath = "radar-reel";
 const isGitHubPages = process.env.GITHUB_PAGES === "true";
 
 const nextConfig: NextConfig = {
   output: "export",
   trailingSlash: true,
-  basePath: isGitHubPages ? `/${repoSlug}` : "",
-  assetPrefix: isGitHubPages ? `/${repoSlug}/` : "",
+  basePath: isGitHubPages ? `/${repoSlug}/${pagesSubpath}` : "",
+  assetPrefix: isGitHubPages ? `/${repoSlug}/${pagesSubpath}/` : "",
   images: {
     unoptimized: true,
     remotePatterns: [
