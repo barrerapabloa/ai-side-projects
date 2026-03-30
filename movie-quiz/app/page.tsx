@@ -660,7 +660,7 @@ function ChipGroup({
   options,
   onChange,
 }: {
-  value: string;
+  value: string | null;
   options: Array<{ id: string; label: string }>;
   onChange: (id: string) => void;
 }) {
