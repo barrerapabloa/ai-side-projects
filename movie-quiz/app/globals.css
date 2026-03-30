@@ -1,0 +1,133 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: dark;
+  --bg: #0b0c0f;
+  --bg-elevated: #101218;
+  --bg-hover: #141826;
+  --text: #e8eaee;
+  --text-muted: rgba(232, 234, 238, 0.72);
+  --text-faint: rgba(232, 234, 238, 0.46);
+  --border: rgba(232, 234, 238, 0.10);
+  --border-strong: rgba(232, 234, 238, 0.18);
+  --shadow-lg:
+    0 1px 0 rgba(255, 255, 255, 0.05) inset,
+    0 18px 40px rgba(0, 0, 0, 0.55);
+  --radius: 10px;
+  --radius-lg: 12px;
+}
+
+@theme inline {
+  --color-background: var(--bg);
+  --color-foreground: var(--text);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-newsreader), ui-serif, Georgia, serif;
+}
+
+body {
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  background-image: none;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.04;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 180px 180px;
+}
+
+/* Subtle "ops UI" grid overlay */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.22;
+  background-image:
+    linear-gradient(to right, rgba(232, 234, 238, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(232, 234, 238, 0.06) 1px, transparent 1px),
+    radial-gradient(circle at 60% 40%, rgba(232, 234, 238, 0.05), transparent 55%);
+  background-size: 180px 180px, 180px 180px, 100% 100%;
+  background-position: 0 0, 0 0, center;
+  mask-image: radial-gradient(circle at 50% 20%, rgba(0,0,0,0.95), transparent 72%);
+  -webkit-mask-image: radial-gradient(circle at 50% 20%, rgba(0,0,0,0.95), transparent 72%);
+}
+
+.app-shell {
+  position: relative;
+  z-index: 1;
+  min-height: 100dvh;
+}
+
+.glass {
+  border: 1px solid var(--border);
+  background: rgba(16, 18, 24, 0.76);
+  box-shadow: var(--shadow-lg);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.title-serif {
+  font-family: var(--font-newsreader), ui-serif, Georgia, serif;
+  letter-spacing: -0.03em;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+.snap-x {
+  scroll-snap-type: x mandatory;
+}
+.snap-item {
+  scroll-snap-align: start;
+}
+
+.tilt-inner {
+  /* No motion here — we only tilt the poster. */
+}
+
+.poster-tilt {
+  --tiltX: 0deg;
+  --tiltY: 0deg;
+  --tiltLift: 0px;
+  --tiltScale: 1;
+  --shineX: 50%;
+  --shineY: 35%;
+  transition-property: transform, filter;
+  transition-duration: 360ms;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+  transform: perspective(900px) translateY(var(--tiltLift)) rotateX(var(--tiltX))
+    rotateY(var(--tiltY)) scale(var(--tiltScale));
+  transform-style: preserve-3d;
+}
+
+.poster-tilt::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.16;
+  background:
+    radial-gradient(
+      circle at var(--shineX) var(--shineY),
+      rgba(255, 255, 255, 0.95),
+      rgba(255, 255, 255, 0.18) 18%,
+      transparent 55%
+    );
+  mix-blend-mode: overlay;
+}

@@ -1,0 +1,3764 @@
+[
+  {
+    "id": "underrated-coherence",
+    "title": "Coherence",
+    "year": 2013,
+    "format": "movie",
+    "tags": [
+      "genre:sci-fi",
+      "genre:thriller",
+      "tone:mindbending",
+      "pace:fast",
+      "era:modern",
+      "origin:indie"
+    ],
+    "why": "A dinner party fractures reality—lean, tense, and wildly rewatchable."
+  },
+  {
+    "id": "underrated-patterson",
+    "title": "Paterson",
+    "year": 2016,
+    "format": "movie",
+    "tags": [
+      "genre:drama",
+      "tone:grounded",
+      "pace:slow",
+      "era:modern",
+      "style:arthouse"
+    ],
+    "why": "A quiet week in a bus driver’s life that somehow feels like a deep breath."
+  },
+  {
+    "id": "underrated-the-fall",
+    "title": "The Fall",
+    "year": 2006,
+    "format": "movie",
+    "tags": [
+      "genre:drama",
+      "genre:adventure",
+      "tone:grounded",
+      "pace:balanced",
+      "era:modern",
+      "style:arthouse"
+    ],
+    "why": "Storytelling as spectacle—stunning images with a surprisingly human core."
+  },
+  {
+    "id": "underrated-dark",
+    "title": "Dark",
+    "year": 2017,
+    "format": "series",
+    "tags": [
+      "genre:sci-fi",
+      "genre:thriller",
+      "tone:dark",
+      "pace:balanced",
+      "era:modern",
+      "origin:international"
+    ],
+    "why": "Time travel done with precision—moody, dense, and incredibly satisfying.",
+    "poster": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/cb/Dark_logo.png"
+    }
+  },
+  {
+    "id": "underrated-rectify",
+    "title": "Rectify",
+    "year": 2013,
+    "format": "series",
+    "tags": [
+      "genre:drama",
+      "tone:grounded",
+      "pace:slow",
+      "era:modern"
+    ],
+    "why": "A patient, emotional slow-burn about what comes after the verdict."
+  },
+  {
+    "id": "underrated-terrified",
+    "title": "Terrified",
+    "year": 2017,
+    "format": "movie",
+    "tags": [
+      "genre:horror",
+      "tone:dark",
+      "pace:fast",
+      "era:modern",
+      "origin:international"
+    ],
+    "why": "A creepy, escalating nightmare that doesn’t waste a minute."
+  },
+  {
+    "id": "tmdb-movie-484133",
+    "title": "Nude",
+    "year": 2017,
+    "format": "movie",
+    "tags": [
+      "genre:documentary",
+      "tone:grounded",
+      "pace:balanced",
+      "era:modern",
+      "format:movie"
+    ],
+    "why": "NUDE explores perceptions of nudity in art by chronicling the creative process of photographer David Bellemere as he's commissioned by NU Mu…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/484133",
+      "imdb": "https://www.imdb.com/title/tt6323306/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/699DbQ8eTecLmzjTLrao9D5bbpq.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-730647",
+    "title": "Break the Silence: The Movie",
+    "year": 2020,
+    "format": "movie",
+    "tags": [
+      "genre:music",
+      "genre:documentary",
+      "tone:feelgood",
+      "pace:balanced",
+      "era:new",
+      "format:movie",
+      "origin:international"
+    ],
+    "why": "K-pop sensation BTS embark on their 2019 'Love Yourself: Speak Yourself' Tour, as the seven members begin to candidly tell personal stories…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/730647",
+      "imdb": "https://www.imdb.com/title/tt12850582/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/k1VK2L971GmEevIjFbjcimxSeMx.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-753230",
+    "title": "The Three Deaths of Marisela Escobedo",
+    "year": 2020,
+    "format": "movie",
+    "tags": [
+      "genre:documentary",
+      "genre:crime",
+      "tone:dark",
+      "pace:balanced",
+      "era:new",
+      "format:movie",
+      "origin:international"
+    ],
+    "why": "After the death of her daughter at the hand of her boyfriend, Marisela Escobedo began to fight for justice not only against the murderer but…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/753230",
+      "imdb": "https://www.imdb.com/title/tt13206564/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/4E7nNHIchHWzpETfwAERxFuviO6.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-1022102",
+    "title": "BTS: Permission to Dance on Stage - LA",
+    "year": 2022,
+    "format": "movie",
+    "tags": [
+      "genre:music",
+      "genre:documentary",
+      "tone:feelgood",
+      "pace:balanced",
+      "era:new",
+      "format:movie",
+      "origin:international"
+    ],
+    "why": "Purple colors the city of Los Angeles, as BTS brings their \"Permission to Dance\" concert to SoFi Stadium for the first time in two years. In…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/1022102",
+      "imdb": "https://www.imdb.com/title/tt22010428/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/9pNGRpOOQpZtqMLncEcQDv86OkW.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-1333100",
+    "title": "Attack on Titan: THE LAST ATTACK",
+    "year": 2024,
+    "format": "movie",
+    "tags": [
+      "genre:animation",
+      "genre:action",
+      "genre:adventure",
+      "tone:grounded",
+      "pace:fast",
+      "era:new",
+      "format:movie",
+      "origin:international"
+    ],
+    "why": "A colossal-sized omnibus film bringing together the last two episodes of Attack on Titan in the franchise's first-ever theatrical experience…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/1333100",
+      "imdb": "https://www.imdb.com/title/tt33175825/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/wgwldDDlTDDMrluOMkpSA8lyKjv.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-1130276",
+    "title": "Succubus",
+    "year": 2024,
+    "format": "movie",
+    "tags": [
+      "genre:horror",
+      "genre:thriller",
+      "tone:dark",
+      "pace:fast",
+      "era:new",
+      "format:movie"
+    ],
+    "why": "A new father going through a marital separation joins a dating app and matches with a beautiful but mysterious young woman... whose powers o…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/1130276",
+      "imdb": "https://www.imdb.com/title/tt13778486/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/7AfBMebJS8mEtSV5ymdxEPpgvXb.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-1181678",
+    "title": "¿Quieres ser mi hijo?",
+    "year": 2023,
+    "format": "movie",
+    "tags": [
+      "genre:comedy",
+      "genre:romance",
+      "tone:feelgood",
+      "pace:slow",
+      "era:new",
+      "format:movie"
+    ],
+    "why": "Lu, a conformist woman in her forties, learns that her 15-year partner has been having extramarital affairs. Starting from scratch, she gets…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/1181678",
+      "imdb": "https://www.imdb.com/title/tt27391124/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/9GuvODahvuFqdhuZ16aBLR4UJoP.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-1022256",
+    "title": "Selena Gomez: My Mind & Me",
+    "year": 2022,
+    "format": "movie",
+    "tags": [
+      "genre:documentary",
+      "genre:music",
+      "tone:feelgood",
+      "pace:balanced",
+      "era:new",
+      "format:movie"
+    ],
+    "why": "After years in the limelight, Selena Gomez achieves unimaginable stardom. But just as she reaches a new peak, an unexpected turn pulls her i…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/1022256",
+      "imdb": "https://www.imdb.com/title/tt21819250/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/oMpsswJv8x4vnOnIKqs4xJs2Kn3.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-129",
+    "title": "Spirited Away",
+    "year": 2001,
+    "format": "movie",
+    "tags": [
+      "genre:animation",
+      "genre:family",
+      "genre:fantasy",
+      "tone:feelgood",
+      "pace:balanced",
+      "era:modern",
+      "format:movie",
+      "origin:international"
+    ],
+    "why": "A young girl, Chihiro, becomes trapped in a strange new world of spirits. When her parents undergo a mysterious transformation, she must cal…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/129",
+      "imdb": "https://www.imdb.com/title/tt0245429/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/39wmItIWsg5sZMyRUHLkWBcuVCM.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-155",
+    "title": "The Dark Knight",
+    "year": 2008,
+    "format": "movie",
+    "tags": [
+      "genre:action",
+      "genre:crime",
+      "genre:thriller",
+      "tone:dark",
+      "pace:fast",
+      "era:modern",
+      "format:movie"
+    ],
+    "why": "Batman raises the stakes in his war on crime. With the help of Lt. Jim Gordon and District Attorney Harvey Dent, Batman sets out to dismantl…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/155",
+      "imdb": "https://www.imdb.com/title/tt0468569/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911r6m7haRef0WH.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-122",
+    "title": "The Lord of the Rings: The Return of the King",
+    "year": 2003,
+    "format": "movie",
+    "tags": [
+      "genre:adventure",
+      "genre:fantasy",
+      "genre:action",
+      "tone:grounded",
+      "pace:fast",
+      "era:modern",
+      "format:movie"
+    ],
+    "why": "As armies mass for a final battle that will decide the fate of the world--and powerful, ancient forces of Light and Dark compete to determin…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/122",
+      "imdb": "https://www.imdb.com/title/tt0167260/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/rCzpDGLbOoPwLjy3OAm5NUPOTrC.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-496243",
+    "title": "Parasite",
+    "year": 2019,
+    "format": "movie",
+    "tags": [
+      "genre:comedy",
+      "genre:thriller",
+      "genre:drama",
+      "tone:feelgood",
+      "pace:fast",
+      "era:new",
+      "format:movie",
+      "origin:international"
+    ],
+    "why": "All unemployed, Ki-taek's family takes peculiar interest in the wealthy and glamorous Parks for their livelihood until they get entangled in…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/496243",
+      "imdb": "https://www.imdb.com/title/tt6751668/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-768141",
+    "title": "Folklore: The Long Pond Studio Sessions",
+    "year": 2020,
+    "format": "movie",
+    "tags": [
+      "genre:music",
+      "genre:documentary",
+      "tone:feelgood",
+      "pace:balanced",
+      "era:new",
+      "format:movie"
+    ],
+    "why": "An intimate concert film, in which Taylor Swift performs each song from her album 'folklore' in order, as she reveals the meaning and the st…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/768141",
+      "imdb": "https://www.imdb.com/title/tt13524234/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/4iroJUn8YuQBekDwGy7r61YHXiu.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-576712",
+    "title": "Everybody’s Everything",
+    "year": 2019,
+    "format": "movie",
+    "tags": [
+      "genre:documentary",
+      "tone:grounded",
+      "pace:balanced",
+      "era:new",
+      "format:movie"
+    ],
+    "why": "The story of artist Lil Peep from his birth in Long Island and meteoric rise as a genre blending pop star & style icon, to his death due to…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/576712",
+      "imdb": "https://www.imdb.com/title/tt9617716/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/wbMkjkNX8VylPVLmQ2Dp6i5iayY.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-372058",
+    "title": "Your Name.",
+    "year": 2016,
+    "format": "movie",
+    "tags": [
+      "genre:animation",
+      "genre:romance",
+      "genre:drama",
+      "tone:grounded",
+      "pace:slow",
+      "era:modern",
+      "format:movie",
+      "origin:international"
+    ],
+    "why": "High schoolers Mitsuha and Taki are complete strangers living separate lives. But one night, they suddenly switch places. Mitsuha wakes up i…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/372058",
+      "imdb": "https://www.imdb.com/title/tt5311514/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/q719jXXEzOoYaps6babgKnONONX.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-157336",
+    "title": "Interstellar",
+    "year": 2014,
+    "format": "movie",
+    "tags": [
+      "genre:adventure",
+      "genre:drama",
+      "genre:sci-fi",
+      "tone:mindbending",
+      "pace:slow",
+      "era:modern",
+      "format:movie"
+    ],
+    "why": "The adventures of a group of explorers who make use of a newly discovered wormhole to surpass the limitations on human space travel and conq…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/157336",
+      "imdb": "https://www.imdb.com/title/tt0816692/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/yQvGrMoipbRoddT0ZR8tPoR7NfX.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-637663",
+    "title": "DC Showcase: Death",
+    "year": 2019,
+    "format": "movie",
+    "tags": [
+      "genre:fantasy",
+      "genre:animation",
+      "genre:drama",
+      "tone:grounded",
+      "pace:slow",
+      "era:new",
+      "format:movie"
+    ],
+    "why": "Vincent, an artist with unresolved inner demons, meets a mysterious girl who helps him come to terms with his creative legacy… and eventual…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/637663",
+      "imdb": "https://www.imdb.com/title/tt11229556/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/4Ni5u7VMFbw4kIpqx5wKqjlFVwA.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-359364",
+    "title": "Human",
+    "year": 2015,
+    "format": "movie",
+    "tags": [
+      "genre:documentary",
+      "tone:grounded",
+      "pace:balanced",
+      "era:modern",
+      "format:movie",
+      "origin:international"
+    ],
+    "why": "A collection of stories about and images of our world, offering an immersion to the core of what it means to be human. Through these stories…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/359364",
+      "imdb": "https://www.imdb.com/title/tt3327994/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/l02W63OGQKYugJrs3Uw8nA9gii4.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-373558",
+    "title": "Taylor Swift: The 1989 World Tour - Live",
+    "year": 2015,
+    "format": "movie",
+    "tags": [
+      "genre:music",
+      "tone:feelgood",
+      "pace:balanced",
+      "era:modern",
+      "format:movie"
+    ],
+    "why": "Filmed in front of 76,000 fans at the ANZ Stadium in Sydney, Australia, \"The 1989 World Tour Live\" captures Taylor Swift's entire performanc…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/373558",
+      "imdb": "https://www.imdb.com/title/tt5297750/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/zwRGig0N8l6v5WxdrmwSBEBToAe.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-664280",
+    "title": "David Attenborough: A Life on Our Planet",
+    "year": 2020,
+    "format": "movie",
+    "tags": [
+      "genre:documentary",
+      "genre:drama",
+      "tone:grounded",
+      "pace:slow",
+      "era:new",
+      "format:movie"
+    ],
+    "why": "The story of life on our planet by the man who has seen more of the natural world than any other. In more than 90 years, Attenborough has vi…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/664280",
+      "imdb": "https://www.imdb.com/title/tt11989890/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/zSKwyUDKDHiFU5syTTvQRDcGBPS.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-120",
+    "title": "The Lord of the Rings: The Fellowship of the Ring",
+    "year": 2001,
+    "format": "movie",
+    "tags": [
+      "genre:adventure",
+      "genre:fantasy",
+      "genre:action",
+      "tone:grounded",
+      "pace:fast",
+      "era:modern",
+      "format:movie"
+    ],
+    "why": "Young hobbit Frodo Baggins, after inheriting a mysterious ring from his uncle Bilbo, must leave his home in order to keep it from falling in…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/120",
+      "imdb": "https://www.imdb.com/title/tt0120737/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/6oom5QYQ2yQTMJIbnvbkBL9cHo6.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-598",
+    "title": "City of God",
+    "year": 2002,
+    "format": "movie",
+    "tags": [
+      "genre:drama",
+      "genre:crime",
+      "tone:dark",
+      "pace:slow",
+      "era:modern",
+      "format:movie",
+      "origin:international"
+    ],
+    "why": "In the poverty-stricken favelas of Rio de Janeiro in the 1970s, two young men choose different paths. Rocket is a budding photographer who d…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/598",
+      "imdb": "https://www.imdb.com/title/tt0317248/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/k7eYdWvhYQyRQoU2TB2A2Xu2TfD.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-394269",
+    "title": "Lemonade",
+    "year": 2016,
+    "format": "movie",
+    "tags": [
+      "genre:music",
+      "genre:documentary",
+      "tone:feelgood",
+      "pace:balanced",
+      "era:modern",
+      "format:movie"
+    ],
+    "why": "The second \"visual album\" (a collection of short films) by Beyoncé, this time around she takes a piercing look at racial issues and feminist…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/394269",
+      "imdb": "https://www.imdb.com/title/tt5662106/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/m8Kr7GwRFKh7sdd9wy2tQYPGaOY.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-40096",
+    "title": "A Dog's Will",
+    "year": 2000,
+    "format": "movie",
+    "tags": [
+      "genre:comedy",
+      "genre:drama",
+      "genre:fantasy",
+      "tone:feelgood",
+      "pace:slow",
+      "era:modern",
+      "format:movie",
+      "origin:international"
+    ],
+    "why": "The lively João Grilo and the sly Chicó are poor guys living in the hinterland who cheat a bunch of people in a small town in Northeastern B…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/40096",
+      "imdb": "https://www.imdb.com/title/tt0271383/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/z9Au9XtK0ARzkKGsZCzMkmKgMPf.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-772071",
+    "title": "Cuando sea joven",
+    "year": 2022,
+    "format": "movie",
+    "tags": [
+      "genre:comedy",
+      "genre:fantasy",
+      "tone:feelgood",
+      "pace:balanced",
+      "era:new",
+      "format:movie",
+      "origin:international"
+    ],
+    "why": "70-year-old Malena gets a second chance at life when she magically turns into her 22-year-old self. Now, posing as \"Maria\" to hide her true…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/772071",
+      "imdb": "https://www.imdb.com/title/tt12076762/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/9hPa1NDUZCjGBDt0nvg4hnWis7W.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-667257",
+    "title": "Impossible Things",
+    "year": 2021,
+    "format": "movie",
+    "tags": [
+      "genre:family",
+      "genre:drama",
+      "tone:feelgood",
+      "pace:slow",
+      "era:new",
+      "format:movie",
+      "origin:international"
+    ],
+    "why": "After the death of her abusive husband, Matilde finds her new best friend in Miguel, her young, insecure, and disoriented neighbor.",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/667257",
+      "imdb": "https://www.imdb.com/title/tt10032342/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/t2Ew8NZ8Ci2kqmoecZUNQUFDJnQ.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-121",
+    "title": "The Lord of the Rings: The Two Towers",
+    "year": 2002,
+    "format": "movie",
+    "tags": [
+      "genre:adventure",
+      "genre:fantasy",
+      "genre:action",
+      "tone:grounded",
+      "pace:fast",
+      "era:modern",
+      "format:movie"
+    ],
+    "why": "Frodo Baggins and the other members of the Fellowship continue on their sacred quest to destroy the One Ring--but on separate paths. Their d…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/121",
+      "imdb": "https://www.imdb.com/title/tt0167261/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/5VTN0pR8gcqV3EPUHHfMGnJYN9L.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-1232449",
+    "title": "Young Hearts",
+    "year": 2024,
+    "format": "movie",
+    "tags": [
+      "genre:drama",
+      "genre:romance",
+      "tone:grounded",
+      "pace:slow",
+      "era:new",
+      "format:movie",
+      "origin:international"
+    ],
+    "why": "14-year-old Elias increasingly feels like an outsider in his village. When he meets his new neighbour of the same age, Alexander, Elias is c…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/1232449",
+      "imdb": "https://www.imdb.com/title/tt15245268/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/iGCtYxfuvXfy0BD5m6p7vKuPOxS.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-1412113",
+    "title": "Squid Game: Making Season 2",
+    "year": 2025,
+    "format": "movie",
+    "tags": [
+      "genre:documentary",
+      "tone:grounded",
+      "pace:balanced",
+      "era:new",
+      "format:movie",
+      "origin:international"
+    ],
+    "why": "From set designs to character arcs, get exclusive cast and director interviews on how Season 2 of the globally most-watched series was broug…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/1412113",
+      "imdb": "https://www.imdb.com/title/tt37546146/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/yQGaui0bQ5Ai3KIFBB45nTeIqad.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-377462",
+    "title": "O.J.: Made in America",
+    "year": 2016,
+    "format": "movie",
+    "tags": [
+      "genre:documentary",
+      "genre:crime",
+      "genre:history",
+      "tone:dark",
+      "pace:slow",
+      "era:modern",
+      "format:movie"
+    ],
+    "why": "A chronicle of the rise and fall of O.J. Simpson, whose high-profile murder trial exposed the extent of American racial tensions, revealing…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/377462",
+      "imdb": "https://www.imdb.com/title/tt5275892/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/2FW1ViDhIShRpjQx8isstiB6jel.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-255709",
+    "title": "Hope",
+    "year": 2013,
+    "format": "movie",
+    "tags": [
+      "genre:drama",
+      "tone:grounded",
+      "pace:slow",
+      "era:modern",
+      "format:movie",
+      "origin:international"
+    ],
+    "why": "After 8-year-old So-won narrowly survives a brutal sexual assault, her family labors to help her heal while coping with their own rage and g…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/255709",
+      "imdb": "https://www.imdb.com/title/tt3153634/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/x9yjkm9gIz5qI5fJMUTfBnWiB2o.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-324857",
+    "title": "Spider-Man: Into the Spider-Verse",
+    "year": 2018,
+    "format": "movie",
+    "tags": [
+      "genre:animation",
+      "genre:action",
+      "genre:adventure",
+      "tone:mindbending",
+      "pace:fast",
+      "era:new",
+      "format:movie"
+    ],
+    "why": "Struggling to find his place in the world while juggling school and family, Brooklyn teenager Miles Morales is unexpectedly bitten by a radi…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/324857",
+      "imdb": "https://www.imdb.com/title/tt4633694/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/iiZZdoQBEYBv6id8su7ImL0oCbD.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-283559",
+    "title": "One Direction: Where We Are - The Concert Film",
+    "year": 2014,
+    "format": "movie",
+    "tags": [
+      "genre:music",
+      "genre:documentary",
+      "tone:feelgood",
+      "pace:balanced",
+      "era:modern",
+      "format:movie"
+    ],
+    "why": "Where We Are: Live from San Siro Stadium features the entire 23 track concert filmed at San Siro Stadium in Milan in June 2014, as well as 2…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/283559",
+      "imdb": "https://www.imdb.com/title/tt3785068/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/8b8DHnN9R8lRMbflfnNAV87qGZQ.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-696374",
+    "title": "Gabriel's Inferno",
+    "year": 2020,
+    "format": "movie",
+    "tags": [
+      "genre:romance",
+      "genre:drama",
+      "tone:grounded",
+      "pace:slow",
+      "era:new",
+      "format:movie"
+    ],
+    "why": "An intriguing and sinful exploration of seduction, forbidden love, and redemption, Gabriel's Inferno is a captivating and wildly passionate…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/696374",
+      "imdb": "https://www.imdb.com/title/tt11316854/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/oyG9TL7FcRP4EZ9Vid6uKzwdndz.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-4935",
+    "title": "Howl's Moving Castle",
+    "year": 2004,
+    "format": "movie",
+    "tags": [
+      "genre:fantasy",
+      "genre:animation",
+      "genre:adventure",
+      "tone:grounded",
+      "pace:balanced",
+      "era:modern",
+      "format:movie",
+      "origin:international"
+    ],
+    "why": "Sophie, a young milliner, is turned into an elderly woman by a witch who enters her shop and curses her. She encounters a wizard named Howl…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/4935",
+      "imdb": "https://www.imdb.com/title/tt0347149/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/13kOl2v0nD2OLbVSHnHk8GUFEhO.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-378064",
+    "title": "A Silent Voice: The Movie",
+    "year": 2016,
+    "format": "movie",
+    "tags": [
+      "genre:animation",
+      "genre:drama",
+      "genre:romance",
+      "tone:grounded",
+      "pace:slow",
+      "era:modern",
+      "format:movie",
+      "origin:international"
+    ],
+    "why": "Shouya Ishida starts bullying the new girl in class, Shouko Nishimiya, because she is deaf. But as the teasing continues, the rest of the cl…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/378064",
+      "imdb": "https://www.imdb.com/title/tt5323662/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/tuFaWiqX0TXoWu7DGNcmX3UW7sT.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-423",
+    "title": "The Pianist",
+    "year": 2002,
+    "format": "movie",
+    "tags": [
+      "genre:drama",
+      "genre:war",
+      "tone:dark",
+      "pace:slow",
+      "era:modern",
+      "format:movie"
+    ],
+    "why": "The true story of pianist Władysław Szpilman's experiences in Warsaw during the Nazi occupation. When the Jews of the city find themselves f…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/423",
+      "imdb": "https://www.imdb.com/title/tt0253474/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/2hFvxCCWrTmCYwfy7yum0GKRi3Y.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-244786",
+    "title": "Whiplash",
+    "year": 2014,
+    "format": "movie",
+    "tags": [
+      "genre:drama",
+      "genre:music",
+      "genre:thriller",
+      "tone:feelgood",
+      "pace:fast",
+      "era:modern",
+      "format:movie"
+    ],
+    "why": "Under the direction of a ruthless instructor, a talented young drummer begins to pursue perfection at any cost, even his humanity.",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/244786",
+      "imdb": "https://www.imdb.com/title/tt2582802/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/7fn624j5lj3xTme2SgiLCeuedmO.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-770156",
+    "title": "Lucy Shimmers and the Prince of Peace",
+    "year": 2020,
+    "format": "movie",
+    "tags": [
+      "genre:drama",
+      "genre:family",
+      "tone:feelgood",
+      "pace:slow",
+      "era:new",
+      "format:movie"
+    ],
+    "why": "Second chances start when a hardened criminal crosses paths with a precocious little girl who is helped by an angel to change hearts during…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/770156",
+      "imdb": "https://www.imdb.com/title/tt11916254/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/yfnJ5qIYx7q33fY4jqv9Pu95RSg.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-27205",
+    "title": "Inception",
+    "year": 2010,
+    "format": "movie",
+    "tags": [
+      "genre:action",
+      "genre:sci-fi",
+      "genre:adventure",
+      "tone:mindbending",
+      "pace:fast",
+      "era:modern",
+      "format:movie"
+    ],
+    "why": "Cobb, a skilled thief who commits corporate espionage by infiltrating the subconscious of his targets is offered a chance to regain his old…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/27205",
+      "imdb": "https://www.imdb.com/title/tt1375666/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/xlaY2zyzMfkhk0HSC5VUwzoZPU1.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-553512",
+    "title": "Burn the Stage: The Movie",
+    "year": 2018,
+    "format": "movie",
+    "tags": [
+      "genre:music",
+      "genre:documentary",
+      "tone:feelgood",
+      "pace:balanced",
+      "era:new",
+      "format:movie",
+      "origin:international"
+    ],
+    "why": "Burn the Stage: the Movie is the first movie from BTS, going behind-the-scenes of the BTS WINGS TOUR to reveal the full story of the band’s…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/553512",
+      "imdb": "https://www.imdb.com/title/tt9151704/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/pJKy1yvnKh8UjcuYeG3Rt35xHFA.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-1291559",
+    "title": "Drawing Closer",
+    "year": 2024,
+    "format": "movie",
+    "tags": [
+      "genre:romance",
+      "genre:drama",
+      "tone:grounded",
+      "pace:slow",
+      "era:new",
+      "format:movie",
+      "origin:international"
+    ],
+    "why": "With only a year left to live, 17-year-old Akito finds new meaning in life by bringing joy to a terminally ill girl who has just six months…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/1291559",
+      "imdb": "https://www.imdb.com/title/tt31078761/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/173FD4a0rpSF30z4CoWx6qdx8Ry.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-724089",
+    "title": "Gabriel's Inferno: Part II",
+    "year": 2020,
+    "format": "movie",
+    "tags": [
+      "genre:romance",
+      "genre:drama",
+      "tone:grounded",
+      "pace:slow",
+      "era:new",
+      "format:movie"
+    ],
+    "why": "Professor Gabriel Emerson finally learns the truth about Julia Mitchell's identity, but his realization comes a moment too late. Julia is do…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/724089",
+      "imdb": "https://www.imdb.com/title/tt13535454/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/x5o8cLZfEXMoZczTYWLrUo1P7UJ.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-761053",
+    "title": "Gabriel's Inferno: Part III",
+    "year": 2020,
+    "format": "movie",
+    "tags": [
+      "genre:romance",
+      "genre:drama",
+      "tone:grounded",
+      "pace:slow",
+      "era:new",
+      "format:movie"
+    ],
+    "why": "The final part of the film adaption of the erotic romance novel Gabriel's Inferno written by an anonymous Canadian author under the pen name…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/761053",
+      "imdb": "https://www.imdb.com/title/tt13535456/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/fYtHxTxlhzD4QWfEbrC1rypysSD.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-1150394",
+    "title": "La Leyenda de los Chaneques",
+    "year": 2023,
+    "format": "movie",
+    "tags": [
+      "genre:animation",
+      "genre:comedy",
+      "genre:family",
+      "tone:dark",
+      "pace:fast",
+      "era:new",
+      "format:movie",
+      "origin:international"
+    ],
+    "why": "Five years after giving up his powers and separating from his friends, Leo San Juan has started a new life trying to focus on his family and…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/1150394",
+      "imdb": "https://www.imdb.com/title/tt28283972/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/4f9ghI3utknpeBZSAzNuIKKATOA.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-611291",
+    "title": "Bring the Soul: The Movie",
+    "year": 2019,
+    "format": "movie",
+    "tags": [
+      "genre:music",
+      "genre:documentary",
+      "tone:feelgood",
+      "pace:balanced",
+      "era:new",
+      "format:movie",
+      "origin:international"
+    ],
+    "why": "A glimpse into K-pop group BTS’ world away from the stage, featuring intimate group discussions alongside spectacular concert performances f…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/611291",
+      "imdb": "https://www.imdb.com/title/tt10545076/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/7x5CguA0MxHqbSjhi14UEuK7c95.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-569094",
+    "title": "Spider-Man: Across the Spider-Verse",
+    "year": 2023,
+    "format": "movie",
+    "tags": [
+      "genre:animation",
+      "genre:action",
+      "genre:adventure",
+      "tone:mindbending",
+      "pace:fast",
+      "era:new",
+      "format:movie"
+    ],
+    "why": "After reuniting with Gwen Stacy, Brooklyn’s full-time, friendly neighborhood Spider-Man is catapulted across the Multiverse, where he encoun…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/569094",
+      "imdb": "https://www.imdb.com/title/tt9362722/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/8Vt6mWEReuy4Of61Lnj5Xj704m8.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-1218925",
+    "title": "Chainsaw Man - The Movie: Reze Arc",
+    "year": 2025,
+    "format": "movie",
+    "tags": [
+      "genre:animation",
+      "genre:action",
+      "genre:romance",
+      "tone:grounded",
+      "pace:fast",
+      "era:new",
+      "format:movie",
+      "origin:international"
+    ],
+    "why": "In a brutal war between devils, hunters, and secret enemies, a mysterious girl named Reze has stepped into Denji's world, and he faces his d…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/1218925",
+      "imdb": "https://www.imdb.com/title/tt30472557/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/pHyxb2RV5wLlboAwm9ZJ9qTVEDw.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-1058694",
+    "title": "Radical",
+    "year": 2023,
+    "format": "movie",
+    "tags": [
+      "genre:drama",
+      "tone:grounded",
+      "pace:slow",
+      "era:new",
+      "format:movie",
+      "origin:international"
+    ],
+    "why": "In a Mexican border town plagued by neglect, corruption, and violence, a frustrated teacher tries an unorthodox new method to break through…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/1058694",
+      "imdb": "https://www.imdb.com/title/tt14570440/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/lOAJYpX608aT0ApIv63ZTnol27Y.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-937337",
+    "title": "What a Father!",
+    "year": 2022,
+    "format": "movie",
+    "tags": [
+      "genre:comedy",
+      "genre:family",
+      "genre:romance",
+      "tone:feelgood",
+      "pace:slow",
+      "era:new",
+      "format:movie",
+      "origin:international"
+    ],
+    "why": "Pedro is a single man in his forties who likes to party, has no children and lives at night. Everything changes when he meets Alin. She ment…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/937337",
+      "imdb": "https://www.imdb.com/title/tt14891922/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/aZ9qQ3X8xutsWIusMFGKlvkKiyD.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-1355666",
+    "title": "Love Untangled",
+    "year": 2025,
+    "format": "movie",
+    "tags": [
+      "genre:romance",
+      "genre:drama",
+      "genre:comedy",
+      "tone:feelgood",
+      "pace:slow",
+      "era:new",
+      "format:movie",
+      "origin:international"
+    ],
+    "why": "A lovestruck teen plans to win the school heartthrob by going from curly to straight hair — until a new transfer student changes everything.",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/1355666",
+      "imdb": "https://www.imdb.com/title/tt33549683/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/e7jStO2xfBUAUK37LbINHd1qtgy.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-820067",
+    "title": "The Quintessential Quintuplets Movie",
+    "year": 2022,
+    "format": "movie",
+    "tags": [
+      "genre:animation",
+      "genre:comedy",
+      "genre:romance",
+      "tone:feelgood",
+      "pace:slow",
+      "era:new",
+      "format:movie",
+      "origin:international"
+    ],
+    "why": "When five lovely young girls who hate studying hire part-time tutor Futaro, he guides not only their education but also their hearts. Time s…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/820067",
+      "imdb": "https://www.imdb.com/title/tt15721650/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/sg7klpt1xwK1IJirBI9EHaqQwJ5.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-1184918",
+    "title": "The Wild Robot",
+    "year": 2024,
+    "format": "movie",
+    "tags": [
+      "genre:animation",
+      "genre:sci-fi",
+      "genre:family",
+      "tone:feelgood",
+      "pace:balanced",
+      "era:new",
+      "format:movie"
+    ],
+    "why": "After a shipwreck, an intelligent robot called Roz is stranded on an uninhabited island. To survive the harsh environment, Roz bonds with th…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/1184918",
+      "imdb": "https://www.imdb.com/title/tt29623480/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/q2qXg4OmJgm0qGaBYLdXzP8nHPy.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-620249",
+    "title": "The Legend of Hei",
+    "year": 2019,
+    "format": "movie",
+    "tags": [
+      "genre:animation",
+      "genre:fantasy",
+      "genre:action",
+      "tone:grounded",
+      "pace:fast",
+      "era:new",
+      "format:movie",
+      "origin:international"
+    ],
+    "why": "When cat spirit Luo Xiaohei's home is deforested by humans, he must find a new one. He runs into a group of other spirit creatures who take…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/620249",
+      "imdb": "https://www.imdb.com/title/tt10734928/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/4jfbKKLpqts3i2h2obkrONcjTg1.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-533514",
+    "title": "Violet Evergarden: The Movie",
+    "year": 2020,
+    "format": "movie",
+    "tags": [
+      "genre:animation",
+      "genre:drama",
+      "genre:fantasy",
+      "tone:grounded",
+      "pace:slow",
+      "era:new",
+      "format:movie",
+      "origin:international"
+    ],
+    "why": "As the world moves on from the war and technological advances bring changes to her life, Violet still hopes to see her lost commanding offic…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/533514",
+      "imdb": "https://www.imdb.com/title/tt8652818/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/bajajkoErDst0JxdFyBkABiF9rW.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-396194",
+    "title": "Ennio",
+    "year": 2022,
+    "format": "movie",
+    "tags": [
+      "genre:documentary",
+      "genre:music",
+      "genre:history",
+      "tone:feelgood",
+      "pace:slow",
+      "era:new",
+      "format:movie",
+      "origin:international"
+    ],
+    "why": "A portrait of Ennio Morricone, the most popular and prolific film composer of the 20th century, the one most loved by the international publ…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/396194",
+      "imdb": "https://www.imdb.com/title/tt3031654/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/lEuLAubp74HYztEyNYpEx3AoqOu.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-1087771",
+    "title": "Nada que ver",
+    "year": 2023,
+    "format": "movie",
+    "tags": [
+      "genre:romance",
+      "genre:comedy",
+      "tone:feelgood",
+      "pace:slow",
+      "era:new",
+      "format:movie",
+      "origin:international"
+    ],
+    "why": "After Carlos is tasked to care for Paola, both characters must work out their differences to make their time together more pleasant. As time…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/1087771",
+      "imdb": "https://www.imdb.com/title/tt23553530/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/brpncE7IUmXFhZ6kELmyChvHKel.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-644479",
+    "title": "Dedicated to my ex",
+    "year": 2019,
+    "format": "movie",
+    "tags": [
+      "genre:drama",
+      "genre:comedy",
+      "tone:feelgood",
+      "pace:slow",
+      "era:new",
+      "format:movie",
+      "origin:international"
+    ],
+    "why": "The film tells the story of Ariel, a 21-year-old who decides to form a rock band to compete for a prize of ten thousand dollars in a musical…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/644479",
+      "imdb": "https://www.imdb.com/title/tt5869370/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/xc4bTXVwYNXi10jG9dwcaYt5IpU.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-1139087",
+    "title": "Once Upon a Studio",
+    "year": 2023,
+    "format": "movie",
+    "tags": [
+      "genre:animation",
+      "genre:family",
+      "genre:fantasy",
+      "tone:feelgood",
+      "pace:balanced",
+      "era:new",
+      "format:movie"
+    ],
+    "why": "Created for Disney's 100th anniversary, the short features Mickey Mouse corralling a gallery of legendary Disney characters for a group phot…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/1139087",
+      "imdb": "https://www.imdb.com/title/tt28035641/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/aiy3G1cYWV3LgKZHY6a3jL8bjYL.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-1105832",
+    "title": "Simón",
+    "year": 2023,
+    "format": "movie",
+    "tags": [
+      "genre:drama",
+      "tone:grounded",
+      "pace:slow",
+      "era:new",
+      "format:movie"
+    ],
+    "why": "Simón, a Venezuelan freedom fighter exiled in Miami, copes not only with trauma, but also deep guilt over a choice he must make: stay in Mia…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/1105832",
+      "imdb": "https://www.imdb.com/title/tt13580840/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/9ltmI5Mef0NHWm4Nxcpm6hT8VhY.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-667276",
+    "title": "Las leyendas: El origen",
+    "year": 2021,
+    "format": "movie",
+    "tags": [
+      "genre:animation",
+      "genre:comedy",
+      "genre:fantasy",
+      "tone:dark",
+      "pace:fast",
+      "era:new",
+      "format:movie",
+      "origin:international"
+    ],
+    "why": "When a human baby crosses the Eternal Mirror, the portal between the living and the dead opens its path to the beings from the underworld.",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/667276",
+      "imdb": "https://www.imdb.com/title/tt10431332/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/fR49hZdFJ6ZtRS23JW79VYmZgI7.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-278",
+    "title": "The Shawshank Redemption",
+    "year": 1994,
+    "format": "movie",
+    "tags": [
+      "genre:drama",
+      "genre:crime",
+      "tone:dark",
+      "pace:slow",
+      "era:classic",
+      "format:movie"
+    ],
+    "why": "Imprisoned in the 1940s for the double murder of his wife and her lover, upstanding banker Andy Dufresne begins a new life at the Shawshank…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/278",
+      "imdb": "https://www.imdb.com/title/tt0111161/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/9cqNxx0GxF0bflZmeSMuL5tnGzr.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-238",
+    "title": "The Godfather",
+    "year": 1972,
+    "format": "movie",
+    "tags": [
+      "genre:drama",
+      "genre:crime",
+      "tone:dark",
+      "pace:slow",
+      "era:classic",
+      "format:movie"
+    ],
+    "why": "Spanning the years 1945 to 1955, a chronicle of the fictional Italian-American Corleone crime family. When organized crime family patriarch,…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/238",
+      "imdb": "https://www.imdb.com/title/tt0068646/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/3bhkrj58Vtu7enYsRolD1fZdja1.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-122019",
+    "title": "Macario",
+    "year": 1960,
+    "format": "movie",
+    "tags": [
+      "genre:drama",
+      "genre:fantasy",
+      "tone:grounded",
+      "pace:slow",
+      "era:classic",
+      "format:movie",
+      "origin:international"
+    ],
+    "why": "Poor, hungry peasant Macario longs for just one good meal on the Day of the Dead. After his wife cooks a turkey for him, he meets three appa…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/122019",
+      "imdb": "https://www.imdb.com/title/tt0054042/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/fKRzGm3BiuOv3MuolazFOEgB8EX.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-240",
+    "title": "The Godfather Part II",
+    "year": 1974,
+    "format": "movie",
+    "tags": [
+      "genre:drama",
+      "genre:crime",
+      "tone:dark",
+      "pace:slow",
+      "era:classic",
+      "format:movie"
+    ],
+    "why": "In the continuing saga of the Corleone crime family, a young Vito Corleone grows up in Sicily and in 1910s New York. In the 1950s, Michael C…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/240",
+      "imdb": "https://www.imdb.com/title/tt0071562/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/hek3koDUyRQk7FIhPXsa6mT2Zc3.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-424",
+    "title": "Schindler's List",
+    "year": 1993,
+    "format": "movie",
+    "tags": [
+      "genre:drama",
+      "genre:history",
+      "genre:war",
+      "tone:dark",
+      "pace:slow",
+      "era:classic",
+      "format:movie"
+    ],
+    "why": "The true story of how businessman Oskar Schindler saved over a thousand Jewish lives from the Nazis while they worked as slaves in his facto…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/424",
+      "imdb": "https://www.imdb.com/title/tt0108052/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/sF1U4EUQS8YHUYjNl3pMGNIQyr0.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-389",
+    "title": "12 Angry Men",
+    "year": 1957,
+    "format": "movie",
+    "tags": [
+      "genre:drama",
+      "tone:grounded",
+      "pace:slow",
+      "era:classic",
+      "format:movie"
+    ],
+    "why": "The defense and the prosecution have rested and the jury is filing into the jury room to decide if a young Spanish-American is guilty or inn…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/389",
+      "imdb": "https://www.imdb.com/title/tt0050083/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/2QXLVh32JKaWTjFJU3n8aIxRK9P.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-19404",
+    "title": "Dilwale Dulhania Le Jayenge",
+    "year": 1995,
+    "format": "movie",
+    "tags": [
+      "genre:comedy",
+      "genre:drama",
+      "genre:romance",
+      "tone:feelgood",
+      "pace:slow",
+      "era:classic",
+      "format:movie",
+      "origin:international"
+    ],
+    "why": "Raj is a rich, carefree, happy-go-lucky second generation NRI. Simran is the daughter of Chaudhary Baldev Singh, who in spite of being an NR…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/19404",
+      "imdb": "https://www.imdb.com/title/tt0112870/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/2CAL2433ZeIihfX1Hb2139CX0pW.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-497",
+    "title": "The Green Mile",
+    "year": 1999,
+    "format": "movie",
+    "tags": [
+      "genre:fantasy",
+      "genre:drama",
+      "genre:crime",
+      "tone:dark",
+      "pace:slow",
+      "era:classic",
+      "format:movie"
+    ],
+    "why": "A supernatural tale set on death row in a Southern prison, where gentle giant John Coffey possesses the mysterious power to heal people's ai…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/497",
+      "imdb": "https://www.imdb.com/title/tt0120689/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/8VG8fDNiy50H4FedGwdSVUPoaJe.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-680",
+    "title": "Pulp Fiction",
+    "year": 1994,
+    "format": "movie",
+    "tags": [
+      "genre:thriller",
+      "genre:crime",
+      "genre:comedy",
+      "tone:dark",
+      "pace:fast",
+      "era:classic",
+      "format:movie"
+    ],
+    "why": "A burger-loving hit man, his philosophical partner, a drug-addled gangster's moll and a washed-up boxer converge in this sprawling, comedic…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/680",
+      "imdb": "https://www.imdb.com/title/tt0110912/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/vQWk5YBFWF4bZaofAbv0tShwBvQ.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-429",
+    "title": "The Good, the Bad and the Ugly",
+    "year": 1966,
+    "format": "movie",
+    "tags": [
+      "tone:grounded",
+      "pace:balanced",
+      "era:classic",
+      "format:movie",
+      "origin:international"
+    ],
+    "why": "While the Civil War rages on between the Union and the Confederacy, three men – a quiet loner, a ruthless hitman, and a Mexican bandit – com…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/429",
+      "imdb": "https://www.imdb.com/title/tt0060196/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/bX2xnavhMYjWDoZp1VM6VnU1xwe.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-13",
+    "title": "Forrest Gump",
+    "year": 1994,
+    "format": "movie",
+    "tags": [
+      "genre:comedy",
+      "genre:drama",
+      "genre:romance",
+      "tone:feelgood",
+      "pace:slow",
+      "era:classic",
+      "format:movie"
+    ],
+    "why": "A man with a low IQ has accomplished great things in his life and been present during significant historic events—in each case, far exceedin…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/13",
+      "imdb": "https://www.imdb.com/title/tt0109830/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/saHP97rTPS5eLmrLQEcANmKrsFl.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-769",
+    "title": "GoodFellas",
+    "year": 1990,
+    "format": "movie",
+    "tags": [
+      "genre:drama",
+      "genre:crime",
+      "tone:dark",
+      "pace:slow",
+      "era:classic",
+      "format:movie"
+    ],
+    "why": "The true story of Henry Hill, a half-Irish, half-Sicilian Brooklyn kid who is adopted by neighbourhood gangsters at an early age and climbs…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/769",
+      "imdb": "https://www.imdb.com/title/tt0099685/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/9OkCLM73MIU2CrKZbqiT8Ln1wY2.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-346",
+    "title": "Seven Samurai",
+    "year": 1954,
+    "format": "movie",
+    "tags": [
+      "genre:action",
+      "genre:drama",
+      "tone:grounded",
+      "pace:fast",
+      "era:classic",
+      "format:movie",
+      "origin:international"
+    ],
+    "why": "A samurai answers a village's request for protection after he falls on hard times. The town needs protection from bandits, so the samurai ga…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/346",
+      "imdb": "https://www.imdb.com/title/tt0047478/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/lOMGc8bnSwQhS4XyE1S99uH8NXf.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-20575",
+    "title": "Queen: Live at Wembley Stadium",
+    "year": 1986,
+    "format": "movie",
+    "tags": [
+      "genre:music",
+      "tone:feelgood",
+      "pace:balanced",
+      "era:classic",
+      "format:movie"
+    ],
+    "why": "One of the world's biggest bands returns to the scene of their Live Aid triumph (one year earlier in 1985) to play all their greatest hits i…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/20575",
+      "imdb": "https://www.imdb.com/title/tt0158874/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/he2VSGKspGL4iSFe0ggGMcvYlQh.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-12477",
+    "title": "Grave of the Fireflies",
+    "year": 1988,
+    "format": "movie",
+    "tags": [
+      "genre:animation",
+      "genre:drama",
+      "genre:war",
+      "tone:dark",
+      "pace:slow",
+      "era:classic",
+      "format:movie",
+      "origin:international"
+    ],
+    "why": "In the final months of World War II, 14-year-old Seita and his sister Setsuko are orphaned when their mother is killed during an air raid in…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/12477",
+      "imdb": "https://www.imdb.com/title/tt0095327/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/k9tv1rXZbOhH7eiCk378x61kNQ1.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-637",
+    "title": "Life Is Beautiful",
+    "year": 1997,
+    "format": "movie",
+    "tags": [
+      "genre:comedy",
+      "genre:drama",
+      "tone:feelgood",
+      "pace:slow",
+      "era:classic",
+      "format:movie",
+      "origin:international"
+    ],
+    "why": "A touching story of an Italian book seller of Jewish ancestry who lives in his own little fairy tale. His creative and happy life would come…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/637",
+      "imdb": "https://www.imdb.com/title/tt0118799/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/mfnkSeeVOBVheuyn2lo4tfmOPQb.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-550",
+    "title": "Fight Club",
+    "year": 1999,
+    "format": "movie",
+    "tags": [
+      "genre:drama",
+      "genre:thriller",
+      "tone:dark",
+      "pace:fast",
+      "era:classic",
+      "format:movie"
+    ],
+    "why": "A ticking-time-bomb insomniac and a slippery soap salesman channel primal male aggression into a shocking new form of therapy. Their concept…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/550",
+      "imdb": "https://www.imdb.com/title/tt0137523/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/pB8BM7pdSp6B6Ih7QZ4DrQ3PmJK.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-14537",
+    "title": "Harakiri",
+    "year": 1962,
+    "format": "movie",
+    "tags": [
+      "genre:action",
+      "genre:drama",
+      "genre:history",
+      "tone:grounded",
+      "pace:fast",
+      "era:classic",
+      "format:movie",
+      "origin:international"
+    ],
+    "why": "Down-on-his-luck veteran Tsugumo Hanshirō enters the courtyard of the prosperous House of Iyi. Unemployed, and with no family, he hopes to f…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/14537",
+      "imdb": "https://www.imdb.com/title/tt0056058/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/3nPwMd3KviJWaHzG9fZCqlwWMas.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-11216",
+    "title": "Cinema Paradiso",
+    "year": 1988,
+    "format": "movie",
+    "tags": [
+      "genre:drama",
+      "genre:romance",
+      "tone:grounded",
+      "pace:slow",
+      "era:classic",
+      "format:movie",
+      "origin:international"
+    ],
+    "why": "A filmmaker recalls his childhood, when he fell in love with the movies at his village's theater and formed a deep friendship with the theat…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/11216",
+      "imdb": "https://www.imdb.com/title/tt0095765/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/gCI2AeMV4IHSewhJkzsur5MEp6R.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-539",
+    "title": "Psycho",
+    "year": 1960,
+    "format": "movie",
+    "tags": [
+      "genre:horror",
+      "genre:thriller",
+      "genre:mystery",
+      "tone:dark",
+      "pace:fast",
+      "era:classic",
+      "format:movie"
+    ],
+    "why": "When larcenous real estate clerk Marion Crane goes on the lam with a wad of cash and hopes of starting a new life, she ends up at the notori…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/539",
+      "imdb": "https://www.imdb.com/title/tt0054215/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/yz4QVqPx3h1hD1DfqqQkCq3rmxW.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-510",
+    "title": "One Flew Over the Cuckoo's Nest",
+    "year": 1975,
+    "format": "movie",
+    "tags": [
+      "genre:drama",
+      "tone:grounded",
+      "pace:slow",
+      "era:classic",
+      "format:movie"
+    ],
+    "why": "A petty criminal fakes insanity to serve his sentence in a mental ward rather than prison. He soon finds himself as a leader to the other pa…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/510",
+      "imdb": "https://www.imdb.com/title/tt0073486/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/kjWsMh72V6d8KRLV4EOoSJLT1H7.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-34530",
+    "title": "The Human Condition III: A Soldier's Prayer",
+    "year": 1961,
+    "format": "movie",
+    "tags": [
+      "genre:war",
+      "genre:drama",
+      "genre:history",
+      "tone:dark",
+      "pace:slow",
+      "era:classic",
+      "format:movie",
+      "origin:international"
+    ],
+    "why": "After the Japanese defeat to the Russians, Kaji leads the last remaining men through Manchuria. Intent on returning to his old life, he face…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/34530",
+      "imdb": "https://www.imdb.com/title/tt0055233/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/pag7gyxSFe7vTl6riHfZ5Xci6q7.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-1891",
+    "title": "The Empire Strikes Back",
+    "year": 1980,
+    "format": "movie",
+    "tags": [
+      "genre:adventure",
+      "genre:action",
+      "genre:sci-fi",
+      "tone:mindbending",
+      "pace:fast",
+      "era:classic",
+      "format:movie"
+    ],
+    "why": "The epic saga continues as Luke Skywalker, in hopes of defeating the evil Galactic Empire, learns the ways of the Jedi from aging master Yod…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/1891",
+      "imdb": "https://www.imdb.com/title/tt0080684/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/nNAeTmF4CtdSgMDplXTDPOpYzsX.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-311",
+    "title": "Once Upon a Time in America",
+    "year": 1984,
+    "format": "movie",
+    "tags": [
+      "genre:drama",
+      "genre:crime",
+      "tone:dark",
+      "pace:slow",
+      "era:classic",
+      "format:movie"
+    ],
+    "why": "A former Prohibition-era Jewish gangster returns to the Lower East Side of Manhattan over thirty years later, where he once again must confr…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/311",
+      "imdb": "https://www.imdb.com/title/tt0087843/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/i0enkzsL5dPeneWnjl1fCWm6L7k.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-807",
+    "title": "Se7en",
+    "year": 1995,
+    "format": "movie",
+    "tags": [
+      "genre:crime",
+      "genre:mystery",
+      "genre:thriller",
+      "tone:dark",
+      "pace:fast",
+      "era:classic",
+      "format:movie"
+    ],
+    "why": "Two homicide detectives are on a desperate hunt for a serial killer whose crimes are based on the \"seven deadly sins\" in this dark and haunt…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/807",
+      "imdb": "https://www.imdb.com/title/tt0114369/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/191nKfP0ehp3uIvWqgPbFmI4lv9.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-12493",
+    "title": "High and Low",
+    "year": 1963,
+    "format": "movie",
+    "tags": [
+      "genre:drama",
+      "genre:crime",
+      "genre:thriller",
+      "tone:dark",
+      "pace:fast",
+      "era:classic",
+      "format:movie",
+      "origin:international"
+    ],
+    "why": "A Yokohama shoe executive faces a wrenching choice when kidnappers mistakenly seize his chauffeur’s son but demand the ransom anyway.",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/12493",
+      "imdb": "https://www.imdb.com/title/tt0057565/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/tgNjemQPG96uIezpiUiXFcer5ga.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-274",
+    "title": "The Silence of the Lambs",
+    "year": 1991,
+    "format": "movie",
+    "tags": [
+      "genre:crime",
+      "genre:thriller",
+      "genre:drama",
+      "tone:dark",
+      "pace:fast",
+      "era:classic",
+      "format:movie"
+    ],
+    "why": "Clarice Starling is a top student at the FBI's training academy. Jack Crawford wants Clarice to interview Dr. Hannibal Lecter, a brilliant p…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/274",
+      "imdb": "https://www.imdb.com/title/tt0102926/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/uS9m8OBk1A8eM9I042bx8XXpqAq.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-567",
+    "title": "Rear Window",
+    "year": 1954,
+    "format": "movie",
+    "tags": [
+      "genre:thriller",
+      "genre:mystery",
+      "tone:mindbending",
+      "pace:fast",
+      "era:classic",
+      "format:movie"
+    ],
+    "why": "A wheelchair-bound photographer spies on his neighbors from his apartment window and becomes convinced one of them has committed murder.",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/567",
+      "imdb": "https://www.imdb.com/title/tt0047396/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/ILVF0eJxHMddjxeQhswFtpMtqx.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-73",
+    "title": "American History X",
+    "year": 1998,
+    "format": "movie",
+    "tags": [
+      "genre:drama",
+      "tone:grounded",
+      "pace:slow",
+      "era:classic",
+      "format:movie"
+    ],
+    "why": "Derek Vineyard is paroled after serving 3 years in prison for killing two African-American men. Through his brother, Danny Vineyard's narrat…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/73",
+      "imdb": "https://www.imdb.com/title/tt0120586/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/x2drgoXYZ8484lqyDj7L1CEVR4T.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-128",
+    "title": "Princess Mononoke",
+    "year": 1997,
+    "format": "movie",
+    "tags": [
+      "genre:adventure",
+      "genre:fantasy",
+      "genre:animation",
+      "tone:grounded",
+      "pace:balanced",
+      "era:classic",
+      "format:movie",
+      "origin:international"
+    ],
+    "why": "Ashitaka, a prince of the disappearing Emishi people, is cursed by a demonized boar god and must journey to the west to find a cure. Along t…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/128",
+      "imdb": "https://www.imdb.com/title/tt0119698/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/cMYCDADoLKLbB83g4WnJegaZimC.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-105",
+    "title": "Back to the Future",
+    "year": 1985,
+    "format": "movie",
+    "tags": [
+      "genre:adventure",
+      "genre:comedy",
+      "genre:sci-fi",
+      "tone:feelgood",
+      "pace:balanced",
+      "era:classic",
+      "format:movie"
+    ],
+    "why": "Eighties teenager Marty McFly is accidentally sent back in time to 1955, inadvertently disrupting his parents' first meeting and attracting…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/105",
+      "imdb": "https://www.imdb.com/title/tt0088763/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/vN5B5WgYscRGcQpVhHl6p9DDTP0.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-24128",
+    "title": "Stop Making Sense",
+    "year": 1984,
+    "format": "movie",
+    "tags": [
+      "genre:documentary",
+      "genre:music",
+      "tone:feelgood",
+      "pace:balanced",
+      "era:classic",
+      "format:movie"
+    ],
+    "why": "A concert film documenting Talking Heads at the height of their popularity, on tour for their 1983 album \"Speaking in Tongues.\" The band tak…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/24128",
+      "imdb": "https://www.imdb.com/title/tt0088178/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/utNpurUe1MMjEaHqvpkfxgfpSnV.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-3782",
+    "title": "Ikiru",
+    "year": 1952,
+    "format": "movie",
+    "tags": [
+      "genre:drama",
+      "tone:grounded",
+      "pace:slow",
+      "era:classic",
+      "format:movie",
+      "origin:international"
+    ],
+    "why": "Kanji Watanabe is a middle-aged man who has worked in the same monotonous bureaucratic position for decades. Learning he has cancer, he star…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/3782",
+      "imdb": "https://www.imdb.com/title/tt0044741/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/dgNTS4EQDDVfkzJI5msKuHu2Ei3.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-45139",
+    "title": "Jesus",
+    "year": 1979,
+    "format": "movie",
+    "tags": [
+      "genre:drama",
+      "tone:grounded",
+      "pace:slow",
+      "era:classic",
+      "format:movie"
+    ],
+    "why": "Three and a half years of Jesus' ministry, as told in the Gospel of Luke.",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/45139",
+      "imdb": "https://www.imdb.com/title/tt0079368/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/9bdfGfWj3Ef9Gucrxysbcwyx7Uo.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-10494",
+    "title": "Perfect Blue",
+    "year": 1998,
+    "format": "movie",
+    "tags": [
+      "genre:animation",
+      "genre:thriller",
+      "tone:dark",
+      "pace:fast",
+      "era:classic",
+      "format:movie",
+      "origin:international"
+    ],
+    "why": "Rising pop star Mima quits singing to pursue a career as an actress. After she takes up a role on a popular detective show, her handlers and…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/10494",
+      "imdb": "https://www.imdb.com/title/tt0156887/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/6WTiOCfDPP8XV4jqfloiVWf7KHq.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-207",
+    "title": "Dead Poets Society",
+    "year": 1989,
+    "format": "movie",
+    "tags": [
+      "genre:drama",
+      "tone:grounded",
+      "pace:slow",
+      "era:classic",
+      "format:movie"
+    ],
+    "why": "At an elite, old-fashioned boarding school in New England, a passionate English teacher inspires his students to rebel against convention an…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/207",
+      "imdb": "https://www.imdb.com/title/tt0097165/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/l5NbiHKUmahlAT3Q1ig8Tyl9xrc.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-101",
+    "title": "Léon: The Professional",
+    "year": 1994,
+    "format": "movie",
+    "tags": [
+      "genre:crime",
+      "genre:drama",
+      "genre:action",
+      "tone:dark",
+      "pace:fast",
+      "era:classic",
+      "format:movie",
+      "origin:international"
+    ],
+    "why": "Léon, the top hit man in New York, has earned a rep as an effective \"cleaner\". But when his next-door neighbors are wiped out by a loose-can…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/101",
+      "imdb": "https://www.imdb.com/title/tt0110413/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/bxB2q91nKYp8JNzqE7t7TWBVupB.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-42269",
+    "title": "We All Loved Each Other So Much",
+    "year": 1974,
+    "format": "movie",
+    "tags": [
+      "genre:drama",
+      "genre:comedy",
+      "tone:feelgood",
+      "pace:slow",
+      "era:classic",
+      "format:movie",
+      "origin:international"
+    ],
+    "why": "Three partisans bound by a strong friendship return home after the war, but the clash with everyday reality puts a strain on their bond.",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/42269",
+      "imdb": "https://www.imdb.com/title/tt0075793/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/zGGWYpiKNwjpKxelPxOMqJnUgDs.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-914",
+    "title": "The Great Dictator",
+    "year": 1940,
+    "format": "movie",
+    "tags": [
+      "genre:comedy",
+      "genre:war",
+      "tone:dark",
+      "pace:balanced",
+      "era:classic",
+      "format:movie"
+    ],
+    "why": "Dictator Adenoid Hynkel tries to expand his empire while a poor Jewish barber tries to avoid persecution from Hynkel's regime.",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/914",
+      "imdb": "https://www.imdb.com/title/tt0032553/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/1QpO9wo7JWecZ4NiBuu625FiY1j.jpg"
+    }
+  },
+  {
+    "id": "tmdb-movie-3082",
+    "title": "Modern Times",
+    "year": 1936,
+    "format": "movie",
+    "tags": [
+      "genre:comedy",
+      "genre:drama",
+      "genre:romance",
+      "tone:feelgood",
+      "pace:slow",
+      "era:classic",
+      "format:movie"
+    ],
+    "why": "A bumbling tramp desires to build a home with a young woman, yet is thwarted time and time again by his lack of experience and habit of bein…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/movie/3082",
+      "imdb": "https://www.imdb.com/title/tt0027977/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/7uoiKOEjxBBW0AgDGQWrlfGQ90w.jpg"
+    }
+  },
+  {
+    "id": "tmdb-series-214999",
+    "title": "The Good Bad Mother",
+    "year": 2023,
+    "format": "series",
+    "tags": [
+      "genre:drama",
+      "genre:comedy",
+      "tone:feelgood",
+      "pace:slow",
+      "era:new",
+      "format:series",
+      "origin:international"
+    ],
+    "why": "A tragic accident leaves an ambitious prosecutor with the mind of a child – forcing him and his mother to embark on a journey to heal their…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/tv/214999",
+      "imdb": "https://www.imdb.com/title/tt27042206/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/vtDLhvpTk1xcaBCKubSH0if575G.jpg"
+    }
+  },
+  {
+    "id": "tmdb-series-1396",
+    "title": "Breaking Bad",
+    "year": 2008,
+    "format": "series",
+    "tags": [
+      "genre:drama",
+      "genre:crime",
+      "tone:dark",
+      "pace:slow",
+      "era:modern",
+      "format:series"
+    ],
+    "why": "Walter White, a New Mexico chemistry teacher, is diagnosed with Stage III cancer and given a prognosis of only two years left to live. He be…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/tv/1396",
+      "imdb": "https://www.imdb.com/title/tt0903747/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/ztkUQFLlC19CCMYHW9o1zWhJRNq.jpg"
+    }
+  },
+  {
+    "id": "tmdb-series-245026",
+    "title": "Wizards Beyond Waverly Place",
+    "year": 2024,
+    "format": "series",
+    "tags": [
+      "genre:comedy",
+      "genre:sci-fi & fantasy",
+      "genre:family",
+      "tone:feelgood",
+      "pace:balanced",
+      "era:new",
+      "format:series"
+    ],
+    "why": "Justin Russo has chosen to lead a normal, mortal life with his family, Giada, Roman and Milo. But when Justin's sister Alex brings Billie to…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/tv/245026",
+      "imdb": "https://www.imdb.com/title/tt31867798/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/zekFfF9ch0yjfKPiyOQW7v4T03Y.jpg"
+    }
+  },
+  {
+    "id": "tmdb-series-64010",
+    "title": "Reply 1988",
+    "year": 2015,
+    "format": "series",
+    "tags": [
+      "genre:comedy",
+      "tone:feelgood",
+      "pace:balanced",
+      "era:modern",
+      "format:series",
+      "origin:international"
+    ],
+    "why": "Take a nostalgic trip back to the late 1980s through the lives of five families and their five teenage kids living in a small neighbourhood…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/tv/64010",
+      "imdb": "https://www.imdb.com/title/tt5182866/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/i3xQJlQRff4k5IMEY55l4iKaKl3.jpg"
+    }
+  },
+  {
+    "id": "tmdb-series-209867",
+    "title": "Frieren: Beyond Journey's End",
+    "year": 2023,
+    "format": "series",
+    "tags": [
+      "genre:animation",
+      "genre:action & adventure",
+      "genre:drama",
+      "tone:grounded",
+      "pace:slow",
+      "era:new",
+      "format:series",
+      "origin:international"
+    ],
+    "why": "Decades after her party defeated the Demon King, an old friend's funeral launches the elf wizard Frieren on a journey of self-discovery.",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/tv/209867",
+      "imdb": "https://www.imdb.com/title/tt22248376/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/dqZENchTd7lp5zht7BdlqM7RBhD.jpg"
+    }
+  },
+  {
+    "id": "tmdb-series-246",
+    "title": "Avatar: The Last Airbender",
+    "year": 2005,
+    "format": "series",
+    "tags": [
+      "genre:animation",
+      "genre:action & adventure",
+      "genre:sci-fi & fantasy",
+      "tone:grounded",
+      "pace:balanced",
+      "era:modern",
+      "format:series"
+    ],
+    "why": "In a war-torn world of elemental magic, a young boy reawakens to undertake a dangerous mystic quest to fulfill his destiny as the Avatar, an…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/tv/246",
+      "imdb": "https://www.imdb.com/title/tt0417299/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/9RQhVb3r3mCMqYVhLoCu4EvuipP.jpg"
+    }
+  },
+  {
+    "id": "tmdb-series-94605",
+    "title": "Arcane",
+    "year": 2021,
+    "format": "series",
+    "tags": [
+      "genre:animation",
+      "genre:action & adventure",
+      "tone:grounded",
+      "pace:balanced",
+      "era:new",
+      "format:series"
+    ],
+    "why": "Amid the stark discord of twin cities Piltover and Zaun, two sisters fight on rival sides of a war between magic technologies and clashing c…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/tv/94605",
+      "imdb": "https://www.imdb.com/title/tt11126994/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/fqldf2t8ztc9aiwn3k6mlX3tvRT.jpg"
+    }
+  },
+  {
+    "id": "tmdb-series-37854",
+    "title": "One Piece",
+    "year": 1999,
+    "format": "series",
+    "tags": [
+      "genre:action & adventure",
+      "genre:comedy",
+      "genre:animation",
+      "tone:feelgood",
+      "pace:balanced",
+      "era:classic",
+      "format:series",
+      "origin:international"
+    ],
+    "why": "Years ago, the fearsome Pirate King, Gol D. Roger was executed leaving a huge pile of treasure and the famous \"One Piece\" behind. Whoever cl…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/tv/37854",
+      "imdb": "https://www.imdb.com/title/tt0388629/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/uiIB9ctqZFbfRXXimtpmZb5dusi.jpg"
+    }
+  },
+  {
+    "id": "tmdb-series-280945",
+    "title": "Bon Appétit, Your Majesty",
+    "year": 2025,
+    "format": "series",
+    "tags": [
+      "genre:drama",
+      "genre:sci-fi & fantasy",
+      "tone:grounded",
+      "pace:slow",
+      "era:new",
+      "format:series",
+      "origin:international"
+    ],
+    "why": "After time traveling to the Joseon era, a talented chef meets a tyrant king. Her modern dishes captivate his palate, but royal challenges aw…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/tv/280945",
+      "imdb": "https://www.imdb.com/title/tt37600136/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/bzYSIw9FTzQXUcWsnDSwlcwok3C.jpg"
+    }
+  },
+  {
+    "id": "tmdb-series-87108",
+    "title": "Chernobyl",
+    "year": 2019,
+    "format": "series",
+    "tags": [
+      "genre:drama",
+      "tone:grounded",
+      "pace:slow",
+      "era:new",
+      "format:series"
+    ],
+    "why": "The true story of one of the worst man-made catastrophes in history: the catastrophic nuclear accident at Chernobyl. A tale of the brave men…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/tv/87108",
+      "imdb": "https://www.imdb.com/title/tt7366338/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/hlLXt2tOPT6RRnjiUmoxyG1LTFi.jpg"
+    }
+  },
+  {
+    "id": "tmdb-series-60059",
+    "title": "Better Call Saul",
+    "year": 2015,
+    "format": "series",
+    "tags": [
+      "genre:crime",
+      "genre:drama",
+      "tone:dark",
+      "pace:slow",
+      "era:modern",
+      "format:series"
+    ],
+    "why": "Six years before Saul Goodman meets Walter White. We meet him when the man who will become Saul Goodman is known as Jimmy McGill, a small-ti…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/tv/60059",
+      "imdb": "https://www.imdb.com/title/tt3032476/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/zjg4jpK1Wp2kiRvtt5ND0kznako.jpg"
+    }
+  },
+  {
+    "id": "tmdb-series-219246",
+    "title": "When Life Gives You Tangerines",
+    "year": 2025,
+    "format": "series",
+    "tags": [
+      "genre:drama",
+      "tone:grounded",
+      "pace:slow",
+      "era:new",
+      "format:series",
+      "origin:international"
+    ],
+    "why": "In Jeju, a spirited girl and a steadfast boy's island story blossoms into a lifelong tale of setbacks and triumphs — proving love endures ac…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/tv/219246",
+      "imdb": "https://www.imdb.com/title/tt26471411/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/1VC3sEFxYXYDqQUCAnvWfUsYg1s.jpg"
+    }
+  },
+  {
+    "id": "tmdb-series-31911",
+    "title": "Fullmetal Alchemist: Brotherhood",
+    "year": 2009,
+    "format": "series",
+    "tags": [
+      "genre:animation",
+      "genre:action & adventure",
+      "genre:sci-fi & fantasy",
+      "tone:grounded",
+      "pace:slow",
+      "era:modern",
+      "format:series",
+      "origin:international"
+    ],
+    "why": "Disregard for alchemy’s laws ripped half of Edward Elric’s limbs from his body and left his brother Alphonse’s soul clinging to a suit of ar…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/tv/31911",
+      "imdb": "https://www.imdb.com/title/tt1355642/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/5ZFUEOULaVml7pQuXxhpR2SmVUw.jpg"
+    }
+  },
+  {
+    "id": "tmdb-series-250307",
+    "title": "The Pitt",
+    "year": 2025,
+    "format": "series",
+    "tags": [
+      "genre:drama",
+      "tone:grounded",
+      "pace:slow",
+      "era:new",
+      "format:series"
+    ],
+    "why": "The staff of Pittsburgh's Trauma Medical Center work around the clock to save lives in an overcrowded and underfunded emergency department.",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/tv/250307",
+      "imdb": "https://www.imdb.com/title/tt31938062/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/kvFSpESyBZMjaeOJDx7RS3P1jey.jpg"
+    }
+  },
+  {
+    "id": "tmdb-series-301507",
+    "title": "Heated Rivalry",
+    "year": 2025,
+    "format": "series",
+    "tags": [
+      "genre:drama",
+      "tone:grounded",
+      "pace:slow",
+      "era:new",
+      "format:series"
+    ],
+    "why": "Two of the biggest stars in Major League Hockey are bound by ambition, rivalry, and a magnetic pull neither of them fully understands. What…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/tv/301507",
+      "imdb": "https://www.imdb.com/title/tt35495073/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/3YCKbtAkYWCMDLHvkUjGhG7eWoS.jpg"
+    }
+  },
+  {
+    "id": "tmdb-series-234763",
+    "title": "The Boy's Word: Blood on the Asphalt",
+    "year": 2023,
+    "format": "series",
+    "tags": [
+      "genre:drama",
+      "genre:crime",
+      "tone:dark",
+      "pace:slow",
+      "era:new",
+      "format:series",
+      "origin:international"
+    ],
+    "why": "In the late 1980s, when “perestroika” was taking place in the USSR and the era of the Soviet Union was about to collapse, life became unstab…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/tv/234763",
+      "imdb": "https://www.imdb.com/title/tt28429213/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/fmJ2vVzaSAPvCqB79H70uMHSNr4.jpg"
+    }
+  },
+  {
+    "id": "tmdb-series-117067",
+    "title": "KinnPorsche: The Series",
+    "year": 2022,
+    "format": "series",
+    "tags": [
+      "genre:action & adventure",
+      "genre:crime",
+      "genre:drama",
+      "tone:dark",
+      "pace:slow",
+      "era:new",
+      "format:series",
+      "origin:international"
+    ],
+    "why": "Porsche agrees to guard mafia heir Kinn for his family's sake, but fighting off danger soon turns into fighting his own feelings.",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/tv/117067",
+      "imdb": "https://www.imdb.com/title/tt19370256/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/hdPLe50HbZHsETXQRcIP8gw7cKz.jpg"
+    }
+  },
+  {
+    "id": "tmdb-series-85077",
+    "title": "The Chosen",
+    "year": 2019,
+    "format": "series",
+    "tags": [
+      "genre:drama",
+      "genre:family",
+      "genre:action & adventure",
+      "tone:feelgood",
+      "pace:slow",
+      "era:new",
+      "format:series"
+    ],
+    "why": "The life of Christ through the eyes of those who encountered him.",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/tv/85077",
+      "imdb": "https://www.imdb.com/title/tt5622316/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/dqVUFuNrMFWt7uGNWlpo91VKYOI.jpg"
+    }
+  },
+  {
+    "id": "tmdb-series-60625",
+    "title": "Rick and Morty",
+    "year": 2013,
+    "format": "series",
+    "tags": [
+      "genre:animation",
+      "genre:comedy",
+      "genre:sci-fi & fantasy",
+      "tone:feelgood",
+      "pace:balanced",
+      "era:modern",
+      "format:series"
+    ],
+    "why": "Follows a sociopathic genius scientist who drags his inherently timid grandson on adventures across the universe.",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/tv/60625",
+      "imdb": "https://www.imdb.com/title/tt2861424/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/WGRQ8FpjkDTzivQJ43t94bOuY0.jpg"
+    }
+  },
+  {
+    "id": "tmdb-series-1429",
+    "title": "Attack on Titan",
+    "year": 2013,
+    "format": "series",
+    "tags": [
+      "genre:animation",
+      "genre:sci-fi & fantasy",
+      "genre:action & adventure",
+      "tone:grounded",
+      "pace:balanced",
+      "era:modern",
+      "format:series",
+      "origin:international"
+    ],
+    "why": "100 years ago, the last remnants of humanity were forced to retreat behind the towering walls of a fortified city to escape the massive, man…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/tv/1429",
+      "imdb": "https://www.imdb.com/title/tt2560140/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/hTP1DtLGFamjfu8WqjnuQdP1n4i.jpg"
+    }
+  },
+  {
+    "id": "tmdb-series-131378",
+    "title": "Adventure Time: Fionna and Cake",
+    "year": 2023,
+    "format": "series",
+    "tags": [
+      "genre:animation",
+      "genre:action & adventure",
+      "genre:comedy",
+      "tone:feelgood",
+      "pace:balanced",
+      "era:new",
+      "format:series"
+    ],
+    "why": "Fionna and Cake – with the help of the former Ice King, Simon Petrikov - embark on a multiverse-hopping adventure and journey of self-discov…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/tv/131378",
+      "imdb": "https://www.imdb.com/title/tt15248880/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/fi1b6U1kp73xheECzqwzMn8u3mX.jpg"
+    }
+  },
+  {
+    "id": "tmdb-series-46298",
+    "title": "Hunter x Hunter",
+    "year": 2011,
+    "format": "series",
+    "tags": [
+      "genre:animation",
+      "genre:action & adventure",
+      "genre:sci-fi & fantasy",
+      "tone:grounded",
+      "pace:balanced",
+      "era:modern",
+      "format:series",
+      "origin:international"
+    ],
+    "why": "Gon, a young boy who lives on Whale Island, dreams of becoming a Hunter like his father, who left when Gon was still young.",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/tv/46298",
+      "imdb": "https://www.imdb.com/title/tt2098220/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/i2EEr2uBvRlAwJ8d8zTG2Y19mIa.jpg"
+    }
+  },
+  {
+    "id": "tmdb-series-92685",
+    "title": "The Owl House",
+    "year": 2020,
+    "format": "series",
+    "tags": [
+      "genre:animation",
+      "genre:action & adventure",
+      "genre:comedy",
+      "tone:feelgood",
+      "pace:balanced",
+      "era:new",
+      "format:series"
+    ],
+    "why": "An animated fantasy-comedy series that follows Luz, a self-assured teenage girl who accidentally stumbles upon a portal to a magical world w…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/tv/92685",
+      "imdb": "https://www.imdb.com/title/tt8050756/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/rhzwpJBhi2WkfihXndS1xUdQlzB.jpg"
+    }
+  },
+  {
+    "id": "tmdb-series-1398",
+    "title": "The Sopranos",
+    "year": 1999,
+    "format": "series",
+    "tags": [
+      "genre:crime",
+      "genre:drama",
+      "tone:dark",
+      "pace:slow",
+      "era:classic",
+      "format:series"
+    ],
+    "why": "The story of New Jersey-based Italian-American mobster Tony Soprano and the difficulties he faces as he tries to balance the conflicting req…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/tv/1398",
+      "imdb": "https://www.imdb.com/title/tt0141842/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/rTc7ZXdroqjkKivFPvCPX0Ru7uw.jpg"
+    }
+  },
+  {
+    "id": "tmdb-series-70785",
+    "title": "Anne with an E",
+    "year": 2017,
+    "format": "series",
+    "tags": [
+      "genre:drama",
+      "genre:family",
+      "tone:feelgood",
+      "pace:slow",
+      "era:modern",
+      "format:series"
+    ],
+    "why": "A coming-of-age story about an outsider who, against all odds and numerous challenges, fights for love and acceptance and for her place in t…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/tv/70785",
+      "imdb": "https://www.imdb.com/title/tt5421602/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/6P6tXhjT5tK3qOXzxF9OMLlG7iz.jpg"
+    }
+  },
+  {
+    "id": "tmdb-series-42573",
+    "title": "Slam Dunk",
+    "year": 1993,
+    "format": "series",
+    "tags": [
+      "genre:animation",
+      "genre:comedy",
+      "tone:feelgood",
+      "pace:balanced",
+      "era:classic",
+      "format:series",
+      "origin:international"
+    ],
+    "why": "Sakuragi Hanamichi is a junior high punk used to getting into fights and being rejected by girls but upon entering high school he meets the…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/tv/42573",
+      "imdb": "https://www.imdb.com/title/tt0965547/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/gpkM8VeiYyQuEg9qkAoNplktwe4.jpg"
+    }
+  },
+  {
+    "id": "tmdb-series-200709",
+    "title": "Weak Hero",
+    "year": 2022,
+    "format": "series",
+    "tags": [
+      "genre:action & adventure",
+      "genre:drama",
+      "tone:grounded",
+      "pace:slow",
+      "era:new",
+      "format:series",
+      "origin:international"
+    ],
+    "why": "With the aid of unexpected friends, a gifted but introverted student confronts bullies and violent foes — unaware of how dangerous his world…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/tv/200709",
+      "imdb": "https://www.imdb.com/title/tt20234568/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/hS9VVF5ffTVWNoC9B48QNsZFGy9.jpg"
+    }
+  },
+  {
+    "id": "tmdb-series-89456",
+    "title": "Primal",
+    "year": 2019,
+    "format": "series",
+    "tags": [
+      "genre:action & adventure",
+      "genre:animation",
+      "genre:drama",
+      "tone:grounded",
+      "pace:slow",
+      "era:new",
+      "format:series"
+    ],
+    "why": "A caveman forms a bond with a dinosaur as they struggle to survive in a hostile world.",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/tv/89456",
+      "imdb": "https://www.imdb.com/title/tt10332508/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/mf12pRakr3eYdJtv6klQtoznnbU.jpg"
+    }
+  },
+  {
+    "id": "tmdb-series-62741",
+    "title": "Kamisama Kiss",
+    "year": 2012,
+    "format": "series",
+    "tags": [
+      "genre:animation",
+      "genre:comedy",
+      "genre:sci-fi & fantasy",
+      "tone:feelgood",
+      "pace:balanced",
+      "era:modern",
+      "format:series",
+      "origin:international"
+    ],
+    "why": "Nanami was just a normal high school girl down on her luck until a stranger’s lips marked her as the new Land God and turned her world upsid…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/tv/62741",
+      "imdb": "https://www.imdb.com/title/tt2320220/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/5E7GL8KxpFemEFl3Lv8Fu4RuSwa.jpg"
+    }
+  },
+  {
+    "id": "tmdb-series-42705",
+    "title": "Fighting Spirit",
+    "year": 2000,
+    "format": "series",
+    "tags": [
+      "genre:animation",
+      "genre:comedy",
+      "genre:drama",
+      "tone:feelgood",
+      "pace:slow",
+      "era:modern",
+      "format:series",
+      "origin:international"
+    ],
+    "why": "Makunouchi Ippo is an ordinary high school student in Japan. Since he spends most of his time away from school helping his mother run the fa…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/tv/42705",
+      "imdb": "https://www.imdb.com/title/tt0481256/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/1LApB9C9kEkh2ZU2vzAhurNDipl.jpg"
+    }
+  },
+  {
+    "id": "tmdb-series-85937",
+    "title": "Demon Slayer: Kimetsu no Yaiba",
+    "year": 2019,
+    "format": "series",
+    "tags": [
+      "genre:animation",
+      "genre:action & adventure",
+      "genre:sci-fi & fantasy",
+      "tone:grounded",
+      "pace:balanced",
+      "era:new",
+      "format:series",
+      "origin:international"
+    ],
+    "why": "After a demon attack leaves his family slain and his sister cursed, Tanjiro embarks upon a perilous journey to find a cure and avenge those…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/tv/85937",
+      "imdb": "https://www.imdb.com/title/tt9335498/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/xUfRZu2mi8jH6SzQEJGP6tjBuYj.jpg"
+    }
+  },
+  {
+    "id": "tmdb-series-3498",
+    "title": "Wizards of Waverly Place",
+    "year": 2007,
+    "format": "series",
+    "tags": [
+      "genre:comedy",
+      "genre:sci-fi & fantasy",
+      "genre:kids",
+      "tone:feelgood",
+      "pace:balanced",
+      "era:modern",
+      "format:series"
+    ],
+    "why": "Alex, Justin and Max Russo are not your ordinary kids - they're wizards in training! While their parents run the Waverly Sub Station, the si…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/tv/3498",
+      "imdb": "https://www.imdb.com/title/tt0799922/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/spVI8Zns4Ep30zzxcoO7f7nwfck.jpg"
+    }
+  },
+  {
+    "id": "tmdb-series-72637",
+    "title": "Once",
+    "year": 2017,
+    "format": "series",
+    "tags": [
+      "genre:comedy",
+      "genre:family",
+      "genre:soap",
+      "tone:feelgood",
+      "pace:balanced",
+      "era:modern",
+      "format:series",
+      "origin:international"
+    ],
+    "why": "The series revolves around Gabo, a soccer-loving teenager who, upon receiving a scholarship from the prestigious Sports Academic Institute (…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/tv/72637",
+      "imdb": "https://www.imdb.com/title/tt6922826/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/d4vPg3QsTJJh6C5MHARTb5CyqOu.jpg"
+    }
+  },
+  {
+    "id": "tmdb-series-271607",
+    "title": "The Fragrant Flower Blooms with Dignity",
+    "year": 2025,
+    "format": "series",
+    "tags": [
+      "genre:animation",
+      "genre:drama",
+      "tone:grounded",
+      "pace:slow",
+      "era:new",
+      "format:series",
+      "origin:international"
+    ],
+    "why": "When the intimidating Rintaro meets the open-minded Kaoruko, the unlikely duo grows closer. The issue? Their neighboring high schools hate e…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/tv/271607",
+      "imdb": "https://www.imdb.com/title/tt36592690/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/g1sYAQt0OeCxzyfagSEqxUlsLnt.jpg"
+    }
+  },
+  {
+    "id": "tmdb-series-68595",
+    "title": "Planet Earth II",
+    "year": 2016,
+    "format": "series",
+    "tags": [
+      "genre:documentary",
+      "genre:family",
+      "tone:feelgood",
+      "pace:balanced",
+      "era:modern",
+      "format:series"
+    ],
+    "why": "David Attenborough presents a documentary series exploring how animals meet the challenges of surviving in the most iconic habitats on earth…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/tv/68595",
+      "imdb": "https://www.imdb.com/title/tt5491994/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/tUKomxy50suT4MyxjYfOJDkZUq3.jpg"
+    }
+  },
+  {
+    "id": "tmdb-series-13916",
+    "title": "Death Note",
+    "year": 2006,
+    "format": "series",
+    "tags": [
+      "genre:animation",
+      "genre:mystery",
+      "genre:sci-fi & fantasy",
+      "tone:mindbending",
+      "pace:balanced",
+      "era:modern",
+      "format:series",
+      "origin:international"
+    ],
+    "why": "Light Yagami is an ace student with great prospects—and he’s bored out of his mind. But all that changes when he finds the Death Note, a not…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/tv/13916",
+      "imdb": "https://www.imdb.com/title/tt0877057/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/tCZFfYTIwrR7n94J6G14Y4hAFU6.jpg"
+    }
+  },
+  {
+    "id": "tmdb-series-1438",
+    "title": "The Wire",
+    "year": 2002,
+    "format": "series",
+    "tags": [
+      "genre:crime",
+      "genre:drama",
+      "tone:dark",
+      "pace:slow",
+      "era:modern",
+      "format:series"
+    ],
+    "why": "Told from the points of view of both the Baltimore homicide and narcotics detectives and their targets, the series captures a universe in wh…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/tv/1438",
+      "imdb": "https://www.imdb.com/title/tt0306414/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/4lbclFySvugI51fwsyxBTOm4DqK.jpg"
+    }
+  },
+  {
+    "id": "tmdb-series-74313",
+    "title": "Blue Planet II",
+    "year": 2017,
+    "format": "series",
+    "tags": [
+      "genre:documentary",
+      "genre:family",
+      "tone:feelgood",
+      "pace:balanced",
+      "era:modern",
+      "format:series"
+    ],
+    "why": "There is nowhere more powerful and unforgiving yet more beautiful and compelling than the ocean. Join us and explore the greatest yet least…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/tv/74313",
+      "imdb": "https://www.imdb.com/title/tt6769208/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/j1NsoYYDYHnPkRr7Enqr8tlexgO.jpg"
+    }
+  },
+  {
+    "id": "tmdb-series-31132",
+    "title": "Regular Show",
+    "year": 2010,
+    "format": "series",
+    "tags": [
+      "genre:animation",
+      "genre:comedy",
+      "genre:action & adventure",
+      "tone:feelgood",
+      "pace:balanced",
+      "era:modern",
+      "format:series"
+    ],
+    "why": "The surreal misadventures of two best friends - a blue jay and a raccoon - as they seek to liven up their mundane jobs as groundskeepers at…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/tv/31132",
+      "imdb": "https://www.imdb.com/title/tt1710308/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/mS5SLxMYcKfUxA0utBSR5MOAWWr.jpg"
+    }
+  },
+  {
+    "id": "tmdb-series-1430",
+    "title": "Cosmos: A Personal Voyage",
+    "year": 1980,
+    "format": "series",
+    "tags": [
+      "genre:documentary",
+      "tone:grounded",
+      "pace:balanced",
+      "era:classic",
+      "format:series"
+    ],
+    "why": "Carl Sagan covers a wide range of scientific subjects, including the origin of life and a perspective of our place in the universe.",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/tv/1430",
+      "imdb": "https://www.imdb.com/title/tt0081846/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/nOGArjE0WMkzY2GW1taJm8l9gxD.jpg"
+    }
+  },
+  {
+    "id": "tmdb-series-95557",
+    "title": "Invincible",
+    "year": 2021,
+    "format": "series",
+    "tags": [
+      "genre:animation",
+      "genre:drama",
+      "genre:sci-fi & fantasy",
+      "tone:grounded",
+      "pace:slow",
+      "era:new",
+      "format:series"
+    ],
+    "why": "Mark Grayson is a normal teenager except for the fact that his father is the most powerful superhero on the planet. Shortly after his sevent…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/tv/95557",
+      "imdb": "https://www.imdb.com/title/tt6741278/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/4tblBrslcKSifMVZ3TmtT2ukMor.jpg"
+    }
+  },
+  {
+    "id": "tmdb-series-65930",
+    "title": "My Hero Academia",
+    "year": 2016,
+    "format": "series",
+    "tags": [
+      "genre:action & adventure",
+      "genre:animation",
+      "genre:sci-fi & fantasy",
+      "tone:grounded",
+      "pace:balanced",
+      "era:modern",
+      "format:series",
+      "origin:international"
+    ],
+    "why": "After he saves a bully from a Villain, a normal student is granted a superpower that allows him to attend a high school training academy for…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/tv/65930",
+      "imdb": "https://www.imdb.com/title/tt5626028/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/phuYuzqWW9ru8EA3HVjE9W2Rr3M.jpg"
+    }
+  },
+  {
+    "id": "tmdb-series-127532",
+    "title": "Solo Leveling",
+    "year": 2024,
+    "format": "series",
+    "tags": [
+      "genre:animation",
+      "genre:action & adventure",
+      "genre:sci-fi & fantasy",
+      "tone:grounded",
+      "pace:balanced",
+      "era:new",
+      "format:series",
+      "origin:international"
+    ],
+    "why": "They say whatever doesn’t kill you makes you stronger, but that’s not the case for the world’s weakest hunter Sung Jinwoo. After being bruta…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/tv/127532",
+      "imdb": "https://www.imdb.com/title/tt21209876/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/geCRueV3ElhRTr0xtJuEWJt6dJ1.jpg"
+    }
+  },
+  {
+    "id": "tmdb-series-44931",
+    "title": "Superbook",
+    "year": 2011,
+    "format": "series",
+    "tags": [
+      "genre:animation",
+      "genre:kids",
+      "genre:family",
+      "tone:feelgood",
+      "pace:balanced",
+      "era:modern",
+      "format:series"
+    ],
+    "why": "Chris Quantum is your typical Middle School student -- except if you take into account one of his best friends is a robot named Gizmo. Add h…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/tv/44931",
+      "imdb": "https://www.imdb.com/title/tt1740717/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/4gxPU54vvA5ZGaICzwDXAQY5SvR.jpg"
+    }
+  },
+  {
+    "id": "tmdb-series-40075",
+    "title": "Gravity Falls",
+    "year": 2012,
+    "format": "series",
+    "tags": [
+      "genre:animation",
+      "genre:action & adventure",
+      "genre:comedy",
+      "tone:feelgood",
+      "pace:balanced",
+      "era:modern",
+      "format:series"
+    ],
+    "why": "Twin brother and sister Dipper and Mabel Pines are in for an unexpected adventure when they spend the summer helping their great uncle Stan…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/tv/40075",
+      "imdb": "https://www.imdb.com/title/tt1865718/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/pnoGOBtkffH64hhI5GPdsQ218d1.jpg"
+    }
+  },
+  {
+    "id": "tmdb-series-1044",
+    "title": "Planet Earth",
+    "year": 2006,
+    "format": "series",
+    "tags": [
+      "genre:documentary",
+      "tone:grounded",
+      "pace:balanced",
+      "era:modern",
+      "format:series"
+    ],
+    "why": "David Attenborough celebrates the amazing variety of the natural world in this epic documentary series, filmed over four years across 64 dif…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/tv/1044",
+      "imdb": "https://www.imdb.com/title/tt0795176/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/bNcNxUtZ520d5de5s78onoiSiwQ.jpg"
+    }
+  },
+  {
+    "id": "tmdb-series-100",
+    "title": "I Am Not an Animal",
+    "year": 2004,
+    "format": "series",
+    "tags": [
+      "genre:animation",
+      "genre:comedy",
+      "genre:sci-fi & fantasy",
+      "tone:feelgood",
+      "pace:balanced",
+      "era:modern",
+      "format:series"
+    ],
+    "why": "I Am Not An Animal is an animated comedy series about the only six talking animals in the world, whose cosseted existence in a vivisection u…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/tv/100",
+      "imdb": "https://www.imdb.com/title/tt0348943/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/zXhtWhYtlJVyyp5MdT7ggMJn5si.jpg"
+    }
+  },
+  {
+    "id": "tmdb-series-60863",
+    "title": "Haikyu!!",
+    "year": 2014,
+    "format": "series",
+    "tags": [
+      "genre:animation",
+      "genre:comedy",
+      "genre:drama",
+      "tone:feelgood",
+      "pace:slow",
+      "era:modern",
+      "format:series",
+      "origin:international"
+    ],
+    "why": "Inspired by a small-statured pro volleyball player, Hinata creates a volleyball team in his last year of middle school. Unfortunately the te…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/tv/60863",
+      "imdb": "https://www.imdb.com/title/tt3398540/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/rBXEmHQaYoIAyOWRpu8v3cBGKcT.jpg"
+    }
+  },
+  {
+    "id": "tmdb-series-77696",
+    "title": "Run BTS!",
+    "year": 2015,
+    "format": "series",
+    "tags": [
+      "genre:reality",
+      "tone:grounded",
+      "pace:balanced",
+      "era:modern",
+      "format:series",
+      "origin:international"
+    ],
+    "why": "Run BTS! is a variety web series starring BTS, broadcasting intermittent for free viewing on Weverse and YouTube, was formerly offered weekl…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/tv/77696",
+      "imdb": "https://www.imdb.com/title/tt7865962/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/guNo600nrTIIh88C9i6HFlCAhE.jpg"
+    }
+  },
+  {
+    "id": "tmdb-series-57706",
+    "title": "Ranma ½",
+    "year": 1989,
+    "format": "series",
+    "tags": [
+      "genre:comedy",
+      "genre:action & adventure",
+      "genre:animation",
+      "tone:feelgood",
+      "pace:balanced",
+      "era:classic",
+      "format:series",
+      "origin:international"
+    ],
+    "why": "Ranma Saotome, a teenage martial artist, and his father Genma travel to the 'cursed training ground' of Jusenkyo in China. There, despite th…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/tv/57706",
+      "imdb": "https://www.imdb.com/title/tt0096686/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/qb1R5iLZcjIgdDIfXFQXmJadQPI.jpg"
+    }
+  },
+  {
+    "id": "tmdb-series-95269",
+    "title": "Toilet-Bound Hanako-kun",
+    "year": 2020,
+    "format": "series",
+    "tags": [
+      "genre:animation",
+      "genre:mystery",
+      "genre:sci-fi & fantasy",
+      "tone:mindbending",
+      "pace:balanced",
+      "era:new",
+      "format:series",
+      "origin:international"
+    ],
+    "why": "To be united with her crush, a hopeless romantic summons the ghost in the girls' bathroom at her school. But she's shocked when the ghost is…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/tv/95269",
+      "imdb": "https://www.imdb.com/title/tt10777610/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/h1X1G8Q9Ba9Vy1YIgXHduenP8nv.jpg"
+    }
+  },
+  {
+    "id": "tmdb-series-3854",
+    "title": "The Spectacular Spider-Man",
+    "year": 2008,
+    "format": "series",
+    "tags": [
+      "genre:action & adventure",
+      "genre:animation",
+      "genre:kids",
+      "tone:feelgood",
+      "pace:balanced",
+      "era:modern",
+      "format:series"
+    ],
+    "why": "Having spent the summer engaging common criminals with his new-found powers, not so typical 16-year-old Peter Parker must conceal his secret…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/tv/3854",
+      "imdb": "https://www.imdb.com/title/tt0976192/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/dCNxOhXT7c4lqYuRpdM3m8s9XDp.jpg"
+    }
+  },
+  {
+    "id": "tmdb-series-256721",
+    "title": "Gachiakuta",
+    "year": 2025,
+    "format": "series",
+    "tags": [
+      "genre:animation",
+      "genre:action & adventure",
+      "genre:drama",
+      "tone:grounded",
+      "pace:slow",
+      "era:new",
+      "format:series",
+      "origin:international"
+    ],
+    "why": "Accused of murder and thrown into the Pit, a young orphan joins a group of monster fighters with special powers to uncover the truth and see…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/tv/256721",
+      "imdb": "https://www.imdb.com/title/tt32612521/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/jH78nLFrTU6aP7hY7KO6DZHFLoX.jpg"
+    }
+  },
+  {
+    "id": "tmdb-series-35790",
+    "title": "Cardcaptor Sakura",
+    "year": 1998,
+    "format": "series",
+    "tags": [
+      "genre:animation",
+      "genre:sci-fi & fantasy",
+      "genre:action & adventure",
+      "tone:grounded",
+      "pace:balanced",
+      "era:classic",
+      "format:series",
+      "origin:international"
+    ],
+    "why": "Sakura Kinomoto, an elementary school student who discovers that she possesses magical powers after accidentally freeing a set of magical ca…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/tv/35790",
+      "imdb": "https://www.imdb.com/title/tt0221735/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/dj0uI34MOkZMTE233tfRebs0YYx.jpg"
+    }
+  },
+  {
+    "id": "tmdb-series-94954",
+    "title": "Hazbin Hotel",
+    "year": 2024,
+    "format": "series",
+    "tags": [
+      "genre:animation",
+      "genre:comedy",
+      "genre:drama",
+      "tone:feelgood",
+      "pace:slow",
+      "era:new",
+      "format:series"
+    ],
+    "why": "In attempt to find a non-violent alternative for reducing Hell's overpopulation, the daughter of Lucifer opens a rehabilitation hotel that o…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/tv/94954",
+      "imdb": "https://www.imdb.com/title/tt7216636/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/aVYHMW8pdzJ9qG1OGRMKyGy9xor.jpg"
+    }
+  },
+  {
+    "id": "tmdb-series-80040",
+    "title": "Desafío Champions Sendokai",
+    "year": 2013,
+    "format": "series",
+    "tags": [
+      "genre:animation",
+      "genre:comedy",
+      "genre:action & adventure",
+      "tone:feelgood",
+      "pace:balanced",
+      "era:modern",
+      "format:series",
+      "origin:international"
+    ],
+    "why": "A pick matched to your taste—worth a look.",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/tv/80040",
+      "imdb": "https://www.imdb.com/title/tt3040130/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/8dBMIQ2r8FdLABrZeGklAUAUYCH.jpg"
+    }
+  },
+  {
+    "id": "tmdb-series-67915",
+    "title": "Guardian: The Lonely and Great God",
+    "year": 2016,
+    "format": "series",
+    "tags": [
+      "genre:drama",
+      "genre:sci-fi & fantasy",
+      "genre:comedy",
+      "tone:feelgood",
+      "pace:slow",
+      "era:modern",
+      "format:series",
+      "origin:international"
+    ],
+    "why": "In his quest for a bride to break his immortal curse, a 939-year-old guardian of souls meets a grim reaper and a sprightly student with a tr…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/tv/67915",
+      "imdb": "https://www.imdb.com/title/tt5994364/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/sPkxHNw5BFvuCFGWw825TS7n6X3.jpg"
+    }
+  },
+  {
+    "id": "tmdb-series-21650",
+    "title": "I'm in the Band",
+    "year": 2009,
+    "format": "series",
+    "tags": [
+      "genre:comedy",
+      "tone:feelgood",
+      "pace:balanced",
+      "era:modern",
+      "format:series"
+    ],
+    "why": "Tripp Campbell is the new lead guitarist for Iron Weasel, a band that once ruled the world of 80s pop metal. Can he push the washed-up rocke…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/tv/21650",
+      "imdb": "https://www.imdb.com/title/tt1433495/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/cHTj9R311yylFlszfpQ0tk7Gpkh.jpg"
+    }
+  },
+  {
+    "id": "tmdb-series-2316",
+    "title": "The Office",
+    "year": 2005,
+    "format": "series",
+    "tags": [
+      "genre:comedy",
+      "tone:feelgood",
+      "pace:balanced",
+      "era:modern",
+      "format:series"
+    ],
+    "why": "The everyday lives of office employees in the Scranton, Pennsylvania branch of the fictional Dunder Mifflin Paper Company.",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/tv/2316",
+      "imdb": "https://www.imdb.com/title/tt0386676/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/7DJKHzAi83BmQrWLrYYOqcoKfhR.jpg"
+    }
+  },
+  {
+    "id": "tmdb-series-62914",
+    "title": "Merlí",
+    "year": 2015,
+    "format": "series",
+    "tags": [
+      "genre:comedy",
+      "genre:drama",
+      "tone:feelgood",
+      "pace:slow",
+      "era:modern",
+      "format:series",
+      "origin:international"
+    ],
+    "why": "He’s surly, unorthodox, unapologetically blunt, and he’s about to change your life. Meet the new philosophy teacher, Merlí, who will help hi…",
+    "links": {
+      "tmdb": "https://www.themoviedb.org/tv/62914",
+      "imdb": "https://www.imdb.com/title/tt4580372/"
+    },
+    "poster": {
+      "imageUrl": "https://image.tmdb.org/t/p/w500/wQaGnuwIHhmB1jgY6CM3rJgScYR.jpg"
+    }
+  }
+]
