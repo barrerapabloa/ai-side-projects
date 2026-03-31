@@ -462,7 +462,7 @@ function BigTitleCard({ item }: { item: TitleItem }) {
 
   return (
     <article className="w-[62vw] max-w-[560px] shrink-0 sm:w-[46vw] lg:w-[420px]">
-      <div className="relative overflow-hidden rounded-[26px] border border-[rgba(255,255,255,0.11)] bg-[#0b0b10] shadow-[0_1px_0_rgba(255,255,255,0.06)_inset,0_18px_40px_rgba(0,0,0,0.46),0_40px_90px_rgba(0,0,0,0.20)]">
+      <div className="relative overflow-hidden rounded-[26px] border border-[rgba(255,255,255,0.11)] bg-[#0b0b10] shadow-[0_1px_0_rgba(255,255,255,0.06)_inset,0_12px_30px_rgba(0,0,0,0.44),0_26px_70px_rgba(0,0,0,0.22)]">
         <div className="relative h-[256px] overflow-hidden rounded-t-[26px] sm:h-[288px]">
           <div
             className="absolute inset-0"

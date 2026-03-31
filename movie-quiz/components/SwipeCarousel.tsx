@@ -222,7 +222,7 @@ export function SwipeCarousel({ title, subtitle, hint, children }: Props) {
               <div
                 key={idx}
                 data-carousel-item
-                className="snap-item relative shrink-0 [scroll-snap-stop:always] will-change-transform transition-[transform,opacity,box-shadow] duration-[560ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
+                className="snap-item relative shrink-0 rounded-[26px] [scroll-snap-stop:always] will-change-transform transition-[transform,opacity] duration-[560ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
                 style={{
                   transformOrigin: "center center",
                   transform: isActive
@@ -233,9 +233,6 @@ export function SwipeCarousel({ title, subtitle, hint, children }: Props) {
                         ? "translateZ(0) scale(0.74)"
                         : "translateZ(0) scale(0.70)",
                   opacity: isActive ? 1 : isNear ? 0.55 : isFar ? 0.30 : 0.18,
-                  boxShadow: isActive
-                    ? "0 30px 70px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.06), 0 0 42px rgba(255,255,255,0.22)"
-                    : undefined,
                 }}
                 aria-current={isActive ? "true" : "false"}
               >
