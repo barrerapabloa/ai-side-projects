@@ -1,0 +1,266 @@
+@import "tailwindcss";
+
+:root {
+  --paper: #ffffff;
+  --ink: #0a0a0a;
+  --muted: rgba(10, 10, 10, 0.62);
+  --line: rgba(10, 10, 10, 0.12);
+  --surface: rgba(255, 255, 255, 0.96);
+  --surface-strong: rgba(255, 255, 255, 1);
+  --shadow: 0 22px 70px rgba(0, 0, 0, 0.18);
+  --shadow-sm: 0 10px 32px rgba(0, 0, 0, 0.12);
+  --focus: rgba(10, 10, 10, 0.28);
+}
+
+@theme inline {
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-surface: var(--surface);
+  --color-surfaceStrong: var(--surface-strong);
+  --shadow-card: var(--shadow-sm);
+  --shadow-pop: var(--shadow);
+  --ring-focus: var(--focus);
+  --font-sans: var(--font-sans);
+  --font-serif: var(--font-serif);
+}
+
+body {
+  color: var(--ink);
+  background: var(--paper);
+  min-height: 100%;
+}
+
+.bgVideo {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.bgVideo::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 92%;
+  /* Mostly white page, video only as bottom accent */
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 1) 56%,
+    rgba(255, 255, 255, 0.82) 74%,
+    rgba(255, 255, 255, 0.35) 86%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+.bgVideo video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* pushed down */
+  object-position: 50% 100%;
+  transform: translateY(10%);
+  opacity: 0.85;
+  filter: saturate(0.95) contrast(1.05);
+}
+
+.serifTitle {
+  font-family: var(--font-serif);
+  letter-spacing: -0.04em;
+}
+
+/* Keep body sans, use serif for titles */
+body {
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background: rgba(10, 10, 10, 0.14);
+}
+
+*:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px var(--focus);
+  border-radius: 10px;
+}
+
+@keyframes progress-sweep {
+  0% {
+    transform: translateX(-65%);
+  }
+  50% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(65%);
+  }
+}
+
+/* Range sliders (sharp + black dot) */
+.rangeSafety,
+.rangeSlider {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  background: rgba(10, 10, 10, 0.08);
+}
+
+.rangeSafety::-webkit-slider-thumb,
+.rangeSlider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 28px;
+  height: 18px;
+  border-radius: 2px;
+  background: #0a0a0a;
+  border: 2px solid #ffffff;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18);
+}
+
+.rangeSafety::-moz-range-thumb,
+.rangeSlider::-moz-range-thumb {
+  width: 28px;
+  height: 18px;
+  border-radius: 2px;
+  background: #0a0a0a;
+  border: 2px solid #ffffff;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18);
+}
+
+.rangeSafety::-moz-range-track,
+.rangeSlider::-moz-range-track {
+  height: 6px;
+  background: rgba(10, 10, 10, 0.08);
+}
+
+/* Subtle paper grain for trading-card panels */
+.tradingCardGrain {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  opacity: 0.07;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+}
+
+/* Moving highlight + subtle sparkle (playing cards) */
+@keyframes card-shimmer-sweep {
+  0% {
+    transform: translateX(-130%) skewX(-14deg);
+  }
+  100% {
+    transform: translateX(130%) skewX(-14deg);
+  }
+}
+
+@keyframes card-glitter {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.65;
+  }
+}
+
+.playingCardFx {
+  position: relative;
+}
+
+.playingCardFx .card-shimmer-layer {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  border-radius: inherit;
+}
+
+.playingCardFx .card-shimmer-sweep {
+  position: absolute;
+  inset: -20% -40%;
+  background: linear-gradient(
+    100deg,
+    transparent 0%,
+    transparent 42%,
+    rgba(255, 255, 255, 0.08) 48%,
+    rgba(255, 255, 255, 0.55) 50%,
+    rgba(255, 255, 255, 0.1) 52%,
+    transparent 58%,
+    transparent 100%
+  );
+  animation: card-shimmer-sweep 5s linear infinite;
+  mix-blend-mode: soft-light;
+}
+
+.playingCardFx .card-glitter-dots {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  opacity: 0.5;
+  background-image: radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.35) 0, transparent 0.5%),
+    radial-gradient(circle at 78% 22%, rgba(255, 255, 255, 0.3) 0, transparent 0.45%),
+    radial-gradient(circle at 62% 68%, rgba(255, 255, 255, 0.28) 0, transparent 0.4%),
+    radial-gradient(circle at 35% 82%, rgba(255, 255, 255, 0.25) 0, transparent 0.35%),
+    radial-gradient(circle at 88% 55%, rgba(255, 255, 255, 0.22) 0, transparent 0.4%);
+  animation: card-glitter 3.2s ease-in-out infinite;
+  mix-blend-mode: overlay;
+}
+
+/* Fade photo into card paper — no semi-opaque scrim band over the image */
+.card-mask-image-bottom {
+  mask-image: linear-gradient(to bottom, #000 0%, #000 78%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 78%, transparent 100%);
+  mask-size: 100% 100%;
+  mask-repeat: no-repeat;
+}
+
+/* Expanded result card: glitter + sweep on top of content (deck keeps subtle back-layer FX) */
+.expandedCardGlitter {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  overflow: hidden;
+  border-radius: inherit;
+}
+
+.expandedCardGlitter .expandedCardGlitterSweep {
+  position: absolute;
+  inset: -25% -45%;
+  background: linear-gradient(
+    100deg,
+    transparent 0%,
+    transparent 40%,
+    rgba(255, 255, 255, 0.1) 47%,
+    rgba(255, 255, 255, 0.65) 50%,
+    rgba(255, 255, 255, 0.12) 53%,
+    transparent 60%,
+    transparent 100%
+  );
+  animation: card-shimmer-sweep 4.2s linear infinite;
+  mix-blend-mode: soft-light;
+}
+
+.expandedCardGlitter .expandedCardGlitterSparkle {
+  position: absolute;
+  inset: 0;
+  opacity: 0.62;
+  background-image: radial-gradient(circle at 12% 18%, rgba(255, 255, 255, 0.55) 0, transparent 0.55%),
+    radial-gradient(circle at 72% 12%, rgba(255, 255, 255, 0.5) 0, transparent 0.5%),
+    radial-gradient(circle at 88% 38%, rgba(255, 255, 255, 0.45) 0, transparent 0.48%),
+    radial-gradient(circle at 28% 72%, rgba(255, 255, 255, 0.42) 0, transparent 0.42%),
+    radial-gradient(circle at 58% 58%, rgba(255, 255, 255, 0.38) 0, transparent 0.4%),
+    radial-gradient(circle at 42% 28%, rgba(255, 255, 255, 0.35) 0, transparent 0.38%),
+    radial-gradient(circle at 92% 78%, rgba(255, 255, 255, 0.32) 0, transparent 0.45%);
+  animation: card-glitter 2.6s ease-in-out infinite;
+  mix-blend-mode: overlay;
+}
