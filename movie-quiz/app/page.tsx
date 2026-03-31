@@ -51,6 +51,13 @@ export default function Home() {
 
   const step = STEPS[stepIdx]!;
   const progressLabel = `${String(stepIdx + 1).padStart(2, "0")} / 05`;
+  const resultsSummary = useMemo(() => {
+    const parts: string[] = [];
+    if (answers.genres.length) parts.push(answers.genres.slice(0, 2).map(prettyGenre).join(" + "));
+    if (answers.tone) parts.push(prettyTone(answers.tone));
+    if (answers.pace) parts.push(prettyPace(answers.pace));
+    return parts.filter(Boolean).join(" · ");
+  }, [answers.era, answers.genres, answers.pace, answers.tone]);
 
   const profile = useMemo(() => buildProfile(answers), [answers]);
   const seed = useMemo(() => JSON.stringify(answers), [answers]);
@@ -96,10 +103,12 @@ export default function Home() {
   };
 
   return (
-    <div className="app-shell">
+    <div className="app-shell overflow-x-hidden">
       {view !== "results" ? <RadarHud /> : null}
       <div
-        className={`mx-auto min-h-[100dvh] px-8 py-16 ${
+        className={`mx-auto min-h-[100dvh] px-8 ${
+          view === "results" ? "py-10 sm:py-12 lg:py-12" : "py-16"
+        } ${
           view === "results"
             ? "max-w-[1280px]"
             : "grid max-w-[1240px] grid-cols-1 gap-10 lg:grid-cols-2 lg:items-start lg:gap-14"
@@ -110,15 +119,17 @@ export default function Home() {
         <div
           className={`flex min-h-0 flex-col items-stretch ${
             view === "results"
-              ? "mx-auto w-full max-w-[980px] lg:pt-12"
+              ? "mx-auto w-full max-w-[980px] lg:pt-6"
               : "lg:pt-20"
           }`}
         >
           <header className="flex items-start justify-between gap-4">
             <div className="min-w-0">
-              <p className="text-[11px] font-semibold tracking-[0.18em] text-[var(--text-faint)]">
-                REELRADAR
-              </p>
+              {view === "results" ? (
+                <p className="text-[12px] font-semibold tracking-[-0.02em] text-[var(--text)]">
+                  ReelRadar
+                </p>
+              ) : null}
               {view === "quiz" ? (
                 <p className="mt-2 text-[13px] leading-6 text-[var(--text-muted)]">
                   Answer 5 questions about movies and shows you like.
@@ -127,15 +138,39 @@ export default function Home() {
             </div>
 
             <div className="shrink-0 text-right">
-              <div className="inline-flex items-center gap-2 rounded-[10px] border border-[rgba(232,234,238,0.12)] bg-[rgba(232,234,238,0.03)] px-3 py-1.5">
-                <span className="text-[11px] font-semibold tracking-[0.12em] text-[rgba(232,234,238,0.66)]">
-                  {progressLabel}
-                </span>
-              </div>
+              {view === "results" ? (
+                <div className="inline-flex max-w-[46vw] items-center justify-end gap-2">
+                  <span className="text-[11px] font-semibold tracking-[0.18em] text-[rgba(232,234,238,0.46)]">
+                    TUNED
+                  </span>
+                  <span aria-hidden className="text-[11px] text-[rgba(232,234,238,0.22)]">
+                    —
+                  </span>
+                  <span className="truncate text-[12px] font-semibold tracking-[0.02em] text-[rgba(232,234,238,0.78)]">
+                    {resultsSummary || "your vibe"}
+                  </span>
+                </div>
+              ) : (
+                <div className="inline-flex items-center gap-2">
+                  <span className="text-[11px] font-semibold tracking-[0.18em] text-[rgba(232,234,238,0.52)]">
+                    STEP
+                  </span>
+                  <span aria-hidden className="text-[11px] text-[rgba(232,234,238,0.28)]">
+                    —
+                  </span>
+                  <span className="text-[12px] font-semibold tracking-[0.08em] text-[rgba(232,234,238,0.82)]">
+                    {progressLabel}
+                  </span>
+                </div>
+              )}
             </div>
           </header>
 
-          <div className="mt-6">
+          <div
+            className={`mt-5 flex min-h-0 flex-1 flex-col ${
+              view === "results" ? "justify-center" : ""
+            }`}
+          >
             {view === "quiz" ? (
               <QuizStep
                 stepId={step.id}
@@ -200,9 +235,9 @@ function LeftCopy() {
         ReelRadar
       </p>
       <h1 className="mt-5 text-[44px] font-semibold leading-[1.02] tracking-[-0.03em] text-[var(--text)] sm:text-[54px]">
-        Studio‑quality
+        <span className="text-[rgb(34,197,94)]">Studio‑quality</span>
         <br />
-        recommendations.
+        <span className="text-[rgb(34,197,94)]">recommendations.</span>
         <br />
         Without the scroll.
       </h1>
@@ -405,23 +440,12 @@ function Results({
   answers: QuizAnswers;
   underratedPicks: TitleItem[];
 }) {
-  const topGenres = answers.genres.slice(0, 2).map(prettyGenre).join(" + ");
   return (
     <div className="space-y-7">
-      <div className="inline-flex max-w-full items-center gap-2 rounded-full border border-[rgba(255,255,255,0.10)] bg-[rgba(255,255,255,0.03)] px-3 py-1.5 text-[12px] text-[var(--text-muted)]">
-        <span className="font-semibold text-[rgba(255,255,255,0.65)]">
-          Tuned for
-        </span>
-        <span className="truncate">
-          <span className="text-[var(--text)]">{topGenres || "your vibe"}</span>
-          {answers.tone ? ` · ${prettyTone(answers.tone)}` : ""}
-          {answers.pace ? ` · ${prettyPace(answers.pace)}` : ""}
-        </span>
-      </div>
-
       <SwipeCarousel
-        title={<span className="text-[28px] sm:text-[34px]">Underrated (new-to-you)</span>}
+        title={<span className="text-[28px] sm:text-[34px]">Movies you may have missed</span>}
         subtitle="Low-hype, high-reward picks that match your taste."
+        hint="drag to explore"
       >
         {underratedPicks.map((t) => (
           <BigTitleCard key={t.id} item={t} />
@@ -437,67 +461,75 @@ function BigTitleCard({ item }: { item: TitleItem }) {
   const format = item.format === "series" ? "Series" : "Movie";
 
   return (
-    <article className="snap-item w-[84vw] max-w-[520px] shrink-0 lg:w-[460px] lg:max-w-none">
-      <div className="group relative rounded-[28px]">
-        <div className="relative overflow-hidden rounded-[28px] border border-[rgba(255,255,255,0.10)] bg-[#0c0c11] p-5 shadow-[0_1px_0_rgba(255,255,255,0.06)_inset,0_30px_70px_rgba(0,0,0,0.55)]">
-          <div className="pointer-events-none absolute inset-0 opacity-[0.55]">
-            <div
-              className="absolute -left-16 -top-14 h-44 w-44 rounded-full blur-3xl"
-              style={{ background: `${accent}33` }}
-            />
-            <div
-              className="absolute -right-20 bottom-6 h-44 w-44 rounded-full blur-3xl"
-              style={{ background: `${g.to}24` }}
-            />
-          </div>
+    <article className="w-[62vw] max-w-[560px] shrink-0 sm:w-[46vw] lg:w-[420px]">
+      <div className="relative overflow-hidden rounded-[26px] border border-[rgba(255,255,255,0.11)] bg-[#0b0b10] shadow-[0_1px_0_rgba(255,255,255,0.06)_inset,0_18px_40px_rgba(0,0,0,0.46),0_40px_90px_rgba(0,0,0,0.20)]">
+        <div className="relative h-[256px] overflow-hidden rounded-t-[26px] sm:h-[288px]">
+          <div
+            className="absolute inset-0"
+            style={{
+              background: item.poster?.imageUrl
+                ? "#07070b"
+                : `linear-gradient(160deg, ${g.from} 0%, ${g.to} 70%, rgba(255,255,255,0.04) 120%)`,
+            }}
+          />
 
-          <div className="relative z-10">
-          <div className="flex items-start justify-between gap-4">
-            <div className="min-w-0">
-              <p className="text-[11px] font-semibold tracking-[0.18em] text-[rgba(255,255,255,0.55)]">
-                {format}
-                {item.upcoming?.window ? ` · ${item.upcoming.window}` : ""}
-              </p>
-              <h4 className="mt-2 title-serif text-[24px] font-semibold leading-[1.08] tracking-[-0.03em] text-white">
-                {item.title}
-              </h4>
-              <p className="mt-2 text-[13px] leading-6 text-[rgba(255,255,255,0.64)]">
-                {item.why}
-              </p>
+          {item.poster?.imageUrl ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={item.poster.imageUrl}
+              alt=""
+              className="absolute inset-0 h-full w-full object-cover [transform:translateZ(0)]"
+              loading="lazy"
+              referrerPolicy="no-referrer"
+              draggable={false}
+            />
+          ) : null}
+
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_10%,rgba(255,255,255,0.10),transparent_55%)]" />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[rgba(0,0,0,0.70)] via-[rgba(0,0,0,0.22)] to-[rgba(0,0,0,0.10)]" />
+          <div
+            className="pointer-events-none absolute -left-12 -top-12 h-44 w-44 rounded-full blur-3xl opacity-[0.35]"
+            style={{ background: `${accent}55` }}
+          />
+
+          {item.year ? (
+            <div className="absolute right-4 top-4 rounded-full bg-[rgba(0,0,0,0.65)] px-3 py-1.5 text-[12px] font-semibold text-[rgba(255,255,255,0.86)] shadow-[0_10px_30px_rgba(0,0,0,0.45)]">
+              {item.year}
             </div>
+          ) : null}
+        </div>
 
-            {item.year ? (
-              <div className="shrink-0 rounded-full border border-[rgba(255,255,255,0.12)] bg-[rgba(255,255,255,0.04)] px-3 py-1.5 text-[12px] font-semibold text-[rgba(255,255,255,0.72)]">
-                {item.year}
-              </div>
-            ) : null}
-          </div>
+        <div className="relative border-t border-[rgba(255,255,255,0.08)] bg-[rgba(16,18,24,0.58)] px-5 py-5 backdrop-blur-[14px]">
+          <p className="text-[11px] font-semibold tracking-[0.18em] text-[rgba(255,255,255,0.55)]">
+            {format.toUpperCase()}
+          </p>
 
-          <div className="mt-5 flex items-center justify-center">
-            <Poster
-              id={item.id}
-              title={item.title}
-              from={g.from}
-              to={g.to}
-              imageUrl={item.poster?.imageUrl}
-            />
-          </div>
+          <h4 className="mt-2 title-serif text-[26px] font-semibold leading-[1.08] tracking-[-0.03em] text-[rgba(255,255,255,0.95)]">
+            {item.title}
+          </h4>
 
-          <div className="mt-5 flex flex-wrap gap-2">
+          <p className="mt-2 line-clamp-4 text-[13px] leading-6 text-[rgba(255,255,255,0.64)]">
+            {item.why}
+          </p>
+
+          <div className="mt-4 flex flex-wrap gap-2">
             {extractChips(item.tags).slice(0, 3).map((c) => (
               <span
                 key={c}
-                className="rounded-[10px] border border-[rgba(232,234,238,0.10)] bg-[rgba(232,234,238,0.03)] px-3 py-1.5 text-[12px] font-semibold text-[rgba(232,234,238,0.70)]"
+                className="rounded-full bg-[rgba(0,0,0,0.30)] px-3 py-1.5 text-[12px] font-semibold text-[rgba(232,234,238,0.78)]"
               >
                 {c}
               </span>
             ))}
+          </div>
+
+          <div className="mt-4">
             {item.links?.imdb ? (
               <a
                 href={item.links.imdb}
                 target="_blank"
                 rel="noreferrer"
-                className="ml-auto inline-flex items-center gap-2 rounded-[10px] border border-[rgba(232,234,238,0.12)] bg-[rgba(232,234,238,0.03)] px-3 py-1.5 text-[12px] font-semibold text-[rgba(232,234,238,0.82)] transition hover:bg-[rgba(232,234,238,0.06)]"
+                className="inline-flex items-center gap-2 rounded-full bg-[rgba(0,0,0,0.35)] px-3.5 py-2 text-[12px] font-semibold text-[rgba(255,255,255,0.86)] transition hover:bg-[rgba(0,0,0,0.46)]"
               >
                 IMDb
                 <ExternalArrow />
@@ -507,7 +539,7 @@ function BigTitleCard({ item }: { item: TitleItem }) {
                 href={item.links.tmdb}
                 target="_blank"
                 rel="noreferrer"
-                className="ml-auto inline-flex items-center gap-2 rounded-[10px] border border-[rgba(232,234,238,0.12)] bg-[rgba(232,234,238,0.03)] px-3 py-1.5 text-[12px] font-semibold text-[rgba(232,234,238,0.82)] transition hover:bg-[rgba(232,234,238,0.06)]"
+                className="inline-flex items-center gap-2 rounded-full bg-[rgba(0,0,0,0.35)] px-3.5 py-2 text-[12px] font-semibold text-[rgba(255,255,255,0.86)] transition hover:bg-[rgba(0,0,0,0.46)]"
               >
                 TMDB
                 <ExternalArrow />
@@ -515,7 +547,6 @@ function BigTitleCard({ item }: { item: TitleItem }) {
             ) : null}
           </div>
         </div>
-      </div>
       </div>
     </article>
   );
