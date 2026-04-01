@@ -34,10 +34,10 @@ export function HomeHero() {
                   scrambledClassName="text-ink/35"
                 />
               </h1>
-              <p className="mx-auto mt-6 max-w-[56ch] text-[16px] leading-[1.9] text-muted">
-                Answer a few questions. We’ll return three cities with
-                <br />
-                grounded context and sources.
+              <p className="mx-auto mt-6 max-w-[min(100%,44ch)] px-1 text-center text-[16px] leading-relaxed text-muted text-pretty sm:max-w-[56ch] sm:leading-[1.9]">
+                Answer a few questions.{" "}
+                <br className="sm:hidden" />
+                We’ll return three cities with grounded context and sources.
               </p>
               {!open ? (
                 <div className="mt-10 flex justify-center">

@@ -29,7 +29,7 @@ const steps: Step[] = [
   {
     id: "budget",
     title: "Monthly budget (USD)",
-    helper: "Rough estimate is perfect. We’ll treat this as your monthly spend.",
+    helper: "Rough estimate is perfect.",
   },
   {
     id: "remoteIncome",
@@ -244,11 +244,11 @@ export function QuizFlow({
                   </div>
                 </div>
 
-                <div className="text-xs text-muted">
-                  {budgetUsd === null
-                    ? "Enter a number like 2500."
-                    : "We’ll treat this as your monthly spend."}
-                </div>
+                {budgetUsd === null ? (
+                  <div className="text-xs text-muted">
+                    Enter a number like 2500.
+                  </div>
+                ) : null}
               </div>
             ) : null}
 
@@ -391,7 +391,7 @@ export function QuizFlow({
 
       <div
         className={cx(
-          "flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between",
+          "grid grid-cols-2 gap-3",
           stableModalHeight ? "mt-auto shrink-0 pt-6 sm:pt-7" : "mt-6 sm:mt-7",
         )}
       >
@@ -399,16 +399,15 @@ export function QuizFlow({
           type="button"
           onClick={goBack}
           disabled={stepIdx === 0 || isSubmitting}
-          className="h-11 rounded-none border border-line bg-white px-5 text-sm font-medium text-ink/85 transition hover:border-black/40 disabled:opacity-50"
+          className="h-11 w-full rounded-none border border-line bg-white px-4 text-sm font-medium text-ink/85 transition hover:border-black/40 disabled:cursor-not-allowed disabled:opacity-40"
         >
           Back
         </button>
-        <div className="hidden flex-1 sm:block" />
         <Button
           type="button"
           onClick={handleContinue}
           disabled={!canContinue || isSubmitting}
-          className="w-auto self-end sm:self-auto"
+          className="h-11 w-full justify-center"
         >
           {step.id === "region"
             ? isSubmitting

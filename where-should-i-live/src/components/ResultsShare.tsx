@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { Button } from "@/components/Button";
+import { apiUrl, withBasePath } from "@/lib/site";
 
 export function ResultsShare({
   dataParam,
@@ -13,15 +14,19 @@ export function ResultsShare({
   const shareUrl = useMemo(() => {
     if (!dataParam) return null;
     const url = new URL(window.location.href);
-    url.pathname = "/results";
+    url.pathname = withBasePath("/results");
     url.search = `?data=${encodeURIComponent(dataParam)}`;
     return url.toString();
   }, [dataParam]);
 
   const ogUrl = useMemo(() => {
     if (!dataParam) return null;
+    const apiRoot = process.env.NEXT_PUBLIC_API_BASE_URL?.replace(/\/$/, "");
+    if (apiRoot) {
+      return `${apiUrl("/api/og")}?data=${encodeURIComponent(dataParam)}`;
+    }
     const url = new URL(window.location.href);
-    url.pathname = "/api/og";
+    url.pathname = withBasePath("/api/og");
     url.search = `?data=${encodeURIComponent(dataParam)}`;
     return url.toString();
   }, [dataParam]);

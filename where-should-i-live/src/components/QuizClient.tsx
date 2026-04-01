@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { QuizFlow } from "@/components/QuizFlow";
+import { apiUrl } from "@/lib/site";
 import type { CityResult, QuizAnswers } from "@/lib/types";
 
 export function QuizClient({
@@ -23,7 +24,7 @@ export function QuizClient({
     setError(null);
     setIsSubmitting(true);
     try {
-      const res = await fetch("/api/recommend", {
+      const res = await fetch(apiUrl("/api/recommend"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ answers }),

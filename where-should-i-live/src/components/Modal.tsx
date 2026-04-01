@@ -1,7 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { cx } from "@/lib/cx";
 
@@ -20,10 +20,36 @@ export function Modal({
   children: ReactNode;
 }) {
   const [mounted, setMounted] = useState(false);
+  const historyPushedRef = useRef(false);
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  /* Push history when opening so mobile browser “back” closes the modal first. */
+  useEffect(() => {
+    if (!open) {
+      if (historyPushedRef.current) {
+        historyPushedRef.current = false;
+        window.history.back();
+      }
+      return;
+    }
+
+    if (!historyPushedRef.current) {
+      window.history.pushState({ hcModal: 1 }, "");
+      historyPushedRef.current = true;
+    }
+
+    const onPopState = () => {
+      historyPushedRef.current = false;
+      onClose();
+    };
+    window.addEventListener("popstate", onPopState);
+    return () => {
+      window.removeEventListener("popstate", onPopState);
+    };
+  }, [open, onClose]);
 
   useEffect(() => {
     if (!open) return;

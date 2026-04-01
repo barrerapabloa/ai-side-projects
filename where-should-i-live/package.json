@@ -4,7 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:api": "tsx server/http.ts",
+    "dev:full": "concurrently -k -n api,web -c blue,green \"tsx server/http.ts\" \"cross-env API_DEV_PORT=3001 next dev\"",
     "build": "next build",
+    "build:pages": "node scripts/build-static.mjs",
     "start": "next start",
     "lint": "eslint"
   },
@@ -22,9 +25,13 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "concurrently": "^9.2.1",
+    "cross-env": "^10.1.0",
+    "dotenv": "^17.3.1",
     "eslint": "^9",
     "eslint-config-next": "16.2.1",
     "tailwindcss": "^4",
+    "tsx": "^4.21.0",
     "typescript": "^5"
   }
 }

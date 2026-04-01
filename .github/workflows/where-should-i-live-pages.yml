@@ -1,0 +1,58 @@
+# Build static Next.js export and publish to GitHub Pages.
+# Repo → Settings → Pages: Source = GitHub Actions.
+# For https://USER.github.io/REPO/, set repository variable NEXT_PUBLIC_BASE_PATH = /REPO
+
+name: Deploy where-should-i-live to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "where-should-i-live/**"
+      - ".github/workflows/where-should-i-live-pages.yml"
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages-where-should-i-live
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: where-should-i-live/package-lock.json
+
+      - name: Install and export
+        working-directory: where-should-i-live
+        env:
+          STATIC_EXPORT: "1"
+          NEXT_PUBLIC_BASE_PATH: ${{ vars.NEXT_PUBLIC_BASE_PATH }}
+          NEXT_PUBLIC_API_BASE_URL: ${{ vars.NEXT_PUBLIC_API_BASE_URL }}
+        run: |
+          npm ci
+          rm -rf src/app/api
+          npm run build
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: where-should-i-live/out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

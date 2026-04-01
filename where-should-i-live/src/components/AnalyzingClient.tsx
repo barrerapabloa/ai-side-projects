@@ -2,14 +2,17 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { decodeBase64UrlToJson, encodeJsonToBase64Url } from "@/lib/encode";
+import { apiUrl } from "@/lib/site";
 import type { CityResult, QuizAnswers } from "@/lib/types";
 
 type AnswersPayload = { answers?: QuizAnswers };
 
-export function AnalyzingClient({ dataParam }: { dataParam: string | null }) {
+export function AnalyzingClient() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const dataParam = searchParams.get("data");
   const [error, setError] = useState<string | null>(null);
   const [status, setStatus] = useState<
     "starting" | "searching" | "thinking" | "routing"
@@ -34,7 +37,7 @@ export function AnalyzingClient({ dataParam }: { dataParam: string | null }) {
       }
       try {
         setStatus("searching");
-        const res = await fetch("/api/recommend", {
+        const res = await fetch(apiUrl("/api/recommend"), {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ answers }),
