@@ -1,15 +1,13 @@
-# Build static Next.js export and publish to GitHub Pages.
-# Repo → Settings → Pages: Source = GitHub Actions.
-# For https://USER.github.io/REPO/, set repository variable NEXT_PUBLIC_BASE_PATH = /REPO
-
-name: Deploy where-should-i-live to GitHub Pages
+name: Deploy site (all apps) to GitHub Pages
 
 on:
   push:
     branches: [main]
     paths:
       - "where-should-i-live/**"
-      - ".github/workflows/where-should-i-live-pages.yml"
+      - "movie-quiz/**"
+      - ".github/workflows/deploy-pages.yml"
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -17,7 +15,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: pages-where-should-i-live
+  group: "pages"
   cancel-in-progress: true
 
 jobs:
@@ -30,9 +28,8 @@ jobs:
         with:
           node-version: "22"
           cache: npm
-          cache-dependency-path: where-should-i-live/package-lock.json
 
-      - name: Install and export
+      - name: Build where-should-i-live (static export)
         working-directory: where-should-i-live
         env:
           STATIC_EXPORT: "1"
@@ -43,9 +40,25 @@ jobs:
           rm -rf src/app/api
           npm run build
 
+      - name: Build ReelRadar (movie-quiz) (static export)
+        working-directory: movie-quiz
+        env:
+          GITHUB_PAGES: "true"
+        run: |
+          npm ci
+          npm run build
+
+      - name: Stage Pages artifact
+        run: |
+          rm -rf _site
+          mkdir -p _site
+          cp -R where-should-i-live/out/. _site/
+          mkdir -p _site/radar-reel
+          cp -R movie-quiz/out/. _site/radar-reel/
+
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: where-should-i-live/out
+          path: _site
 
   deploy:
     needs: build
@@ -56,3 +69,4 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+
