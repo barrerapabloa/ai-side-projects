@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: dark;
+  --background: #07080a;
+  --foreground: #fafafa;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+/* Booking flow — consistent controls (native selects need appearance-none + room for chevron) */
+@layer components {
+  .bf-input {
+    @apply w-full rounded-lg border border-white/[0.12] bg-zinc-950/90 px-3 py-2.5 text-sm text-white outline-none transition placeholder:text-zinc-600 focus-visible:border-white/[0.18] focus-visible:ring-2 focus-visible:ring-white/20;
+  }
+
+  .bf-select {
+    @apply w-full appearance-none cursor-pointer rounded-xl border border-white/[0.12] bg-zinc-950/90 py-2.5 pl-3 pr-10 text-sm font-medium text-white outline-none transition placeholder:text-zinc-600 focus-visible:border-white/[0.18] focus-visible:ring-2 focus-visible:ring-white/20;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%23a1a1aa' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m6 8 4 4 4-4'/%3E%3C/svg%3E");
+    background-position: right 0.625rem center;
+    background-size: 1rem;
+    background-repeat: no-repeat;
+  }
+
+  .bf-select-compact-dark {
+    @apply appearance-none cursor-pointer rounded-lg border border-white/[0.12] bg-zinc-950 py-1.5 pl-3 pr-9 text-[13px] font-medium text-white outline-none transition focus-visible:ring-2 focus-visible:ring-sky-500/80;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%23a1a1aa' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m6 8 4 4 4-4'/%3E%3C/svg%3E");
+    background-position: right 0.5rem center;
+    background-size: 0.875rem;
+    background-repeat: no-repeat;
+  }
+
+  .bf-select-compact-light {
+    @apply appearance-none cursor-pointer rounded-lg border border-zinc-200 bg-white py-1.5 pl-3 pr-9 text-[13px] font-medium text-zinc-900 outline-none transition focus-visible:ring-2 focus-visible:ring-zinc-900/25;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%2371717a' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m6 8 4 4 4-4'/%3E%3C/svg%3E");
+    background-position: right 0.5rem center;
+    background-size: 0.875rem;
+    background-repeat: no-repeat;
+  }
+
+  .bf-btn-primary-emerald {
+    @apply w-full rounded-lg bg-emerald-500 py-3 text-sm font-semibold text-black transition hover:bg-emerald-400 disabled:opacity-60;
+  }
+
+  .bf-btn-secondary-bar {
+    @apply inline-flex min-h-11 items-center justify-center rounded-lg border border-white/25 bg-zinc-800/90 px-4 text-[13px] font-semibold text-white shadow-inner shadow-black/30 transition hover:border-white/40 hover:bg-zinc-700/95;
+  }
+
+  .bf-btn-primary-bar {
+    @apply inline-flex min-h-11 min-w-[11rem] items-center justify-center rounded-lg bg-white px-5 text-[13px] font-semibold text-black shadow-lg shadow-black/40 transition hover:bg-zinc-100 disabled:cursor-not-allowed disabled:opacity-40;
+  }
+
+  .bf-filter-pill-active {
+    @apply rounded-full bg-white px-4 py-2 text-[13px] font-semibold text-black shadow-lg shadow-black/40 transition;
+  }
+
+  .bf-filter-pill-idle {
+    @apply rounded-full border border-white/[0.12] bg-white/[0.04] px-4 py-2 text-[13px] font-semibold text-zinc-300 transition hover:bg-white/[0.08];
+  }
+}
