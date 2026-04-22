@@ -16,12 +16,16 @@ import type {
   TripType,
 } from "@/types/booking";
 import { buildSeatsForFlight, seatMapFromList } from "@/lib/seats";
+import type { FareTier } from "@/lib/fareTier";
+import { inferFareTierFromLabel } from "@/lib/fareTier";
 
 const STORAGE_KEY = "spacexBookingFlow";
 
 export type BookingSnapshot = {
   search: SearchState | null;
   selectedFlight: Flight | null;
+  selectedReturnFlight: Flight | null;
+  selectedFareTier: FareTier | null;
   selectedSeatIds: string[];
   passengers: PassengerDraft[];
   reviewAccepted: boolean;
@@ -33,6 +37,8 @@ function emptySnapshot(): BookingSnapshot {
   return {
     search: null,
     selectedFlight: null,
+    selectedReturnFlight: null,
+    selectedFareTier: null,
     selectedSeatIds: [],
     passengers: [],
     reviewAccepted: false,
@@ -83,6 +89,8 @@ function loadSnapshot(): BookingSnapshot {
 type BookingContextValue = BookingSnapshot & {
   setSearch: (s: SearchState | null) => void;
   setSelectedFlight: (f: Flight | null) => void;
+  setSelectedReturnFlight: (f: Flight | null) => void;
+  setSelectedFareTier: (t: FareTier) => void;
   toggleSeat: (seatId: string) => void;
   setPassengers: (p: PassengerDraft[]) => void;
   setReviewAccepted: (v: boolean) => void;
@@ -94,10 +102,15 @@ type BookingContextValue = BookingSnapshot & {
 const BookingContext = createContext<BookingContextValue | null>(null);
 
 export function BookingProvider({ children }: { children: ReactNode }) {
-  const [snap, setSnap] = useState<BookingSnapshot>(() => {
-    if (typeof window === "undefined") return emptySnapshot();
-    return loadSnapshot();
-  });
+  // Important for App Router hydration:
+  // Render the same markup on server + first client render, then hydrate from sessionStorage.
+  const [snap, setSnap] = useState<BookingSnapshot>(() => emptySnapshot());
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setSnap(loadSnapshot());
+  }, []);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -109,6 +122,8 @@ export function BookingProvider({ children }: { children: ReactNode }) {
       ...prev,
       search,
       selectedFlight: null,
+      selectedReturnFlight: null,
+      selectedFareTier: null,
       selectedSeatIds: [],
       passengers: [],
       reviewAccepted: false,
@@ -121,12 +136,30 @@ export function BookingProvider({ children }: { children: ReactNode }) {
     setSnap((prev) => ({
       ...prev,
       selectedFlight,
+      selectedReturnFlight: null,
+      selectedFareTier: selectedFlight ? inferFareTierFromLabel(selectedFlight.fareLabel) : null,
       selectedSeatIds: [],
       passengers: [],
       reviewAccepted: false,
       paidAt: null,
       confirmationCode: null,
     }));
+  }, []);
+
+  const setSelectedReturnFlight = useCallback((selectedReturnFlight: Flight | null) => {
+    setSnap((prev) => ({
+      ...prev,
+      selectedReturnFlight,
+      selectedSeatIds: [],
+      passengers: [],
+      reviewAccepted: false,
+      paidAt: null,
+      confirmationCode: null,
+    }));
+  }, []);
+
+  const setSelectedFareTier = useCallback((selectedFareTier: FareTier) => {
+    setSnap((prev) => ({ ...prev, selectedFareTier }));
   }, []);
 
   const toggleSeat = useCallback(
@@ -136,9 +169,10 @@ export function BookingProvider({ children }: { children: ReactNode }) {
           prev.search?.passengers ??
           Math.max(1, prev.passengers.length || 1);
         const flightId = prev.selectedFlight?.id;
+        const cabinTier = prev.selectedFlight?.cabinTier;
         if (!flightId) return prev;
 
-        const seats = buildSeatsForFlight(flightId);
+        const seats = buildSeatsForFlight(flightId, cabinTier);
         const map = seatMapFromList(seats);
         const seat = map[seatId];
         if (!seat || seat.state !== "available") return prev;
@@ -198,15 +232,18 @@ export function BookingProvider({ children }: { children: ReactNode }) {
 
   const seatByFlightId = useMemo(() => {
     const fid = snap.selectedFlight?.id;
+    const tier = snap.selectedFlight?.cabinTier;
     if (!fid) return {};
-    return { [fid]: seatMapFromList(buildSeatsForFlight(fid)) };
-  }, [snap.selectedFlight?.id]);
+    return { [fid]: seatMapFromList(buildSeatsForFlight(fid, tier)) };
+  }, [snap.selectedFlight?.id, snap.selectedFlight?.cabinTier]);
 
   const value = useMemo<BookingContextValue>(
     () => ({
       ...snap,
       setSearch,
       setSelectedFlight,
+      setSelectedReturnFlight,
+      setSelectedFareTier,
       toggleSeat,
       setPassengers,
       setReviewAccepted,
@@ -218,6 +255,8 @@ export function BookingProvider({ children }: { children: ReactNode }) {
       snap,
       setSearch,
       setSelectedFlight,
+      setSelectedReturnFlight,
+      setSelectedFareTier,
       toggleSeat,
       setPassengers,
       setReviewAccepted,
@@ -238,6 +277,9 @@ function emptyPassenger(): PassengerDraft {
     familyName: "",
     email: "",
     dateOfBirth: "",
+    passportNumber: "",
+    passportCountry: "",
+    passportExpiry: "",
   };
 }
 

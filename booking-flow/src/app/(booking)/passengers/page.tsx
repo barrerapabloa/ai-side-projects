@@ -9,16 +9,18 @@ import { TripSummaryCard } from "@/components/TripSummaryCard";
 import { buildSeatsForFlight, seatMapFromList, totalSeatFees } from "@/lib/seats";
 import { formatUsd } from "@/lib/money";
 import { useRedirectUnless } from "@/hooks/useRedirectUnless";
+import { StepHeading } from "@/components/StepHeading";
 
 export default function PassengersPage() {
   const router = useRouter();
   const formRef = useRef<HTMLFormElement>(null);
-  const { search, selectedFlight, selectedSeatIds, passengers, setPassengers } =
+  const { search, selectedFlight, selectedReturnFlight, selectedSeatIds, passengers, setPassengers } =
     useBooking();
 
   const seatOk =
     !!search &&
     !!selectedFlight &&
+    (search.tripType !== "round-trip" || !!selectedReturnFlight) &&
     selectedSeatIds.length === search.passengers;
   useRedirectUnless(Boolean(seatOk), "/search");
 
@@ -26,7 +28,7 @@ export default function PassengersPage() {
     selectedFlight &&
     totalSeatFees(
       selectedSeatIds,
-      seatMapFromList(buildSeatsForFlight(selectedFlight.id)),
+      seatMapFromList(buildSeatsForFlight(selectedFlight.id, selectedFlight.cabinTier)),
     );
 
   const [rows, setRows] = useState<PassengerDraft[]>(() =>
@@ -50,7 +52,10 @@ export default function PassengersPage() {
         !r.givenName.trim() ||
         !r.familyName.trim() ||
         !r.email.trim() ||
-        !r.dateOfBirth
+        !r.dateOfBirth ||
+        !r.passportNumber.trim() ||
+        !r.passportCountry.trim() ||
+        !r.passportExpiry
       ) {
         return;
       }
@@ -63,14 +68,11 @@ export default function PassengersPage() {
     <>
       <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_min(380px,38vw)] lg:items-start lg:gap-10">
         <div className="space-y-8">
-          <div>
-            <h1 className="text-2xl font-semibold tracking-tight text-white">
-              Traveler details
-            </h1>
-            <p className="mt-2 text-sm text-zinc-500">
-              Seats {selectedSeatIds.join(", ")} · use names exactly as on your travel documents.
-            </p>
-          </div>
+          <StepHeading
+            step="Step 4 · Travelers"
+            title="Traveler details"
+            subtitle={`Seats ${selectedSeatIds.join(", ")} · names must match government-issued ID.`}
+          />
 
           <form
             ref={formRef}
@@ -155,6 +157,39 @@ export default function PassengersPage() {
                       autoComplete="bday"
                     />
                   </label>
+                  <label className="space-y-1.5">
+                    <span className="text-[12px] text-zinc-500">Passport number</span>
+                    <input
+                      required
+                      value={row.passportNumber}
+                      onChange={(e) => updateRow(i, { passportNumber: e.target.value })}
+                      className="bf-input"
+                      autoComplete="off"
+                      placeholder="X1234567"
+                    />
+                  </label>
+                  <label className="space-y-1.5">
+                    <span className="text-[12px] text-zinc-500">Issuing country</span>
+                    <input
+                      required
+                      value={row.passportCountry}
+                      onChange={(e) => updateRow(i, { passportCountry: e.target.value })}
+                      className="bf-input"
+                      autoComplete="country"
+                      placeholder="Colombia"
+                    />
+                  </label>
+                  <label className="space-y-1.5">
+                    <span className="text-[12px] text-zinc-500">Passport expiration</span>
+                    <input
+                      required
+                      type="date"
+                      value={row.passportExpiry}
+                      onChange={(e) => updateRow(i, { passportExpiry: e.target.value })}
+                      className="bf-input"
+                      autoComplete="off"
+                    />
+                  </label>
                 </div>
               </section>
             ))}
@@ -165,7 +200,9 @@ export default function PassengersPage() {
           <TripSummaryCard
             search={search}
             flight={selectedFlight}
+            returnFlight={search.tripType === "round-trip" ? selectedReturnFlight : null}
             seatExtrasUsd={seatFees ?? 0}
+            seatIds={selectedSeatIds}
             seatSummary={selectedSeatIds.join(", ")}
           />
         </aside>
@@ -175,7 +212,9 @@ export default function PassengersPage() {
         <TripSummaryCard
           search={search}
           flight={selectedFlight}
+          returnFlight={search.tripType === "round-trip" ? selectedReturnFlight : null}
           seatExtrasUsd={seatFees ?? 0}
+          seatIds={selectedSeatIds}
           seatSummary={selectedSeatIds.join(", ")}
           variant="compact"
         />
@@ -200,5 +239,8 @@ function blankRows(n: number): PassengerDraft[] {
     familyName: "",
     email: "",
     dateOfBirth: "",
+    passportNumber: "",
+    passportCountry: "",
+    passportExpiry: "",
   }));
 }

@@ -27,13 +27,13 @@ export function StickyBookingActions({
   hint,
 }: StickyBookingActionsProps) {
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-40 border-t border-white/[0.1] bg-[#07080a]/94 backdrop-blur-xl supports-[backdrop-filter]:bg-[#07080a]/85">
+    <div className="fixed bottom-0 left-0 right-0 z-40 border-t border-white/[0.10] bg-[#07080a]/94 backdrop-blur-xl supports-[backdrop-filter]:bg-[#07080a]/85 transition-colors duration-200">
       <div className="mx-auto flex max-w-5xl flex-col gap-3 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
         <div className="min-w-0">
           <p className="text-[11px] font-medium uppercase tracking-wide text-zinc-500">
             {summaryLabel}
           </p>
-          <p className="truncate font-semibold text-white">{summaryValue}</p>
+          <p className="truncate font-semibold tabular-nums text-white">{summaryValue}</p>
           {hint ? (
             <p className="mt-0.5 text-[11px] text-zinc-500">{hint}</p>
           ) : null}

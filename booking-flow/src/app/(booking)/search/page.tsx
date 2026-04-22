@@ -8,6 +8,7 @@ import { FlightSearchBar } from "@/components/FlightSearchBar";
 import { SuggestedDestinations } from "@/components/SuggestedDestinations";
 import { addDaysIso, formatIsoDate, minReturnDate } from "@/lib/datetime";
 import { SUGGESTED_DESTINATIONS } from "@/data/suggestedDestinations";
+import { StepHeading } from "@/components/StepHeading";
 
 export default function SearchPage() {
   const router = useRouter();
@@ -58,9 +59,9 @@ export default function SearchPage() {
   }
 
   function resetDatesOnly() {
-    const dep = defaultDepartIso();
-    setDepartDate(dep);
-    setReturnDate(tripType === "round-trip" ? addDaysIso(dep, 7) : null);
+    // Wipe the user's chosen dates (no auto-picking a new range).
+    setDepartDate(minToday);
+    setReturnDate(null);
   }
 
   function onSubmit(e: React.FormEvent) {
@@ -95,7 +96,11 @@ export default function SearchPage() {
   return (
     <div className="space-y-14">
       <div className="mx-auto max-w-5xl space-y-8">
-        <h1 className="sr-only">Search flights</h1>
+        <StepHeading
+          step="Step 1 · Search"
+          title="Find a flight"
+          subtitle="Set your route and travel dates. You can change this before you pay."
+        />
 
         <form id="flight-search-form" onSubmit={onSubmit}>
           <FlightSearchBar
@@ -129,9 +134,6 @@ export default function SearchPage() {
       </div>
 
       <div className="flex flex-col items-center gap-2 border-t border-white/[0.06] pt-8 text-center">
-        <p className="text-[12px] text-zinc-500">
-          Need to clear cities and start over?
-        </p>
         <button
           type="button"
           onClick={() => {
@@ -144,7 +146,7 @@ export default function SearchPage() {
             setDepartDate(dep);
             setReturnDate(null);
           }}
-          className="text-[13px] font-medium text-zinc-400 underline-offset-4 hover:text-white hover:underline"
+          className="text-[13px] font-medium text-zinc-500 underline-offset-4 transition-colors duration-200 hover:text-white hover:underline"
         >
           Reset search
         </button>

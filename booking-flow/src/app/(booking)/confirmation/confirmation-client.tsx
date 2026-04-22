@@ -2,13 +2,87 @@
 
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useCallback, useState } from "react";
+import { toPng } from "html-to-image";
+import { useCallback, useRef, useState } from "react";
 import { airportLabel } from "@/data/airports";
-import { BrandWordmark } from "@/components/BrandWordmark";
 import { BoardingPass } from "@/components/BoardingPass";
 import { formatTripDate } from "@/lib/datetime";
 import { useBooking } from "@/context/BookingContext";
 import { useRedirectUnless } from "@/hooks/useRedirectUnless";
+
+function IconShare(props: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden className={props.className}>
+      <path
+        d="M12 16V4"
+        stroke="currentColor"
+        strokeWidth="1.75"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M8 8l4-4 4 4"
+        stroke="currentColor"
+        strokeWidth="1.75"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M4 12v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-6"
+        stroke="currentColor"
+        strokeWidth="1.75"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function IconCopy(props: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden className={props.className}>
+      <path
+        d="M9 9h10v12H9V9Z"
+        stroke="currentColor"
+        strokeWidth="1.75"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"
+        stroke="currentColor"
+        strokeWidth="1.75"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function IconDownload(props: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden className={props.className}>
+      <path
+        d="M12 3v10"
+        stroke="currentColor"
+        strokeWidth="1.75"
+        strokeLinecap="round"
+      />
+      <path
+        d="M8 10l4 4 4-4"
+        stroke="currentColor"
+        strokeWidth="1.75"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"
+        stroke="currentColor"
+        strokeWidth="1.75"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
 
 export function ConfirmationClient() {
   const searchParams = useSearchParams();
@@ -25,6 +99,8 @@ export function ConfirmationClient() {
   } = useBooking();
 
   const [copied, setCopied] = useState<"summary" | "link" | null>(null);
+  const [downloading, setDownloading] = useState(false);
+  const passRefs = useRef<Array<HTMLElement | null>>([]);
 
   const pnr = paramPnr ?? confirmationCode;
   const ok = Boolean(
@@ -79,13 +155,26 @@ export function ConfirmationClient() {
     }
   }
 
-  async function handleCopyLink() {
+  async function handleDownloadPng() {
+    if (downloading) return;
+    setDownloading(true);
     try {
-      await navigator.clipboard.writeText(window.location.href);
-      setCopied("link");
-      window.setTimeout(() => setCopied(null), 2000);
-    } catch {
-      /* ignore */
+      const nodes = passRefs.current.filter(Boolean) as HTMLElement[];
+      if (!nodes.length) return;
+      for (let i = 0; i < nodes.length; i++) {
+        const node = nodes[i];
+        const dataUrl = await toPng(node, {
+          cacheBust: true,
+          pixelRatio: 2,
+          backgroundColor: "#07080a",
+        });
+        const a = document.createElement("a");
+        a.href = dataUrl;
+        a.download = `boarding-pass-${pnr}-${String(i + 1).padStart(2, "0")}.png`;
+        a.click();
+      }
+    } finally {
+      setDownloading(false);
     }
   }
 
@@ -96,7 +185,7 @@ export function ConfirmationClient() {
   return (
     <div className="mx-auto max-w-4xl space-y-10">
       <div className="text-center">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-zinc-500">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-zinc-400">
           Booking confirmed
         </p>
         <h1 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
@@ -104,7 +193,7 @@ export function ConfirmationClient() {
         </h1>
         <p className="mt-2 text-sm text-zinc-500">
           Reference{" "}
-          <span className="font-mono text-[15px] font-semibold text-sky-400">{pnr}</span>
+          <span className="tabular-nums text-[15px] font-semibold text-white">{pnr}</span>
         </p>
         {paidAt ? (
           <p className="mt-2 text-[12px] text-zinc-600">
@@ -117,23 +206,26 @@ export function ConfirmationClient() {
         <button
           type="button"
           onClick={() => void handleShare()}
-          className="rounded-xl border border-white/[0.14] bg-white/[0.06] px-5 py-2.5 text-[13px] font-semibold text-white transition hover:bg-white/[0.1]"
+          className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-white/[0.14] bg-white/[0.06] px-5 py-2.5 text-[13px] font-semibold text-white transition hover:bg-white/[0.1]"
         >
+          <IconShare className="size-[18px] text-white/80" />
           Share itinerary
         </button>
         <button
           type="button"
           onClick={() => void handleCopySummary()}
-          className="rounded-xl border border-white/[0.12] bg-transparent px-5 py-2.5 text-[13px] font-medium text-zinc-300 transition hover:bg-white/[0.06] hover:text-white"
+          className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-white/[0.12] bg-transparent px-5 py-2.5 text-[13px] font-medium text-zinc-300 transition hover:bg-white/[0.06] hover:text-white"
         >
+          <IconCopy className="size-[18px] text-white/60" />
           {copied === "summary" ? "Copied" : "Copy details"}
         </button>
         <button
           type="button"
-          onClick={() => void handleCopyLink()}
-          className="rounded-xl border border-white/[0.12] bg-transparent px-5 py-2.5 text-[13px] font-medium text-zinc-300 transition hover:bg-white/[0.06] hover:text-white"
+          onClick={() => void handleDownloadPng()}
+          className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-white/[0.12] bg-transparent px-5 py-2.5 text-[13px] font-medium text-zinc-300 transition hover:bg-white/[0.06] hover:text-white"
         >
-          {copied === "link" ? "Link copied" : "Copy page link"}
+          <IconDownload className="size-[18px] text-white/60" />
+          {downloading ? "Preparing…" : "Download boarding pass"}
         </button>
       </div>
 
@@ -141,10 +233,19 @@ export function ConfirmationClient() {
         <h2 className="mb-4 text-center text-[11px] font-semibold uppercase tracking-[0.2em] text-zinc-500">
           Boarding passes
         </h2>
-        <div className="grid gap-6 sm:grid-cols-2">
+        <div
+          className={
+            passengers.length === 1
+              ? "flex justify-center"
+              : "grid gap-6 sm:grid-cols-2"
+          }
+        >
           {passengers.map((p, i) => (
             <BoardingPass
               key={`${p.email}-${i}`}
+              ref={(el) => {
+                passRefs.current[i] = el;
+              }}
               passengerNo={i + 1}
               givenName={p.givenName}
               familyName={p.familyName}
@@ -161,21 +262,18 @@ export function ConfirmationClient() {
         </div>
       </div>
 
-      <div className="rounded-2xl border border-white/[0.08] bg-zinc-950/60 px-5 py-4 text-center text-[13px] text-zinc-500 ring-1 ring-white/[0.04]">
-        <BrandWordmark className="text-zinc-400" /> · {search.origin} →{" "}
-        {search.destination} · NMB {selectedFlight.flightNumber}
+      <div className="flex justify-center">
+        <button
+          type="button"
+          onClick={() => {
+            resetFlow();
+            router.push("/search");
+          }}
+          className="rounded-xl bg-white px-10 py-3.5 text-sm font-semibold text-black shadow-lg shadow-black/30 transition hover:bg-zinc-100"
+        >
+          Book another trip
+        </button>
       </div>
-
-      <button
-        type="button"
-        onClick={() => {
-          resetFlow();
-          router.push("/search");
-        }}
-        className="w-full rounded-xl bg-white py-3.5 text-sm font-semibold text-black shadow-lg shadow-black/30 transition hover:bg-zinc-100"
-      >
-        Book another trip
-      </button>
 
       <p className="text-center text-[13px] text-zinc-600">
         <Link href="/search" className="text-zinc-400 underline underline-offset-2 hover:text-white">

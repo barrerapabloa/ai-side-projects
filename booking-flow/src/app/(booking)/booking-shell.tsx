@@ -1,7 +1,7 @@
 "use client";
 
 import { BookingProvider } from "@/context/BookingContext";
-import { BookingHeader } from "@/components/BookingHeader";
+import { BookingSidebar } from "@/components/BookingSidebar";
 
 export default function BookingShell({
   children,
@@ -10,9 +10,11 @@ export default function BookingShell({
 }) {
   return (
     <BookingProvider>
-      <div className="min-h-dvh bg-[#07080a] text-zinc-100">
-        <BookingHeader />
-        <main className="mx-auto max-w-5xl px-4 pb-32 pt-8">{children}</main>
+      <div className="min-h-dvh bg-[#07080a] text-zinc-100 lg:flex">
+        <BookingSidebar />
+        <main className="w-full flex-1 px-4 pb-32 pt-8 lg:px-10">
+          <div className="mx-auto max-w-5xl">{children}</div>
+        </main>
       </div>
     </BookingProvider>
   );

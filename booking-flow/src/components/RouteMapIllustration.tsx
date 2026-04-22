@@ -9,7 +9,7 @@ export function RouteMapIllustration({
   destinationCode: string;
 }) {
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-white/[0.08] bg-gradient-to-br from-sky-950/50 via-zinc-950 to-zinc-950 ring-1 ring-white/[0.05]">
+    <div className="relative overflow-hidden rounded-2xl border border-white/[0.08] bg-gradient-to-br from-zinc-900/50 via-zinc-950 to-zinc-950 ring-1 ring-white/[0.05]">
       <div className="absolute inset-0 opacity-[0.35]">
         <svg className="h-full w-full" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -61,11 +61,11 @@ export function RouteMapIllustration({
         <circle cx="488" cy="68" r="13" stroke="rgba(255,255,255,0.35)" strokeWidth="1.5" fill="none" />
       </svg>
       <div className="relative z-[1] flex justify-between px-5 pb-3 pt-0 text-[12px] font-medium text-white">
-        <span className="font-mono tracking-wide">{originCode}</span>
+        <span className="tabular-nums tracking-wide">{originCode}</span>
         <span className="text-[10px] uppercase tracking-[0.18em] text-zinc-500">
           Route
         </span>
-        <span className="font-mono tracking-wide">{destinationCode}</span>
+        <span className="tabular-nums tracking-wide">{destinationCode}</span>
       </div>
     </div>
   );

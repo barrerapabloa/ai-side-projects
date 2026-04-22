@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useMemo } from "react";
 import { airportLabel } from "@/data/airports";
 import { formatUsd } from "@/lib/money";
+import { fareTierAddOnUsdPerPax } from "@/lib/fareTier";
 import {
   buildSeatsForFlight,
   seatMapFromList,
@@ -13,14 +14,17 @@ import {
 import { useBooking } from "@/context/BookingContext";
 import { TripSummaryCard } from "@/components/TripSummaryCard";
 import { useRedirectUnless } from "@/hooks/useRedirectUnless";
+import { StepHeading } from "@/components/StepHeading";
 
 export default function ReviewPage() {
   const router = useRouter();
   const {
     search,
     selectedFlight,
+    selectedReturnFlight,
     selectedSeatIds,
     passengers,
+    selectedFareTier,
     reviewAccepted,
     setReviewAccepted,
   } = useBooking();
@@ -34,44 +38,53 @@ export default function ReviewPage() {
         p.givenName.trim() &&
         p.familyName.trim() &&
         p.email.trim() &&
-        p.dateOfBirth,
+        p.dateOfBirth &&
+        p.passportNumber.trim() &&
+        p.passportCountry.trim() &&
+        p.passportExpiry,
     );
   useRedirectUnless(paxOk, "/search");
 
   const { fareSubtotal, seatFees, total } = useMemo(() => {
-    if (!search || !selectedFlight) {
+    if (
+      !search ||
+      !selectedFlight ||
+      (search.tripType === "round-trip" && !selectedReturnFlight)
+    ) {
       return { fareSubtotal: 0, seatFees: 0, total: 0 };
     }
-    const seats = buildSeatsForFlight(selectedFlight.id);
+    const seats = buildSeatsForFlight(selectedFlight.id, selectedFlight.cabinTier);
     const map = seatMapFromList(seats);
     const seatFees = totalSeatFees(selectedSeatIds, map);
-    const fareSubtotal = selectedFlight.priceUsd * search.passengers;
+    const addOn = fareTierAddOnUsdPerPax(selectedFareTier, selectedFlight.cabinTier);
+    const legs = search.tripType === "round-trip" ? 2 : 1;
+    const base =
+      selectedFlight.priceUsd +
+      (search.tripType === "round-trip" ? selectedReturnFlight?.priceUsd ?? 0 : 0);
+    const fareSubtotal = (base + addOn * legs) * search.passengers;
     return {
       fareSubtotal,
       seatFees,
       total: fareSubtotal + seatFees,
     };
-  }, [search, selectedFlight, selectedSeatIds]);
+  }, [search, selectedFlight, selectedReturnFlight, selectedSeatIds, selectedFareTier]);
 
   if (!search || !selectedFlight) return null;
 
   return (
     <>
       <div className="space-y-8 pb-40 lg:pb-8">
-        <div>
-          <h1 className="text-2xl font-semibold tracking-tight text-white">
-            Review trip
-          </h1>
-          <p className="mt-2 text-sm text-zinc-500">
-            Everything below matches what you selected — adjust earlier steps if something looks off.
-          </p>
-        </div>
+        <StepHeading
+          step="Step 5 · Review"
+          title="Review before you pay"
+          subtitle="Confirm flight, seats, and travelers. Use links below to jump back if something’s wrong."
+        />
 
         <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_320px]">
           <div className="space-y-5">
-            <section className="overflow-hidden rounded-2xl border border-white/[0.1] bg-gradient-to-br from-indigo-950/40 via-zinc-950/60 to-zinc-950 ring-1 ring-indigo-500/15">
+            <section className="overflow-hidden rounded-2xl border border-white/[0.1] bg-gradient-to-br from-zinc-900/35 via-zinc-950/60 to-zinc-950 ring-1 ring-white/[0.06]">
               <div className="border-b border-white/[0.06] bg-white/[0.03] px-5 py-4">
-                <h2 className="text-[11px] font-semibold uppercase tracking-[0.2em] text-indigo-200/80">
+                <h2 className="text-[11px] font-semibold uppercase tracking-[0.2em] text-zinc-200">
                   Flight timeline
                 </h2>
               </div>
@@ -80,7 +93,7 @@ export default function ReviewPage() {
                   <p className="text-[11px] font-medium uppercase tracking-wide text-zinc-500">
                     Leave {search.origin}
                   </p>
-                  <p className="mt-2 font-mono text-3xl font-semibold tabular-nums text-white">
+                  <p className="mt-2 text-3xl font-semibold tabular-nums text-white">
                     {selectedFlight.departLabel}
                   </p>
                   <p className="mt-2 text-[13px] text-zinc-400">
@@ -91,7 +104,7 @@ export default function ReviewPage() {
                   <p className="text-[11px] font-medium uppercase tracking-wide text-zinc-500">
                     Arrive {search.destination}
                   </p>
-                  <p className="mt-2 font-mono text-3xl font-semibold tabular-nums text-white">
+                  <p className="mt-2 text-3xl font-semibold tabular-nums text-white">
                     {selectedFlight.arriveLabel}
                   </p>
                   <p className="mt-2 text-[13px] text-zinc-400">
@@ -120,7 +133,7 @@ export default function ReviewPage() {
                 {selectedSeatIds.map((id) => (
                   <span
                     key={id}
-                    className="inline-flex items-center rounded-lg border border-amber-500/25 bg-amber-500/10 px-3 py-2 font-mono text-sm font-medium text-amber-100"
+                      className="inline-flex items-center rounded-lg border border-white/[0.14] bg-white/[0.06] px-3 py-2 text-sm font-medium tabular-nums text-white"
                   >
                     {id}
                   </span>
@@ -164,7 +177,9 @@ export default function ReviewPage() {
             <TripSummaryCard
               search={search}
               flight={selectedFlight}
+              returnFlight={search.tripType === "round-trip" ? selectedReturnFlight : null}
               seatExtrasUsd={seatFees}
+              seatIds={selectedSeatIds}
               seatSummary={selectedSeatIds.join(", ")}
             />
 
@@ -201,14 +216,14 @@ export default function ReviewPage() {
                 type="button"
                 disabled={!reviewAccepted}
                 onClick={() => router.push("/payment")}
-                className="mt-5 w-full rounded-lg bg-white py-3 text-sm font-semibold text-black hover:bg-zinc-100 disabled:cursor-not-allowed disabled:opacity-40"
+                className="bf-btn-primary-bar mt-5 w-full py-3 disabled:cursor-not-allowed"
               >
                 Continue to payment · {formatUsd(total)}
               </button>
 
               <Link
                 href="/passengers"
-                className="mt-4 block text-center text-[13px] text-zinc-500 underline underline-offset-2"
+                className="mt-4 block text-center text-[13px] text-zinc-300 underline underline-offset-2 transition-colors duration-200 hover:text-white"
               >
                 Edit travelers
               </Link>
@@ -218,7 +233,7 @@ export default function ReviewPage() {
       </div>
 
       {/* Mobile / narrow: sticky checkout */}
-      <div className="fixed bottom-0 left-0 right-0 z-40 border-t border-white/[0.1] bg-[#07080a]/94 p-4 backdrop-blur-xl lg:hidden">
+      <div className="fixed bottom-0 left-0 right-0 z-40 border-t border-white/[0.10] bg-[#07080a]/94 p-4 backdrop-blur-xl lg:hidden">
         <label className="flex cursor-pointer gap-3 border-b border-white/[0.06] pb-3 text-[12px] leading-snug text-zinc-400">
           <input
             type="checkbox"
@@ -239,7 +254,7 @@ export default function ReviewPage() {
             type="button"
             disabled={!reviewAccepted}
             onClick={() => router.push("/payment")}
-            className="min-h-11 shrink-0 rounded-lg bg-white px-5 py-2.5 text-[13px] font-semibold text-black disabled:opacity-40"
+            className="bf-btn-primary-bar min-h-11 shrink-0 px-5 py-2.5 disabled:opacity-40"
           >
             Pay {formatUsd(total)}
           </button>

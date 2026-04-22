@@ -38,6 +38,9 @@ export type PassengerDraft = {
   familyName: string;
   email: string;
   dateOfBirth: string;
+  passportNumber: string;
+  passportCountry: string;
+  passportExpiry: string;
 };
 
 export type SeatCategory = "standard" | "premium" | "extraLegroom";

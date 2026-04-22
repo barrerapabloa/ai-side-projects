@@ -4,13 +4,15 @@
   color-scheme: dark;
   --background: #07080a;
   --foreground: #fafafa;
+  /** Single accent — links, primary actions, focus, selection */
+  --accent: #a855f7; /* violet-500 */
+  --accent-strong: #c084fc; /* violet-400 */
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
 }
 
 body {
@@ -20,12 +22,20 @@ body {
 
 /* Booking flow — consistent controls (native selects need appearance-none + room for chevron) */
 @layer components {
+  .bf-capsule {
+    @apply rounded-[2rem] border border-white/[0.12] bg-gradient-to-b from-zinc-900/65 via-zinc-950/85 to-black/90 shadow-[inset_0_1px_0_rgba(255,255,255,0.06),0_34px_84px_-44px_rgba(0,0,0,0.95)] ring-1 ring-white/[0.06];
+  }
+
+  .bf-focus-amber {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300/50;
+  }
+
   .bf-input {
-    @apply w-full rounded-lg border border-white/[0.12] bg-zinc-950/90 px-3 py-2.5 text-sm text-white outline-none transition placeholder:text-zinc-600 focus-visible:border-white/[0.18] focus-visible:ring-2 focus-visible:ring-white/20;
+    @apply w-full rounded-xl border border-white/[0.12] bg-zinc-950/90 px-3 py-2.5 text-sm text-white outline-none transition-[border-color,box-shadow,background-color] duration-200 ease-out placeholder:text-zinc-600 focus-visible:border-violet-200/40 focus-visible:ring-2 focus-visible:ring-violet-300/25;
   }
 
   .bf-select {
-    @apply w-full appearance-none cursor-pointer rounded-xl border border-white/[0.12] bg-zinc-950/90 py-2.5 pl-3 pr-10 text-sm font-medium text-white outline-none transition placeholder:text-zinc-600 focus-visible:border-white/[0.18] focus-visible:ring-2 focus-visible:ring-white/20;
+    @apply w-full appearance-none cursor-pointer rounded-xl border border-white/[0.12] bg-zinc-950/90 py-2.5 pl-3 pr-10 text-sm font-medium text-white outline-none transition-[border-color,box-shadow,background-color] duration-200 ease-out placeholder:text-zinc-600 focus-visible:border-white/[0.22] focus-visible:ring-2 focus-visible:ring-white/20;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%23a1a1aa' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m6 8 4 4 4-4'/%3E%3C/svg%3E");
     background-position: right 0.625rem center;
     background-size: 1rem;
@@ -49,22 +59,27 @@ body {
   }
 
   .bf-btn-primary-emerald {
-    @apply w-full rounded-lg bg-emerald-500 py-3 text-sm font-semibold text-black transition hover:bg-emerald-400 disabled:opacity-60;
+    @apply w-full rounded-lg bg-white py-3 text-sm font-semibold text-black transition-[background-color,transform] duration-200 ease-out hover:bg-zinc-100 active:scale-[0.99] disabled:opacity-60;
   }
 
   .bf-btn-secondary-bar {
-    @apply inline-flex min-h-11 items-center justify-center rounded-lg border border-white/25 bg-zinc-800/90 px-4 text-[13px] font-semibold text-white shadow-inner shadow-black/30 transition hover:border-white/40 hover:bg-zinc-700/95;
+    @apply inline-flex min-h-11 items-center justify-center rounded-xl border border-white/25 bg-zinc-800/90 px-4 text-[13px] font-semibold text-white shadow-inner shadow-black/30 transition-[border-color,background-color,color,transform] duration-200 ease-out hover:border-white/45 hover:bg-zinc-700/95 active:scale-[0.99];
   }
 
   .bf-btn-primary-bar {
-    @apply inline-flex min-h-11 min-w-[11rem] items-center justify-center rounded-lg bg-white px-5 text-[13px] font-semibold text-black shadow-lg shadow-black/40 transition hover:bg-zinc-100 disabled:cursor-not-allowed disabled:opacity-40;
+    @apply inline-flex min-h-11 min-w-[11rem] items-center justify-center rounded-xl bg-violet-400 px-5 text-[13px] font-semibold text-black shadow-[0_18px_50px_-28px_rgba(168,85,247,0.55),0_18px_50px_-28px_rgba(0,0,0,0.85)] transition-[background-color,box-shadow,transform,opacity] duration-200 ease-out hover:bg-violet-300 active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-40;
   }
 
   .bf-filter-pill-active {
-    @apply rounded-full bg-white px-4 py-2 text-[13px] font-semibold text-black shadow-lg shadow-black/40 transition;
+    @apply rounded-xl bg-violet-400 px-4 py-2 text-[13px] font-semibold text-black shadow-[0_16px_44px_-26px_rgba(168,85,247,0.55),0_12px_24px_-14px_rgba(0,0,0,0.85)] transition-[background-color,transform] duration-200 ease-out hover:bg-violet-300 active:scale-[0.99];
   }
 
   .bf-filter-pill-idle {
-    @apply rounded-full border border-white/[0.12] bg-white/[0.04] px-4 py-2 text-[13px] font-semibold text-zinc-300 transition hover:bg-white/[0.08];
+    @apply rounded-xl border border-white/[0.12] bg-white/[0.04] px-4 py-2 text-[13px] font-semibold text-zinc-300 transition-[border-color,background-color,transform] duration-200 ease-out hover:border-white/25 hover:bg-white/[0.08] active:scale-[0.99];
+  }
+
+  /** Shared motion for rows / tap targets */
+  .bf-interactive-surface {
+    @apply transition-[transform,border-color,background-color,box-shadow] duration-200 ease-out;
   }
 }

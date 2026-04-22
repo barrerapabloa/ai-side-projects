@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import type { TripType } from "@/types/booking";
-import { AIRPORTS, airportLabel } from "@/data/airports";
+import { airportLabel, searchAirports } from "@/data/airports";
 import { FlightRangeCalendar } from "@/components/FlightRangeCalendar";
 import { parseIsoDate } from "@/lib/datetime";
 
@@ -76,6 +76,8 @@ export function FlightSearchBar({
 }: FlightSearchBarProps) {
   const [open, setOpen] = useState<null | "where" | "when" | "who">(null);
   const rootRef = useRef<HTMLDivElement>(null);
+  const [fromQuery, setFromQuery] = useState("");
+  const [toQuery, setToQuery] = useState("");
 
   useEffect(() => {
     function handle(e: MouseEvent) {
@@ -96,6 +98,9 @@ export function FlightSearchBar({
     onDestinationChange(o);
   }
 
+  const fromResults = useMemo(() => searchAirports(fromQuery || origin, 10), [fromQuery, origin]);
+  const toResults = useMemo(() => searchAirports(toQuery || destination, 10), [toQuery, destination]);
+
   return (
     <div ref={rootRef} className="relative z-10 w-full space-y-5">
       <div
@@ -112,7 +117,7 @@ export function FlightSearchBar({
             role="radio"
             aria-checked={tripType === "one-way"}
             onClick={() => onTripTypeChange("one-way")}
-            className={`min-h-11 flex-1 rounded-xl px-5 py-2.5 text-[14px] font-semibold transition sm:min-w-[9.5rem] ${
+            className={`min-h-11 flex-1 rounded-xl px-5 py-2.5 text-[14px] font-semibold transition-colors duration-200 sm:min-w-[9.5rem] ${
               tripType === "one-way"
                 ? "bg-white text-black shadow-lg shadow-black/40"
                 : "text-zinc-400 hover:text-zinc-200"
@@ -125,7 +130,7 @@ export function FlightSearchBar({
             role="radio"
             aria-checked={tripType === "round-trip"}
             onClick={() => onTripTypeChange("round-trip")}
-            className={`min-h-11 flex-1 rounded-xl px-5 py-2.5 text-[14px] font-semibold transition sm:min-w-[9.5rem] ${
+            className={`min-h-11 flex-1 rounded-xl px-5 py-2.5 text-[14px] font-semibold transition-colors duration-200 sm:min-w-[9.5rem] ${
               tripType === "round-trip"
                 ? "bg-white text-black shadow-lg shadow-black/40"
                 : "text-zinc-400 hover:text-zinc-200"
@@ -142,7 +147,7 @@ export function FlightSearchBar({
         <button
           type="button"
           onClick={() => setOpen(open === "where" ? null : "where")}
-          className={`group flex flex-1 flex-col gap-0.5 rounded-[2rem] px-6 py-4 text-left transition lg:rounded-none lg:rounded-l-[2rem] lg:py-3.5 ${
+          className={`group flex flex-1 flex-col gap-0.5 rounded-[2rem] px-6 py-4 text-left transition-colors duration-200 lg:rounded-none lg:rounded-l-[2rem] lg:py-3.5 ${
             open === "where"
               ? "bg-white/[0.06]"
               : "hover:bg-white/[0.04]"
@@ -157,7 +162,7 @@ export function FlightSearchBar({
         <button
           type="button"
           onClick={() => setOpen(open === "when" ? null : "when")}
-          className={`group flex flex-1 flex-col gap-0.5 px-6 py-4 text-left transition lg:py-3.5 ${
+          className={`group flex flex-1 flex-col gap-0.5 px-6 py-4 text-left transition-colors duration-200 lg:py-3.5 ${
             open === "when" ? "bg-white/[0.06]" : "hover:bg-white/[0.04]"
           }`}
         >
@@ -171,7 +176,7 @@ export function FlightSearchBar({
           <button
             type="button"
             onClick={() => setOpen(open === "who" ? null : "who")}
-            className={`group flex min-w-0 flex-1 flex-col gap-0.5 px-6 py-4 text-left transition lg:py-3.5 ${
+            className={`group flex min-w-0 flex-1 flex-col gap-0.5 px-6 py-4 text-left transition-colors duration-200 lg:py-3.5 ${
               open === "who" ? "bg-white/[0.06]" : "hover:bg-white/[0.04]"
             }`}
           >
@@ -186,7 +191,7 @@ export function FlightSearchBar({
               type="submit"
               disabled={invalidRoute}
               aria-label="Search flights"
-              className="flex size-12 items-center justify-center rounded-full bg-white text-black shadow-lg shadow-black/40 transition hover:bg-zinc-100 disabled:cursor-not-allowed disabled:opacity-40"
+              className="flex size-12 items-center justify-center rounded-full bg-white text-black shadow-lg shadow-black/40 transition-[background-color,transform,opacity] duration-200 ease-out hover:bg-zinc-100 active:scale-[0.97] disabled:cursor-not-allowed disabled:opacity-40"
             >
               <svg
                 className="size-5"
@@ -215,7 +220,7 @@ export function FlightSearchBar({
 
       {/* Where */}
       {open === "where" ? (
-        <div className="absolute left-0 right-0 top-[calc(100%+10px)] z-50 max-h-[min(70vh,520px)] overflow-auto rounded-2xl border border-white/[0.1] bg-zinc-950 p-5 shadow-[0_24px_48px_-12px_rgba(0,0,0,0.65)] ring-1 ring-white/[0.08] lg:left-0 lg:right-auto lg:w-[400px]">
+        <div className="absolute left-0 right-0 top-[calc(100%+10px)] z-50 max-h-[min(70vh,520px)] overflow-auto bf-capsule p-5 lg:left-0 lg:right-auto lg:w-[720px]">
           <div className="space-y-4">
             <div className="flex items-center justify-between gap-3">
               <p className="text-[13px] font-semibold text-white">Route</p>
@@ -227,56 +232,125 @@ export function FlightSearchBar({
                 Swap
               </button>
             </div>
-            <label className="block space-y-1.5">
-              <span className="text-[12px] font-medium text-zinc-500">From</span>
-              <select
-                value={origin}
-                onChange={(e) => onOriginChange(e.target.value)}
-                className="bf-select w-full"
-              >
-                {AIRPORTS.map((a) => (
-                  <option key={a.code} value={a.code}>
-                    {a.city} ({a.code})
-                  </option>
-                ))}
-              </select>
-            </label>
-            <label className="block space-y-1.5">
-              <span className="text-[12px] font-medium text-zinc-500">To</span>
-              <select
-                value={destination}
-                onChange={(e) => onDestinationChange(e.target.value)}
-                className="bf-select w-full"
-              >
-                {AIRPORTS.map((a) => (
-                  <option key={a.code} value={a.code}>
-                    {a.city} ({a.code})
-                  </option>
-                ))}
-              </select>
-            </label>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <label className="block space-y-1.5">
+                <span className="text-[12px] font-medium text-zinc-500">From</span>
+              <input
+                  value={fromQuery}
+                  onChange={(e) => setFromQuery(e.target.value)}
+                  placeholder="Search city, airport, or code…"
+                  className="bf-input"
+                />
+                <div className="mt-2 max-h-56 overflow-auto rounded-xl border border-white/[0.10] bg-black/30 p-1 ring-1 ring-white/[0.06]">
+                  {fromResults.map((a) => (
+                    <button
+                      key={a.code}
+                      type="button"
+                      onClick={() => {
+                        onOriginChange(a.code);
+                        setFromQuery("");
+                      }}
+                      className={`bf-interactive-surface flex w-full items-center justify-between gap-3 rounded-lg px-3 py-2 text-left hover:bg-white/[0.06] ${
+                        a.code === origin ? "bg-white/[0.06]" : ""
+                      }`}
+                    >
+                      <span className="min-w-0">
+                        <span className="block truncate text-[13px] font-medium text-white">
+                          {a.city} {a.name ? `· ${a.name}` : ""}
+                        </span>
+                        <span className="block truncate text-[12px] text-zinc-500">
+                          {a.country ?? ""}
+                        </span>
+                      </span>
+                      <span className="shrink-0 rounded-md border border-white/[0.12] bg-white/[0.04] px-2 py-1 text-[11px] font-semibold text-zinc-200">
+                        {a.code}
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              </label>
+              <label className="block space-y-1.5">
+                <span className="text-[12px] font-medium text-zinc-500">To</span>
+              <input
+                  value={toQuery}
+                  onChange={(e) => setToQuery(e.target.value)}
+                  placeholder="Search city, airport, or code…"
+                  className="bf-input"
+                />
+                <div className="mt-2 max-h-56 overflow-auto rounded-xl border border-white/[0.10] bg-black/30 p-1 ring-1 ring-white/[0.06]">
+                  {toResults.map((a) => (
+                    <button
+                      key={a.code}
+                      type="button"
+                      onClick={() => {
+                        onDestinationChange(a.code);
+                        setToQuery("");
+                      }}
+                      className={`bf-interactive-surface flex w-full items-center justify-between gap-3 rounded-lg px-3 py-2 text-left hover:bg-white/[0.06] ${
+                        a.code === destination ? "bg-white/[0.06]" : ""
+                      }`}
+                    >
+                      <span className="min-w-0">
+                        <span className="block truncate text-[13px] font-medium text-white">
+                          {a.city} {a.name ? `· ${a.name}` : ""}
+                        </span>
+                        <span className="block truncate text-[12px] text-zinc-500">
+                          {a.country ?? ""}
+                        </span>
+                      </span>
+                      <span className="shrink-0 rounded-md border border-white/[0.12] bg-white/[0.04] px-2 py-1 text-[11px] font-semibold text-zinc-200">
+                        {a.code}
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              </label>
+            </div>
           </div>
         </div>
       ) : null}
 
       {/* When */}
       {open === "when" ? (
-        <div className="absolute left-1/2 top-[calc(100%+10px)] z-50 w-[min(100vw-2rem,920px)] max-h-[min(85vh,720px)] -translate-x-1/2 overflow-auto rounded-2xl border border-white/[0.1] bg-[#07080a] p-3 shadow-[0_24px_48px_-12px_rgba(0,0,0,0.65)] ring-1 ring-white/[0.06] lg:left-0 lg:w-[min(100%,920px)] lg:max-w-[920px] lg:translate-x-0">
-          <FlightRangeCalendar
-            surface="dark"
-            showTripTypeSelector={false}
-            compactChrome
-            tripType={tripType}
-            onTripTypeChange={onTripTypeChange}
-            origin={origin}
-            destination={destination}
-            departDate={departDate}
-            returnDate={tripType === "round-trip" ? returnDate : null}
-            onDepartChange={onDepartChange}
-            onReturnChange={onReturnChange}
-            minDate={minDate}
-            onResetDates={onResetDates}
+        <div className="fixed inset-0 z-50">
+          <button
+            type="button"
+            aria-label="Close date picker"
+            onClick={() => setOpen(null)}
+            className="absolute inset-0 bg-black/70 backdrop-blur-[2px]"
           />
+
+          <div className="absolute left-1/2 top-[84px] w-[min(100vw-2rem,640px)] -translate-x-1/2 overflow-hidden bf-capsule bg-[#07080a]">
+            <div className="flex items-center justify-between gap-3 bg-white/[0.03] px-3 py-2.5">
+              <p className="text-[12px] font-semibold uppercase tracking-[0.22em] text-zinc-400">
+                Dates
+              </p>
+              <button
+                type="button"
+                onClick={() => setOpen(null)}
+                className="rounded-lg border border-white/[0.12] bg-black/40 px-2.5 py-1 text-[12px] font-medium text-zinc-200 hover:bg-white/[0.08] hover:text-white"
+              >
+                Close
+              </button>
+            </div>
+
+            <FlightRangeCalendar
+              surface="dark"
+              showTripTypeSelector={false}
+              compactChrome
+              embedded
+              tripType={tripType}
+              onTripTypeChange={onTripTypeChange}
+              origin={origin}
+              destination={destination}
+              departDate={departDate}
+              returnDate={tripType === "round-trip" ? returnDate : null}
+              onDepartChange={onDepartChange}
+              onReturnChange={onReturnChange}
+              minDate={minDate}
+              onResetDates={onResetDates}
+            />
+          </div>
         </div>
       ) : null}
 

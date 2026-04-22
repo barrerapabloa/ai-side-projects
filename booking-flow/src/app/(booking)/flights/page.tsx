@@ -4,12 +4,11 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
 import type { CabinTier } from "@/types/booking";
-import { airportLabel } from "@/data/airports";
 import { getMockFlights } from "@/data/mockFlights";
-import { formatTripDate } from "@/lib/datetime";
 import { formatUsd } from "@/lib/money";
 import { useBooking } from "@/context/BookingContext";
 import { useRedirectUnless } from "@/hooks/useRedirectUnless";
+import { StepHeading } from "@/components/StepHeading";
 
 type CabinFilter = "all" | CabinTier;
 type SortKey = "price" | "duration" | "depart";
@@ -46,18 +45,39 @@ function tierBadgeClasses(tier: CabinTier): string {
 
 export default function FlightsPage() {
   const router = useRouter();
-  const { search, setSelectedFlight } = useBooking();
+  const { search, selectedFlight, selectedReturnFlight, setSelectedFlight, setSelectedReturnFlight } =
+    useBooking();
 
-  const [cabinFilter, setCabinFilter] = useState<CabinFilter>("all");
+  const [cabinFilter, setCabinFilter] = useState<CabinFilter>(() => {
+    if (typeof window === "undefined") return "all";
+    const params = new URLSearchParams(window.location.search);
+    const cabin = params.get("cabin") as CabinFilter | null;
+    return cabin && (cabin === "all" || cabin === "economy" || cabin === "business" || cabin === "first")
+      ? cabin
+      : "all";
+  });
   const [sortKey, setSortKey] = useState<SortKey>("price");
 
-  const ok = Boolean(search?.origin && search.destination && search.departDate);
+  const ok = Boolean(
+    search?.origin &&
+      search.destination &&
+      search.departDate &&
+      (search.tripType !== "round-trip" || search.returnDate),
+  );
   useRedirectUnless(ok, "/search");
 
+  const pickingReturn = search?.tripType === "round-trip" && Boolean(selectedFlight) && !selectedReturnFlight;
   const rawFlights = useMemo(() => {
     if (!search) return [];
+    if (pickingReturn) {
+      return getMockFlights(
+        search.destination,
+        search.origin,
+        search.returnDate ?? search.departDate,
+      );
+    }
     return getMockFlights(search.origin, search.destination, search.departDate);
-  }, [search]);
+  }, [search, pickingReturn]);
 
   const flights = useMemo(() => {
     const list =
@@ -77,7 +97,10 @@ export default function FlightsPage() {
     return list;
   }, [rawFlights, cabinFilter, sortKey]);
 
-  if (!search) return null;
+  const bestPriceUsd = useMemo(() => {
+    if (flights.length === 0) return 0;
+    return flights.reduce((min, f) => Math.min(min, f.priceUsd), Infinity);
+  }, [flights]);
 
   const FILTERS: { key: CabinFilter; label: string }[] = [
     { key: "all", label: "All cabins" },
@@ -85,32 +108,56 @@ export default function FlightsPage() {
     { key: "business", label: "Business" },
     { key: "first", label: "First" },
   ];
+  const SORTS: { key: SortKey; label: string }[] = [
+    { key: "price", label: "Lowest price" },
+    { key: "duration", label: "Shortest" },
+    { key: "depart", label: "Earliest" },
+  ];
 
   return (
+    search ? (
     <div className="space-y-8">
       <div className="space-y-6">
-        <div>
-          <h1 className="text-2xl font-semibold tracking-tight text-white">
-            {search.tripType === "round-trip"
-              ? "Choose your outbound flight"
-              : "Choose a flight"}
-          </h1>
-          <p className="mt-2 text-sm text-zinc-500">
-            {airportLabel(search.origin)} → {airportLabel(search.destination)} ·{" "}
-            <span className="text-zinc-400">{formatTripDate(search.departDate)}</span>
-            {search.tripType === "round-trip" && search.returnDate ? (
-              <>
-                {" "}
-                · Return {formatTripDate(search.returnDate)}
-              </>
-            ) : null}{" "}
-            · {search.passengers}{" "}
-            {search.passengers === 1 ? "traveler" : "travelers"}
-          </p>
-          {search.tripType === "round-trip" ? (
-            <p className="mt-2 rounded-lg border border-indigo-500/20 bg-indigo-500/10 px-3 py-2 text-[12px] text-indigo-100/90 ring-1 ring-indigo-500/15">
-              Outbound flight only here — your return date still shapes timing and pricing context.
+        <div className="space-y-4">
+          <StepHeading
+            step="Step 2 · Flights"
+            title={
+              search.tripType === "round-trip"
+                ? pickingReturn
+                  ? "Choose your return flight"
+                  : "Choose your outbound flight"
+                : "Choose a flight"
+            }
+            subtitle={
+              search.tripType === "round-trip"
+                ? pickingReturn
+                  ? "Pick a return option to complete your round trip."
+                  : "Pick an outbound option, then you’ll choose your return."
+                : "Tap a row to lock it in and continue."
+            }
+          />
+          {search.tripType === "round-trip" && !pickingReturn ? (
+            <p className="rounded-lg border border-white/[0.12] bg-white/[0.04] px-3 py-2 text-[12px] text-zinc-300 ring-1 ring-white/[0.06]">
+              Round trip: next you’ll pick the return leg.
             </p>
+          ) : null}
+          {search.tripType === "round-trip" && pickingReturn ? (
+            <div className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-white/[0.12] bg-white/[0.04] px-3 py-2 text-[12px] text-zinc-300 ring-1 ring-white/[0.06]">
+              <span>
+                Outbound selected:{" "}
+                <span className="font-semibold text-white">NMB {selectedFlight?.flightNumber}</span>
+              </span>
+              <button
+                type="button"
+                onClick={() => {
+                  setSelectedFlight(null);
+                  setSelectedReturnFlight(null);
+                }}
+                className="font-medium text-zinc-200 underline underline-offset-2 hover:text-white"
+              >
+                Change outbound
+              </button>
+            </div>
           ) : null}
         </div>
 
@@ -129,19 +176,20 @@ export default function FlightsPage() {
               </button>
             ))}
           </div>
-          <label className="flex flex-wrap items-center gap-2 sm:gap-3 text-[13px] text-zinc-400">
-            <span className="sr-only">Sort flights</span>
-            <span className="hidden shrink-0 sm:inline">Sort by</span>
-            <select
-              value={sortKey}
-              onChange={(e) => setSortKey(e.target.value as SortKey)}
-              className="bf-select min-w-0 shrink sm:min-w-[13.5rem]"
-            >
-              <option value="price">Lowest price</option>
-              <option value="duration">Shortest flight</option>
-              <option value="depart">Earliest departure</option>
-            </select>
-          </label>
+          <div className="flex flex-wrap gap-2 sm:justify-end">
+            {SORTS.map(({ key, label }) => (
+              <button
+                key={key}
+                type="button"
+                onClick={() => setSortKey(key)}
+                className={
+                  sortKey === key ? "bf-filter-pill-active" : "bf-filter-pill-idle"
+                }
+              >
+                {label}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 
@@ -151,7 +199,7 @@ export default function FlightsPage() {
           <button
             type="button"
             onClick={() => setCabinFilter("all")}
-            className="font-medium text-sky-400 underline underline-offset-2 hover:text-sky-300"
+            className="font-medium text-zinc-200 underline underline-offset-2 hover:text-white"
           >
             All cabins
           </button>
@@ -164,82 +212,108 @@ export default function FlightsPage() {
               <button
                 type="button"
                 onClick={() => {
+                  if (search.tripType === "round-trip") {
+                    if (!selectedFlight) {
+                      setSelectedFlight(f);
+                      window.scrollTo({ top: 0, behavior: "smooth" });
+                      return;
+                    }
+                    setSelectedReturnFlight(f);
+                    window.setTimeout(() => router.push("/fare"), 0);
+                    return;
+                  }
                   setSelectedFlight(f);
-                  window.setTimeout(() => router.push("/seats"), 0);
+                  window.setTimeout(() => router.push("/fare"), 0);
                 }}
-                className="group relative w-full overflow-hidden rounded-2xl border border-white/[0.12] bg-gradient-to-br from-zinc-950/95 via-zinc-950/75 to-black/70 px-5 py-5 text-left shadow-[0_22px_70px_-48px_rgba(0,0,0,0.9)] ring-1 ring-white/[0.06] transition hover:-translate-y-[1px] hover:border-white/[0.2] hover:ring-white/[0.1]"
+                className="bf-interactive-surface group relative w-full overflow-hidden rounded-2xl border border-white/[0.12] bg-gradient-to-b from-zinc-950/95 to-black/80 px-4 py-4 text-left shadow-[0_22px_70px_-52px_rgba(0,0,0,0.9)] ring-1 ring-white/[0.06] hover:-translate-y-[1px] hover:border-white/[0.22] hover:ring-white/[0.10]"
               >
                 <div
                   aria-hidden
-                  className="pointer-events-none absolute inset-0 opacity-0 transition duration-300 group-hover:opacity-100"
+                  className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-200 ease-out group-hover:opacity-100"
                 >
-                  <div className="absolute -left-16 top-10 h-44 w-44 rounded-full bg-sky-500/10 blur-2xl" />
-                  <div className="absolute -right-16 -top-10 h-44 w-44 rounded-full bg-indigo-500/10 blur-2xl" />
+                  <div className="absolute -left-16 top-8 h-40 w-40 rounded-full bg-white/8 blur-2xl" />
+                  <div className="absolute -right-16 -top-10 h-40 w-40 rounded-full bg-white/6 blur-2xl" />
                 </div>
-                <div className="flex flex-wrap items-start justify-between gap-3">
-                  <div className="space-y-2">
+                <div className="flex items-start justify-between gap-4">
+                  <div className="min-w-0 flex-1">
                     <div className="flex flex-wrap items-center gap-2">
-                      <span className="font-mono text-[13px] font-medium text-white">
+                      <span className="tabular-nums text-[12px] font-medium text-zinc-200">
                         NMB {f.flightNumber}
                       </span>
                       <span
                         className={`rounded-full px-2 py-0.5 text-[11px] font-medium ring-1 ${
                           f.stopsLabel.startsWith("Nonstop")
-                            ? "bg-emerald-500/15 text-emerald-200 ring-emerald-500/30"
-                            : "bg-amber-500/12 text-amber-100 ring-amber-500/25"
+                            ? "bg-emerald-500/12 text-emerald-200 ring-emerald-500/25"
+                            : "bg-amber-500/10 text-amber-100 ring-amber-500/20"
                         }`}
                       >
-                        {f.stopsLabel}
+                        {f.stopsLabel.startsWith("Nonstop") ? "Direct" : "1 stop"}
+                      </span>
+                      <span className="rounded-full bg-white/[0.04] px-2 py-0.5 text-[11px] text-zinc-300 ring-1 ring-white/[0.08]">
+                        {f.durationLabel}
                       </span>
                       <span
-                        className={`rounded-full px-2 py-0.5 text-[11px] font-semibold ring-1 ${tierBadgeClasses(f.cabinTier ?? "economy")}`}
+                        className={`rounded-full px-2 py-0.5 text-[11px] font-semibold ring-1 ${tierBadgeClasses(
+                          f.cabinTier ?? "economy",
+                        )}`}
                       >
                         {f.fareLabel}
                       </span>
+                      {bestPriceUsd > 0 && f.priceUsd === bestPriceUsd ? (
+                        <span className="rounded-full bg-white px-2 py-0.5 text-[11px] font-semibold text-black">
+                          Best price
+                        </span>
+                      ) : null}
                     </div>
-                    <p className="text-[13px] text-zinc-500">{f.aircraftType}</p>
+
+                    <div className="mt-3 grid items-center gap-3 sm:grid-cols-[auto_1fr_auto]">
+                      <div className="min-w-0">
+                        <p className="tabular-nums text-[18px] font-semibold leading-none text-white">
+                          {f.departLabel}
+                        </p>
+                        <p className="mt-1 text-[11px] font-medium uppercase tracking-wide text-zinc-500">
+                          {f.origin}
+                        </p>
+                      </div>
+
+                      <div className="hidden sm:block">
+                        <div className="flex items-center gap-3 text-zinc-600">
+                          <span className="h-px flex-1 bg-white/[0.10]" />
+                          <span className="text-[12px]" aria-hidden>
+                            ✈
+                          </span>
+                          <span className="h-px flex-1 bg-white/[0.10]" />
+                        </div>
+                        <p className="mt-2 truncate text-[12px] text-zinc-500">
+                          {f.aircraftType}
+                        </p>
+                      </div>
+
+                      <div className="min-w-0 text-right">
+                        <p className="tabular-nums text-[18px] font-semibold leading-none text-white">
+                          {f.arriveLabel}
+                        </p>
+                        <p className="mt-1 text-[11px] font-medium uppercase tracking-wide text-zinc-500">
+                          {f.destination}
+                        </p>
+                      </div>
+                    </div>
                   </div>
-                  <div className="text-right">
-                    <p className="text-2xl font-semibold tabular-nums text-white">
+
+                  <div className="shrink-0 text-right">
+                    <p className="tabular-nums text-2xl font-semibold leading-none text-white">
                       {formatUsd(f.priceUsd)}
                     </p>
-                    <p className="text-[12px] text-zinc-500">per guest · base fare</p>
+                    <p className="mt-1 text-[11px] text-zinc-500">per guest</p>
                   </div>
                 </div>
 
-                <div className="relative mt-5 grid gap-4 border-t border-white/[0.08] pt-4 sm:grid-cols-3">
-                  <div className="rounded-xl bg-white/[0.03] px-3 py-3 ring-1 ring-white/[0.06]">
-                    <p className="text-[11px] font-medium uppercase tracking-wide text-zinc-500">
-                      Depart
-                    </p>
-                    <p className="mt-1 font-mono text-lg text-zinc-100">
-                      {f.departLabel}
-                    </p>
-                  </div>
-                  <div className="rounded-xl bg-white/[0.03] px-3 py-3 ring-1 ring-white/[0.06]">
-                    <p className="text-[11px] font-medium uppercase tracking-wide text-zinc-500">
-                      Arrive
-                    </p>
-                    <p className="mt-1 font-mono text-lg text-zinc-100">
-                      {f.arriveLabel}
-                    </p>
-                    <p className="mt-1 text-[11px] text-zinc-600">{f.arriveDaySummary}</p>
-                  </div>
-                  <div className="rounded-xl bg-white/[0.03] px-3 py-3 ring-1 ring-white/[0.06]">
-                    <p className="text-[11px] font-medium uppercase tracking-wide text-zinc-500">
-                      Duration
-                    </p>
-                    <p className="mt-1 text-lg text-zinc-200">{f.durationLabel}</p>
-                  </div>
+                <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
+                  <p className="text-[12px] text-zinc-500">{f.baggageIncluded}</p>
+                  <span className="rounded-full bg-white px-3 py-1 text-[12px] font-semibold text-black shadow-lg shadow-black/40">
+                    Select
+                  </span>
                 </div>
-
-                <p className="mt-4 text-[12px] leading-relaxed text-zinc-500">
-                  {f.baggageIncluded}
-                </p>
-
-                <p className="mt-4 text-[13px] font-medium text-zinc-500 transition group-hover:text-sky-300/90">
-                  Select this flight →
-                </p>
               </button>
             </li>
           ))}
@@ -247,10 +321,14 @@ export default function FlightsPage() {
       )}
 
       <p className="text-[13px] text-zinc-600">
-        <Link href="/search" className="text-zinc-400 underline underline-offset-2">
+        <Link
+          href="/search"
+          className="text-zinc-300 underline underline-offset-2 transition-colors duration-200 hover:text-white"
+        >
           Edit search
         </Link>
       </p>
     </div>
+    ) : null
   );
 }
