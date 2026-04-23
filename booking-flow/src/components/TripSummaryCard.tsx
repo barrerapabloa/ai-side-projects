@@ -31,6 +31,8 @@ type TripSummaryCardProps = {
   variant?: "default" | "compact";
   /** Destination tips — off by default to reduce noise next to full itinerary. */
   showDestinationInsight?: boolean;
+  /** Hide the Departs/Arrives tiles (useful on pages that already show a timeline). */
+  showDepartArriveTiles?: boolean;
 };
 
 export function TripSummaryCard({
@@ -42,6 +44,7 @@ export function TripSummaryCard({
   seatIds,
   variant = "default",
   showDestinationInsight = false,
+  showDepartArriveTiles = true,
 }: TripSummaryCardProps) {
   const compact = variant === "compact";
   const destInfo = getDestinationInsight(search.destination);
@@ -101,7 +104,7 @@ export function TripSummaryCard({
             {search.passengers} {search.passengers === 1 ? "guest" : "guests"}
           </p>
         </div>
-        <div className="flex flex-wrap items-center justify-end gap-2">
+        <div className="flex flex-wrap items-center justify-start gap-2">
           <span className="rounded-full bg-white/[0.06] px-2.5 py-1 text-[11px] font-medium text-zinc-200 ring-1 ring-white/[0.08]">
             {flight.stopsLabel}
           </span>
@@ -118,26 +121,28 @@ export function TripSummaryCard({
         </div>
       </div>
 
-      <div className="mt-4 grid gap-4 sm:grid-cols-2">
-        <div className="rounded-xl bg-black/35 px-4 py-3 ring-1 ring-white/[0.06]">
-          <p className="text-[11px] font-medium uppercase tracking-wide text-zinc-500">
-            Departs
-          </p>
-          <p className="mt-1 text-xl font-semibold text-white tabular-nums">
-            {flight.departLabel}
-          </p>
-          <p className="mt-1 text-[12px] text-zinc-500">{search.origin}</p>
+      {showDepartArriveTiles ? (
+        <div className="mt-4 grid gap-4 sm:grid-cols-2">
+          <div className="rounded-xl bg-black/35 px-4 py-3 ring-1 ring-white/[0.06]">
+            <p className="text-[11px] font-medium uppercase tracking-wide text-zinc-500">
+              Departs
+            </p>
+            <p className="mt-1 text-xl font-semibold text-white tabular-nums">
+              {flight.departLabel}
+            </p>
+            <p className="mt-1 text-[12px] text-zinc-500">{search.origin}</p>
+          </div>
+          <div className="rounded-xl bg-black/35 px-4 py-3 ring-1 ring-white/[0.06]">
+            <p className="text-[11px] font-medium uppercase tracking-wide text-zinc-500">
+              Arrives
+            </p>
+            <p className="mt-1 text-xl font-semibold text-white tabular-nums">
+              {flight.arriveLabel}
+            </p>
+            <p className="mt-1 text-[12px] text-zinc-500">{search.destination}</p>
+          </div>
         </div>
-        <div className="rounded-xl bg-black/35 px-4 py-3 ring-1 ring-white/[0.06]">
-          <p className="text-[11px] font-medium uppercase tracking-wide text-zinc-500">
-            Arrives
-          </p>
-          <p className="mt-1 text-xl font-semibold text-white tabular-nums">
-            {flight.arriveLabel}
-          </p>
-          <p className="mt-1 text-[12px] text-zinc-500">{search.destination}</p>
-        </div>
-      </div>
+      ) : null}
 
       <p className="mt-3 text-[12px] leading-relaxed text-zinc-400">
         {flight.arriveDaySummary} · Block time {flight.durationLabel}

@@ -35,6 +35,8 @@ type FlightRangeCalendarProps = {
   onDepartChange: (iso: string) => void;
   onReturnChange: (iso: string | null) => void;
   onResetDates: () => void;
+  /** Optional action used by embedded date modal. */
+  onSave?: () => void;
   minDate: string;
 };
 
@@ -129,6 +131,7 @@ export function FlightRangeCalendar({
   onDepartChange,
   onReturnChange,
   onResetDates,
+  onSave,
   minDate,
 }: FlightRangeCalendarProps) {
   const showTwoMonths = !compactChrome;
@@ -250,7 +253,7 @@ export function FlightRangeCalendar({
     >
       {!hideTopBar ? (
         <div
-          className={`flex flex-wrap items-center gap-3 border-b px-3 py-2.5 ${sk.headerBorder} ${
+          className={`flex flex-wrap items-center gap-3 border-b px-3 py-2 ${sk.headerBorder} ${
             compactChrome && showTripTypeSelector
               ? "justify-start"
               : showTripTypeSelector
@@ -348,7 +351,7 @@ export function FlightRangeCalendar({
       ) : null}
 
       <div
-        className={`border-b px-3 pt-2 ${compactChrome ? "pb-2" : "pb-3"} ${sk.navRowBorder}`}
+        className={`border-b px-3 pt-1.5 ${compactChrome ? "pb-1.5" : "pb-2.5"} ${sk.navRowBorder}`}
       >
         <div className="flex items-center gap-2">
           <button
@@ -379,7 +382,7 @@ export function FlightRangeCalendar({
         </div>
       </div>
 
-      <div className="flex flex-col gap-4 p-3 lg:flex-row lg:gap-6">
+      <div className="flex flex-col gap-4 px-3 pb-3 pt-1.5 lg:flex-row lg:gap-6">
         <MonthGrid
           surface={surface}
           year={cursor.y}
@@ -411,38 +414,57 @@ export function FlightRangeCalendar({
       </div>
 
       <div
-        className={`flex flex-col border-t px-3 sm:flex-row sm:items-center sm:justify-between ${compactChrome ? "gap-2 py-2" : "gap-3 py-3"} ${sk.footerBorder}`}
+        className={`border-t px-3 ${compactChrome ? "py-2.5" : "py-3"} ${sk.footerBorder}`}
       >
-        <p className={`${sk.footerHint} min-w-0 flex-1`}>
-          Synthetic fares for comparison — lowest outbound fares in view are{" "}
-          <span className={surface === "light" ? "text-emerald-600" : "text-emerald-400"}>
-            highlighted
-          </span>
-          .
-          {tripDays != null ? (
-            <>
-              {" "}
-              Trip length{" "}
-              <span
-                className={surface === "light" ? "text-zinc-600" : "text-zinc-400"}
-              >
-                {tripDays} days
+        {hideTopBar ? (
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <p className={`${sk.footerHint} min-w-0`}>
+              Price grid is simulated for comparison.{" "}
+              <span className={sk.footerPrice}>
+                From {formatUsd(totalEstimate)}{" "}
+                {tripType === "round-trip" ? "estimated round trip" : "estimated one-way"}
               </span>
-              .
-            </>
-          ) : null}
-        </p>
-        <div className="flex shrink-0 flex-wrap items-center justify-end gap-x-4 gap-y-2">
-          {hideTopBar ? (
-            <button type="button" onClick={onResetDates} className={sk.resetBtn}>
-              Reset dates
-            </button>
-          ) : null}
-          <p className={sk.footerPrice}>
-            From {formatUsd(totalEstimate)}{" "}
-            {tripType === "round-trip" ? "estimated round trip" : "estimated one-way"}
-          </p>
-        </div>
+            </p>
+            <div className="flex shrink-0 items-center gap-2">
+              <button
+                type="button"
+                onClick={onResetDates}
+                className="bf-btn-secondary-bar min-h-10 px-4 text-[12px]"
+              >
+                Reset
+              </button>
+              {onSave ? (
+                <button
+                  type="button"
+                  onClick={onSave}
+                  className="bf-btn-primary-bar min-h-10 min-w-0 px-4 text-[12px]"
+                >
+                  Save
+                </button>
+              ) : null}
+            </div>
+          </div>
+        ) : (
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+            <p className={`${sk.footerHint} min-w-0`}>
+              Price grid is simulated for comparison.
+              {tripDays != null ? (
+                <>
+                  {" "}
+                  Trip length{" "}
+                  <span className={surface === "light" ? "text-zinc-600" : "text-zinc-300"}>
+                    {tripDays} days
+                  </span>
+                  .
+                </>
+              ) : null}
+            </p>
+            <p className={sk.footerPrice}>
+              From {formatUsd(totalEstimate)}{" "}
+              {tripType === "round-trip" ? "estimated round trip" : "estimated one-way"}
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );
@@ -478,6 +500,21 @@ function MonthGrid({
   const cells = useMemo(() => buildMonthCells(year, monthIndex), [year, monthIndex]);
   const minD = parseIsoDate(minDate);
   const L = surface === "light";
+  const heat = useMemo(() => {
+    let min = Infinity;
+    let max = -Infinity;
+    for (const cell of cells) {
+      if (!cell) continue;
+      if (cell.iso < minDate) continue;
+      const usd = getSyntheticDayFare(origin, destination, cell.iso).usd;
+      min = Math.min(min, usd);
+      max = Math.max(max, usd);
+    }
+    if (!Number.isFinite(min) || !Number.isFinite(max) || min === Infinity || max === -Infinity) {
+      return { min: 0, max: 0 };
+    }
+    return { min, max };
+  }, [cells, minDate, origin, destination]);
 
   return (
     <div className="min-w-0 flex-1">
@@ -487,23 +524,19 @@ function MonthGrid({
         }`}
       >
         {WEEK_LETTERS.map((letter, i) => (
-          <span key={`${letter}-${i}`} className="py-1.5">
+          <span key={`${letter}-${i}`} className="py-1">
             {letter}
           </span>
         ))}
       </div>
 
-      <div
-        className={`mt-2 grid grid-cols-7 gap-px rounded-xl bg-white/[0.06] p-px ${
-          L ? "bg-zinc-200" : "bg-white/[0.06]"
-        }`}
-      >
+      <div className="mt-1.5 grid grid-cols-7 gap-1">
         {cells.map((cell, idx) => {
           if (!cell) {
             return (
               <div
                 key={`pad-${idx}`}
-                className="h-[64px] rounded-lg bg-transparent"
+                className="h-[56px] rounded-lg bg-transparent"
               />
             );
           }
@@ -526,11 +559,12 @@ function MonthGrid({
           const isEnd = tripType === "round-trip" && returnDate != null && iso === returnDate;
           const isLow = !disabled && cheapestOutboundSet.has(iso);
 
+          // Range tint should be neutral (selection stroke is the primary affordance).
           let cellBg = "bg-transparent";
           if (!disabled && inRange && !isStart && !isEnd)
-            cellBg = L ? "bg-zinc-900/10" : "bg-white/[0.04]";
+            cellBg = L ? "bg-zinc-900/6" : "bg-white/[0.04]";
           if (!disabled && inRange && (isStart || isEnd))
-            cellBg = L ? "bg-zinc-900/8" : "bg-white/[0.07]";
+            cellBg = L ? "bg-zinc-900/5" : "bg-white/[0.06]";
 
           const dayIsStartBubble =
             isStart || (tripType === "one-way" && iso === departDate);
@@ -541,21 +575,44 @@ function MonthGrid({
           const endBubble = L
             ? "rounded-full bg-white text-zinc-900 ring-1 ring-zinc-900/30"
             : "rounded-full bg-transparent text-white";
-          const dayMuted = L ? "text-zinc-900" : "text-white";
-          const priceLow = L ? "font-medium text-emerald-600" : "font-medium text-emerald-400";
-          const priceOther = L ? "text-zinc-500" : "text-zinc-400";
+          const dayMuted = L ? "text-zinc-900" : "text-zinc-100";
+          const priceLow = L ? "font-semibold text-emerald-600" : "font-semibold text-emerald-300";
+          const priceHigh = L ? "font-semibold text-amber-700" : "font-semibold text-amber-300";
+          const priceOther = L ? "text-zinc-500" : "text-zinc-300/80";
 
-          const baseCell = L ? "bg-white text-zinc-900" : "bg-[#0b0c10] text-white";
+          const baseCell = L
+            ? "border border-zinc-200 bg-white text-zinc-900"
+            : "border border-white/[0.08] bg-white/[0.03] text-white";
           const hoverable = disabled
             ? ""
             : L
               ? "hover:bg-zinc-50"
-              : "hover:bg-white/[0.04]";
+              : "hover:bg-white/[0.06]";
 
           // Stroke around the whole date field without overlapping neighbors.
           const activeFieldStroke = L
             ? "shadow-[0_0_0_2px_rgba(9,9,11,0.55)]"
             : "shadow-[0_0_0_2px_rgba(255,255,255,0.70)]";
+
+          const bucket =
+            !disabled && heat.max > heat.min
+              ? (() => {
+                  const t = Math.min(
+                    1,
+                    Math.max(0, (outbound.usd - heat.min) / (heat.max - heat.min)),
+                  );
+                  if (t <= 0.33) return "low" as const;
+                  if (t >= 0.66) return "high" as const;
+                  return "normal" as const;
+                })()
+              : ("normal" as const);
+
+          const priceHeatClass =
+            bucket === "low"
+              ? priceLow
+              : bucket === "high"
+                ? priceHigh
+                : priceOther;
 
           return (
             <button
@@ -563,12 +620,22 @@ function MonthGrid({
               type="button"
               disabled={disabled}
               onClick={() => !disabled && onDayClick(iso)}
-              className={`relative flex h-[64px] flex-col items-center justify-center rounded-lg border border-transparent text-center transition-[background-color,transform,box-shadow] duration-150 ease-out disabled:cursor-not-allowed disabled:opacity-30 ${baseCell} ${hoverable} ${cellBg} ${
+              style={
+                !disabled && heat.max > heat.min
+                  ? (() => {
+                      // 3-bucket semantic heatmap: low / normal / high.
+                      if (bucket === "low") return { backgroundColor: "rgba(16, 185, 129, 0.12)" }; // emerald
+                      if (bucket === "high") return { backgroundColor: "rgba(251, 191, 36, 0.10)" }; // amber
+                      return { backgroundColor: "rgba(255, 255, 255, 0.03)" }; // neutral
+                    })()
+                  : undefined
+              }
+              className={`relative flex h-[56px] flex-col items-center justify-center rounded-lg text-center transition-[background-color,transform,box-shadow] duration-150 ease-out disabled:cursor-not-allowed disabled:opacity-30 ${baseCell} ${hoverable} ${cellBg} ${
                 !disabled && (dayIsStartBubble || isEnd) ? activeFieldStroke : ""
               } focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/25`}
             >
               <span
-                className={`flex size-7 items-center justify-center text-[12px] font-semibold leading-none ${
+                className={`flex size-6 items-center justify-center text-[12px] font-semibold leading-none ${
                   dayIsStartBubble ? startBubble : isEnd ? endBubble : dayMuted
                 }`}
               >
@@ -576,8 +643,8 @@ function MonthGrid({
               </span>
               {!disabled ? (
                 <span
-                  className={`mt-0.5 tabular-nums text-[9px] leading-none ${
-                    isLow ? priceLow : priceOther
+                  className={`mt-1 tabular-nums text-[10px] leading-none ${
+                    isLow ? priceLow : priceHeatClass
                   }`}
                 >
                   {formatUsd(displayUsd)}

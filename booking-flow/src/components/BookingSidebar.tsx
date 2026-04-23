@@ -9,6 +9,7 @@ import { useBooking } from "@/context/BookingContext";
 const STEPS = [
   { href: "/search", label: "Search" },
   { href: "/flights", label: "Flights" },
+  { href: "/fare", label: "Fare" },
   { href: "/seats", label: "Seats" },
   { href: "/passengers", label: "Travelers" },
   { href: "/review", label: "Review" },
@@ -18,15 +19,57 @@ const STEPS = [
 
 export function BookingSidebar() {
   const pathname = usePathname();
-  const { search, selectedFlight } = useBooking();
+  const {
+    search,
+    selectedFlight,
+    selectedReturnFlight,
+    selectedFareTier,
+    selectedSeatIds,
+    passengers,
+    reviewAccepted,
+    paidAt,
+    confirmationCode,
+  } = useBooking();
 
   const activeIndex = STEPS.findIndex((s) => pathname.startsWith(s.href));
   const current = STEPS[Math.max(0, activeIndex)]?.label ?? "Booking";
 
+  const unlockedIndex = (() => {
+    // Step 1: Search is always reachable
+    if (!search?.origin) return 0;
+
+    // Step 2: Flights unlocked once search exists
+    const hasFlightsBase = Boolean(
+      selectedFlight && (search.tripType !== "round-trip" || selectedReturnFlight),
+    );
+    if (!hasFlightsBase) return 1;
+
+    // Step 3: Fare unlocked once flights chosen
+    if (!selectedFareTier) return 2;
+
+    // Step 4: Seats unlocked once fare chosen
+    const seatTarget = search.passengers ?? 1;
+    const seatsDone = selectedSeatIds.length === seatTarget && seatTarget > 0;
+    if (!seatsDone) return 3;
+
+    // Step 5: Travelers unlocked once seats picked
+    const paxDone = passengers.length === seatTarget;
+    if (!paxDone) return 4;
+
+    // Step 6: Review unlocked once traveler count matches
+    if (!reviewAccepted) return 5;
+
+    // Step 7: Pay unlocked after accepting review
+    if (!paidAt || !confirmationCode) return 6;
+
+    // Step 8: Done unlocked after payment completes
+    return 7;
+  })();
+
   return (
     <>
       {/* Mobile: minimal top strip */}
-      <header className="sticky top-0 z-50 border-b border-white/[0.06] bg-[#07080a]/92 backdrop-blur-md lg:hidden">
+      <header className="sticky top-0 z-50 border-b border-white/[0.08] bg-transparent backdrop-blur-xl lg:hidden">
         <div className="mx-auto flex max-w-5xl items-center justify-between gap-3 px-4 py-3">
           <Link
             href="/search"
@@ -41,7 +84,7 @@ export function BookingSidebar() {
       </header>
 
       {/* Desktop: left sidebar */}
-      <aside className="hidden lg:block lg:sticky lg:top-0 lg:h-dvh lg:w-[280px] lg:bg-[#07080a]/85 lg:backdrop-blur-md">
+      <aside className="relative z-10 hidden lg:block lg:sticky lg:top-0 lg:h-dvh lg:w-[280px] lg:border-r lg:border-white/[0.06] lg:bg-transparent lg:backdrop-blur-xl">
         <div className="flex h-full flex-col px-5 py-5">
           <Link
             href="/search"
@@ -77,29 +120,45 @@ export function BookingSidebar() {
               const isCurrent =
                 pathname === step.href || pathname.startsWith(`${step.href}/`);
               const isPast = activeIndex > i;
+              const enabled = i <= unlockedIndex || isPast || isCurrent;
               return (
-                <Link
-                  key={step.href}
-                  href={step.href}
-                  className={`bf-interactive-surface flex items-center justify-between rounded-lg px-3 py-2 text-[13px] font-medium ${
-                    isCurrent
-                      ? "border border-white/[0.14] bg-white/[0.06] text-white ring-1 ring-white/[0.06]"
-                      : isPast
-                        ? "text-zinc-200 hover:bg-white/[0.06]"
-                        : "text-zinc-500 hover:bg-white/[0.04]"
-                  }`}
-                  aria-current={isCurrent ? "page" : undefined}
-                >
-                  <span>
-                    <span className="mr-2 tabular-nums text-zinc-500">
-                      {i + 1}.
+                enabled ? (
+                  <Link
+                    key={step.href}
+                    href={step.href}
+                    className={`bf-interactive-surface flex items-center justify-between rounded-lg px-3 py-2 text-[13px] font-medium ${
+                      isCurrent
+                        ? "border border-white/[0.14] bg-white/[0.06] text-white ring-1 ring-white/[0.06]"
+                        : isPast
+                          ? "text-zinc-200 hover:bg-white/[0.06]"
+                          : "text-zinc-500 hover:bg-white/[0.04]"
+                    }`}
+                    aria-current={isCurrent ? "page" : undefined}
+                  >
+                    <span>
+                      <span className="mr-2 tabular-nums text-zinc-500">
+                        {i + 1}.
+                      </span>
+                      {step.label}
                     </span>
-                    {step.label}
-                  </span>
-                  {isCurrent ? (
-                    <span className="h-1.5 w-1.5 rounded-full bg-white" aria-hidden />
-                  ) : null}
-                </Link>
+                    {isCurrent ? (
+                      <span className="h-1.5 w-1.5 rounded-full bg-white" aria-hidden />
+                    ) : null}
+                  </Link>
+                ) : (
+                  <div
+                    key={step.href}
+                    aria-disabled="true"
+                    className="flex cursor-not-allowed items-center justify-between rounded-lg px-3 py-2 text-[13px] font-medium text-zinc-600 opacity-70"
+                  >
+                    <span>
+                      <span className="mr-2 tabular-nums text-zinc-700">
+                        {i + 1}.
+                      </span>
+                      {step.label}
+                    </span>
+                  </div>
+                )
               );
             })}
           </nav>

@@ -98,8 +98,8 @@ export default function SearchPage() {
       <div className="mx-auto max-w-5xl space-y-8">
         <StepHeading
           step="Step 1 · Search"
-          title="Find a flight"
-          subtitle="Set your route and travel dates. You can change this before you pay."
+          title="Find a flight that fits"
+          subtitle="Choose cities and dates with full flexibility — adjust anything before you pay."
         />
 
         <form id="flight-search-form" onSubmit={onSubmit}>

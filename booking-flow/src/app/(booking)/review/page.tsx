@@ -77,7 +77,7 @@ export default function ReviewPage() {
         <StepHeading
           step="Step 5 · Review"
           title="Review before you pay"
-          subtitle="Confirm flight, seats, and travelers. Use links below to jump back if something’s wrong."
+          subtitle="Confirm flight, seats, and travelers. Use the controls below to jump back if something’s wrong."
         />
 
         <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_320px]">
@@ -115,8 +115,8 @@ export default function ReviewPage() {
                   </p>
                 </div>
               </div>
-              <div className="flex flex-wrap gap-4 border-t border-white/[0.06] px-5 py-4 text-[13px] text-zinc-400">
-                <span className="rounded-full bg-white/[0.06] px-2.5 py-1 text-[12px] text-zinc-300">
+              <div className="flex flex-wrap items-center gap-4 border-t border-white/[0.06] px-5 py-4 text-[13px] text-zinc-400">
+                <span className="inline-flex items-center rounded-full bg-white/[0.06] px-2.5 py-1 text-[12px] leading-none text-zinc-300">
                   {selectedFlight.stopsLabel}
                 </span>
                 <span>{selectedFlight.durationLabel} total travel</span>
@@ -173,32 +173,23 @@ export default function ReviewPage() {
             </section>
           </div>
 
-          <aside className="hidden lg:block lg:sticky lg:top-28 lg:self-start space-y-4">
-            <TripSummaryCard
-              search={search}
-              flight={selectedFlight}
-              returnFlight={search.tripType === "round-trip" ? selectedReturnFlight : null}
-              seatExtrasUsd={seatFees}
-              seatIds={selectedSeatIds}
-              seatSummary={selectedSeatIds.join(", ")}
-            />
-
+          <aside className="hidden space-y-4 lg:block lg:sticky lg:top-28 lg:self-start">
             <div className="rounded-2xl border border-white/[0.1] bg-zinc-950/80 p-5 ring-1 ring-white/[0.05]">
               <h2 className="text-[13px] font-medium uppercase tracking-wide text-zinc-500">
                 Trip total
               </h2>
-              <dl className="mt-4 space-y-2 text-sm">
-                <div className="flex justify-between gap-4 text-zinc-400">
+              <dl className="mt-4">
+                <div className="bf-summary-line">
                   <dt>Fares × {search.passengers}</dt>
-                  <dd>{formatUsd(fareSubtotal)}</dd>
+                  <dd className="tabular-nums">{formatUsd(fareSubtotal)}</dd>
                 </div>
-                <div className="flex justify-between gap-4 text-zinc-400">
+                <div className="bf-summary-line">
                   <dt>Seat selection</dt>
-                  <dd>{formatUsd(seatFees)}</dd>
+                  <dd className="tabular-nums">{formatUsd(seatFees)}</dd>
                 </div>
-                <div className="flex justify-between gap-4 border-t border-white/[0.08] pt-3 text-base font-semibold text-white">
+                <div className="flex items-baseline justify-between gap-4 border-t border-white/[0.08] pt-4 text-base font-semibold text-white">
                   <dt>Due today</dt>
-                  <dd>{formatUsd(total)}</dd>
+                  <dd className="tabular-nums">{formatUsd(total)}</dd>
                 </div>
               </dl>
 
@@ -221,13 +212,20 @@ export default function ReviewPage() {
                 Continue to payment · {formatUsd(total)}
               </button>
 
-              <Link
-                href="/passengers"
-                className="mt-4 block text-center text-[13px] text-zinc-300 underline underline-offset-2 transition-colors duration-200 hover:text-white"
-              >
+              <Link href="/passengers" className="bf-btn-secondary-bar mt-3 w-full min-h-10">
                 Edit travelers
               </Link>
             </div>
+
+            <TripSummaryCard
+              search={search}
+              flight={selectedFlight}
+              returnFlight={search.tripType === "round-trip" ? selectedReturnFlight : null}
+              seatExtrasUsd={seatFees}
+              seatIds={selectedSeatIds}
+              seatSummary={selectedSeatIds.join(", ")}
+              showDepartArriveTiles={false}
+            />
           </aside>
         </div>
       </div>

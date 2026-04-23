@@ -6,6 +6,7 @@ import { toPng } from "html-to-image";
 import { useCallback, useRef, useState } from "react";
 import { airportLabel } from "@/data/airports";
 import { BoardingPass } from "@/components/BoardingPass";
+import { ScratchReveal, type ScratchRevealHandle } from "@/components/ScratchReveal";
 import { formatTripDate } from "@/lib/datetime";
 import { useBooking } from "@/context/BookingContext";
 import { useRedirectUnless } from "@/hooks/useRedirectUnless";
@@ -101,6 +102,7 @@ export function ConfirmationClient() {
   const [copied, setCopied] = useState<"summary" | "link" | null>(null);
   const [downloading, setDownloading] = useState(false);
   const passRefs = useRef<Array<HTMLElement | null>>([]);
+  const scratchRefs = useRef<Array<ScratchRevealHandle | null>>([]);
 
   const pnr = paramPnr ?? confirmationCode;
   const ok = Boolean(
@@ -159,6 +161,9 @@ export function ConfirmationClient() {
     if (downloading) return;
     setDownloading(true);
     try {
+      // Ensure the exported PNG is the revealed boarding pass.
+      for (const r of scratchRefs.current) r?.reveal();
+
       const nodes = passRefs.current.filter(Boolean) as HTMLElement[];
       if (!nodes.length) return;
       for (let i = 0; i < nodes.length; i++) {
@@ -185,13 +190,13 @@ export function ConfirmationClient() {
   return (
     <div className="mx-auto max-w-4xl space-y-10">
       <div className="text-center">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-zinc-400">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-zinc-500">
           Booking confirmed
         </p>
-        <h1 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+        <h1 className="mt-3 text-[28px] font-semibold leading-[1.12] tracking-tight text-white sm:text-3xl lg:text-4xl lg:tracking-tighter">
           You&apos;re good to go
         </h1>
-        <p className="mt-2 text-sm text-zinc-500">
+        <p className="mt-3 text-sm text-zinc-400 sm:text-base">
           Reference{" "}
           <span className="tabular-nums text-[15px] font-semibold text-white">{pnr}</span>
         </p>
@@ -241,23 +246,30 @@ export function ConfirmationClient() {
           }
         >
           {passengers.map((p, i) => (
-            <BoardingPass
+            <ScratchReveal
               key={`${p.email}-${i}`}
-              ref={(el) => {
-                passRefs.current[i] = el;
+              ref={(r) => {
+                scratchRefs.current[i] = r;
               }}
-              passengerNo={i + 1}
-              givenName={p.givenName}
-              familyName={p.familyName}
-              seatId={selectedSeatIds[i] ?? "—"}
-              flightNumber={selectedFlight.flightNumber}
-              originCode={search.origin}
-              destinationCode={search.destination}
-              departLabel={selectedFlight.departLabel}
-              arriveLabel={selectedFlight.arriveLabel}
-              departDateLabel={departDateLabel}
-              pnr={pnr}
-            />
+              className="rounded-2xl"
+            >
+              <BoardingPass
+                ref={(el) => {
+                  passRefs.current[i] = el;
+                }}
+                passengerNo={i + 1}
+                givenName={p.givenName}
+                familyName={p.familyName}
+                seatId={selectedSeatIds[i] ?? "—"}
+                flightNumber={selectedFlight.flightNumber}
+                originCode={search.origin}
+                destinationCode={search.destination}
+                departLabel={selectedFlight.departLabel}
+                arriveLabel={selectedFlight.arriveLabel}
+                departDateLabel={departDateLabel}
+                pnr={pnr}
+              />
+            </ScratchReveal>
           ))}
         </div>
       </div>

@@ -110,7 +110,7 @@ export function FlightSearchBar({
         <div
           role="radiogroup"
           aria-label="Trip type"
-          className="flex w-full max-w-md rounded-2xl border border-white/[0.12] bg-black/50 p-1 ring-1 ring-white/[0.06] sm:ml-auto sm:w-auto"
+          className="flex w-full max-w-md rounded-xl border border-white/[0.12] bg-black/50 p-1 ring-1 ring-white/[0.06] sm:ml-auto sm:w-auto"
         >
           <button
             type="button"
@@ -142,12 +142,12 @@ export function FlightSearchBar({
       </div>
 
       <div
-        className="flex flex-col divide-y divide-white/[0.08] rounded-[2rem] border border-white/[0.12] bg-zinc-950/90 shadow-[0_12px_40px_-12px_rgba(0,0,0,0.85)] ring-1 ring-white/[0.06] lg:flex-row lg:divide-x lg:divide-y-0"
+        className="flex flex-col divide-y divide-white/[0.08] rounded-2xl border border-white/[0.12] bg-zinc-950/90 shadow-[0_12px_40px_-12px_rgba(0,0,0,0.85)] ring-1 ring-white/[0.06] lg:flex-row lg:divide-x lg:divide-y-0"
       >
         <button
           type="button"
           onClick={() => setOpen(open === "where" ? null : "where")}
-          className={`group flex flex-1 flex-col gap-0.5 rounded-[2rem] px-6 py-4 text-left transition-colors duration-200 lg:rounded-none lg:rounded-l-[2rem] lg:py-3.5 ${
+          className={`group flex flex-1 flex-col gap-0.5 rounded-2xl px-6 py-4 text-left transition-colors duration-200 lg:rounded-none lg:rounded-l-2xl lg:py-3.5 ${
             open === "where"
               ? "bg-white/[0.06]"
               : "hover:bg-white/[0.04]"
@@ -320,7 +320,7 @@ export function FlightSearchBar({
             className="absolute inset-0 bg-black/70 backdrop-blur-[2px]"
           />
 
-          <div className="absolute left-1/2 top-[84px] w-[min(100vw-2rem,640px)] -translate-x-1/2 overflow-hidden bf-capsule bg-[#07080a]">
+          <div className="absolute left-1/2 top-[84px] w-[min(100vw-2rem,640px)] -translate-x-1/2 overflow-hidden bf-capsule rounded-2xl bg-[#07080a]">
             <div className="flex items-center justify-between gap-3 bg-white/[0.03] px-3 py-2.5">
               <p className="text-[12px] font-semibold uppercase tracking-[0.22em] text-zinc-400">
                 Dates
@@ -349,6 +349,7 @@ export function FlightSearchBar({
               onReturnChange={onReturnChange}
               minDate={minDate}
               onResetDates={onResetDates}
+              onSave={() => setOpen(null)}
             />
           </div>
         </div>
