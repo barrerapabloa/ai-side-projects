@@ -206,8 +206,16 @@ export function FlightRangeCalendar({
       return;
     }
 
-    onDepartChange(iso);
-    onReturnChange(null);
+    // When a range exists, keep the interaction "range-first":
+    // - clicking after/at depart adjusts the return date
+    // - clicking before depart moves the depart date (and keeps return if still valid)
+    if (iso <= departDate) {
+      onDepartChange(iso);
+      if (returnDate <= iso) onReturnChange(addDaysIso(iso, 1));
+      return;
+    }
+
+    onReturnChange(iso);
   }
 
   const totalEstimate =
@@ -559,13 +567,6 @@ function MonthGrid({
           const isEnd = tripType === "round-trip" && returnDate != null && iso === returnDate;
           const isLow = !disabled && cheapestOutboundSet.has(iso);
 
-          // Range tint should be neutral (selection stroke is the primary affordance).
-          let cellBg = "bg-transparent";
-          if (!disabled && inRange && !isStart && !isEnd)
-            cellBg = L ? "bg-zinc-900/6" : "bg-white/[0.04]";
-          if (!disabled && inRange && (isStart || isEnd))
-            cellBg = L ? "bg-zinc-900/5" : "bg-white/[0.06]";
-
           const dayIsStartBubble =
             isStart || (tripType === "one-way" && iso === departDate);
 
@@ -630,12 +631,27 @@ function MonthGrid({
                     })()
                   : undefined
               }
-              className={`relative flex h-[56px] flex-col items-center justify-center rounded-lg text-center transition-[background-color,transform,box-shadow] duration-150 ease-out disabled:cursor-not-allowed disabled:opacity-30 ${baseCell} ${hoverable} ${cellBg} ${
+              className={`relative flex h-[56px] flex-col items-center justify-center rounded-lg text-center transition-[background-color,transform,box-shadow] duration-150 ease-out disabled:cursor-not-allowed disabled:opacity-30 ${baseCell} ${hoverable} ${
                 !disabled && (dayIsStartBubble || isEnd) ? activeFieldStroke : ""
               } focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/25`}
             >
+              {/* Range overlay sits above heatmap tint, below text. */}
+              {!disabled && inRange ? (
+                <span
+                  aria-hidden
+                  className={`absolute inset-0 rounded-[inherit] ${
+                    isStart || isEnd
+                      ? L
+                        ? "bg-zinc-900/5"
+                        : "bg-white/[0.06]"
+                      : L
+                        ? "bg-zinc-900/6"
+                        : "bg-white/[0.04]"
+                  }`}
+                />
+              ) : null}
               <span
-                className={`flex size-6 items-center justify-center text-[12px] font-semibold leading-none ${
+                className={`relative z-10 flex size-6 items-center justify-center text-[12px] font-semibold leading-none ${
                   dayIsStartBubble ? startBubble : isEnd ? endBubble : dayMuted
                 }`}
               >
@@ -643,7 +659,7 @@ function MonthGrid({
               </span>
               {!disabled ? (
                 <span
-                  className={`mt-1 tabular-nums text-[10px] leading-none ${
+                  className={`relative z-10 mt-1 tabular-nums text-[10px] leading-none ${
                     isLow ? priceLow : priceHeatClass
                   }`}
                 >

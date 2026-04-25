@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { toPng } from "html-to-image";
 import { useCallback, useRef, useState } from "react";
@@ -11,29 +10,46 @@ import { formatTripDate } from "@/lib/datetime";
 import { useBooking } from "@/context/BookingContext";
 import { useRedirectUnless } from "@/hooks/useRedirectUnless";
 
-function IconShare(props: { className?: string }) {
+function IconCheck(props: { className?: string }) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden className={props.className}>
+    <svg
+      viewBox="0 0 256 256"
+      aria-hidden
+      className={props.className}
+      fill="currentColor"
+    >
       <path
-        d="M12 16V4"
-        stroke="currentColor"
-        strokeWidth="1.75"
-        strokeLinecap="round"
-        strokeLinejoin="round"
+        d="M243.31,90.91l-128.4,128.4a16,16,0,0,1-22.62,0l-71.62-72a16,16,0,0,1,0-22.61l20-20a16,16,0,0,1,22.58,0L104,144.22l96.76-95.57a16,16,0,0,1,22.59,0l19.95,19.54A16,16,0,0,1,243.31,90.91Z"
       />
+    </svg>
+  );
+}
+
+function IconSeat(props: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 256 256"
+      aria-hidden
+      className={props.className}
+      fill="currentColor"
+    >
       <path
-        d="M8 8l4-4 4 4"
-        stroke="currentColor"
-        strokeWidth="1.75"
-        strokeLinecap="round"
-        strokeLinejoin="round"
+        d="M224,232a8,8,0,0,1-8,8H112a8,8,0,0,1,0-16H216A8,8,0,0,1,224,232Zm-16-88-64.22,0L112,80l14.19-26.32a1.51,1.51,0,0,0,.11-.22A16,16,0,0,0,119.15,32l-.47-.22L85,17.57A16,16,0,0,0,63.8,24.84l-22.12,44a16.1,16.1,0,0,0,0,14.32l58.11,116A15.93,15.93,0,0,0,114.11,208H208a16,16,0,0,0,16-16V160A16,16,0,0,0,208,144Z"
       />
+    </svg>
+  );
+}
+
+function IconCalendar(props: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 256 256"
+      aria-hidden
+      className={props.className}
+      fill="currentColor"
+    >
       <path
-        d="M4 12v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-6"
-        stroke="currentColor"
-        strokeWidth="1.75"
-        strokeLinecap="round"
-        strokeLinejoin="round"
+        d="M208,32H184V24a8,8,0,0,0-16,0v8H88V24a8,8,0,0,0-16,0v8H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM169.66,133.66l-48,48a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L116,164.69l42.34-42.35a8,8,0,0,1,11.32,11.32ZM48,80V48H72v8a8,8,0,0,0,16,0V48h80v8a8,8,0,0,0,16,0V48h24V80Z"
       />
     </svg>
   );
@@ -92,10 +108,12 @@ export function ConfirmationClient() {
   const {
     search,
     selectedFlight,
+    selectedReturnFlight,
     paidAt,
     confirmationCode,
     passengers,
-    selectedSeatIds,
+    selectedSeatIdsOutbound,
+    selectedSeatIdsReturn,
     resetFlow,
   } = useBooking();
 
@@ -106,14 +124,19 @@ export function ConfirmationClient() {
 
   const pnr = paramPnr ?? confirmationCode;
   const ok = Boolean(
-    pnr && paidAt && search && selectedFlight && passengers.length > 0,
+    pnr &&
+      paidAt &&
+      search &&
+      selectedFlight &&
+      (search.tripType !== "round-trip" || selectedReturnFlight) &&
+      passengers.length > 0,
   );
   useRedirectUnless(ok, "/search");
 
   const shareSummary = useCallback(() => {
     if (!search || !selectedFlight || !pnr) return "";
     const lines = passengers.map((p, i) => {
-      const seat = selectedSeatIds[i] ?? "—";
+      const seat = selectedSeatIdsOutbound[i] ?? "—";
       return `• ${p.givenName} ${p.familyName} — seat ${seat}`;
     });
     return [
@@ -122,30 +145,7 @@ export function ConfirmationClient() {
       `${formatTripDate(search.departDate)} · NMB ${selectedFlight.flightNumber}`,
       ...lines,
     ].join("\n");
-  }, [search, selectedFlight, pnr, passengers, selectedSeatIds]);
-
-  async function handleShare() {
-    const text = shareSummary();
-    const url =
-      typeof window !== "undefined" ? window.location.href : "";
-    try {
-      if (navigator.share) {
-        await navigator.share({
-          title: "SpaceX Air booking",
-          text,
-          url,
-        });
-      } else {
-        await navigator.clipboard.writeText(`${text}\n${url}`);
-        setCopied("summary");
-        window.setTimeout(() => setCopied(null), 2000);
-      }
-    } catch {
-      await navigator.clipboard.writeText(`${text}\n${url}`);
-      setCopied("summary");
-      window.setTimeout(() => setCopied(null), 2000);
-    }
-  }
+  }, [search, selectedFlight, pnr, passengers, selectedSeatIdsOutbound]);
 
   async function handleCopySummary() {
     try {
@@ -186,40 +186,93 @@ export function ConfirmationClient() {
   if (!search || !selectedFlight || !pnr) return null;
 
   const departDateLabel = formatTripDate(search.departDate);
+  const paidAtLabel = paidAt ? new Date(paidAt).toLocaleString() : null;
+  const returnDateLabel =
+    search.tripType === "round-trip" && search.returnDate
+      ? formatTripDate(search.returnDate)
+      : null;
+
+  const legs =
+    search.tripType === "round-trip" && selectedReturnFlight && returnDateLabel
+      ? ([
+          {
+            key: "outbound",
+            originCode: search.origin,
+            destinationCode: search.destination,
+            departLabel: selectedFlight.departLabel,
+            arriveLabel: selectedFlight.arriveLabel,
+            flightNumber: selectedFlight.flightNumber,
+            departDateLabel,
+            seatIds: selectedSeatIdsOutbound,
+          },
+          {
+            key: "return",
+            originCode: search.destination,
+            destinationCode: search.origin,
+            departLabel: selectedReturnFlight.departLabel,
+            arriveLabel: selectedReturnFlight.arriveLabel,
+            flightNumber: selectedReturnFlight.flightNumber,
+            departDateLabel: returnDateLabel,
+            seatIds: selectedSeatIdsReturn,
+          },
+        ] as const)
+      : ([
+          {
+            key: "outbound",
+            originCode: search.origin,
+            destinationCode: search.destination,
+            departLabel: selectedFlight.departLabel,
+            arriveLabel: selectedFlight.arriveLabel,
+            flightNumber: selectedFlight.flightNumber,
+            departDateLabel,
+            seatIds: selectedSeatIdsOutbound,
+          },
+        ] as const);
+
+  // UX: on confirmation we only surface the next (outbound) boarding pass.
+  // The return pass is only relevant close to the return date.
+  const legsToRender = legs.slice(0, 1);
+
+  // (Header uses only the confirmation message; no handle/avatar row.)
+  const seatPrimary = selectedSeatIdsOutbound[0] ?? "—";
+  const departLine = `${formatTripDate(search.departDate)}, ${selectedFlight.departLabel}`;
 
   return (
-    <div className="mx-auto max-w-4xl space-y-10">
-      <div className="text-center">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-zinc-500">
-          Booking confirmed
-        </p>
-        <h1 className="mt-3 text-[28px] font-semibold leading-[1.12] tracking-tight text-white sm:text-3xl lg:text-4xl lg:tracking-tighter">
-          You&apos;re good to go
-        </h1>
-        <p className="mt-3 text-sm text-zinc-400 sm:text-base">
-          Reference{" "}
-          <span className="tabular-nums text-[15px] font-semibold text-white">{pnr}</span>
-        </p>
-        {paidAt ? (
-          <p className="mt-2 text-[12px] text-zinc-600">
-            {new Date(paidAt).toLocaleString()}
-          </p>
-        ) : null}
-      </div>
+    <div className="mx-auto flex min-h-[calc(100dvh-9rem)] max-w-6xl items-center justify-center py-14 lg:py-20">
+      <div className="mx-auto grid w-full max-w-5xl translate-y-6 items-start justify-center gap-10 lg:grid-cols-[460px_520px] lg:items-center lg:gap-14">
+        <div className="space-y-8 text-left">
+          <header className="w-full space-y-3">
+            <p className="text-[26px] font-medium leading-tight text-white sm:text-[30px]">
+              <span className="text-white/60">Your flight has been</span>{" "}
+              <span className="inline-flex items-center gap-2 align-baseline font-semibold text-white">
+                <span className="grid size-7 shrink-0 place-items-center rounded-full bg-rose-500/15 text-rose-200 ring-1 ring-rose-400/25">
+                  <IconCheck className="h-4 w-4" />
+                </span>
+                confirmed
+              </span>
+              <span className="text-white/60">, your seat is</span>{" "}
+              <span className="inline-flex items-center gap-2 align-baseline font-semibold text-white">
+                <span className="grid size-7 shrink-0 place-items-center rounded-2xl bg-amber-500/15 text-amber-200 ring-1 ring-amber-400/25">
+                  <IconSeat className="h-4 w-4" />
+                </span>
+                <span className="tabular-nums">{seatPrimary}</span>
+              </span>
+              <span className="text-white/60">, and your departure is</span>{" "}
+              <span className="inline-flex items-center gap-2 align-baseline font-semibold text-white">
+                <span className="grid size-7 shrink-0 place-items-center rounded-2xl bg-emerald-500/15 text-emerald-200 ring-1 ring-emerald-400/25">
+                  <IconCalendar className="h-4 w-4" />
+                </span>
+                <span className="tabular-nums">{departLine}</span>
+              </span>
+              .
+            </p>
+          </header>
 
-      <div className="flex flex-wrap items-center justify-center gap-3">
-        <button
-          type="button"
-          onClick={() => void handleShare()}
-          className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-white/[0.14] bg-white/[0.06] px-5 py-2.5 text-[13px] font-semibold text-white transition hover:bg-white/[0.1]"
-        >
-          <IconShare className="size-[18px] text-white/80" />
-          Share itinerary
-        </button>
+          <div className="flex flex-wrap items-center justify-start gap-3">
         <button
           type="button"
           onClick={() => void handleCopySummary()}
-          className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-white/[0.12] bg-transparent px-5 py-2.5 text-[13px] font-medium text-zinc-300 transition hover:bg-white/[0.06] hover:text-white"
+          className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-white/[0.14] bg-white/[0.06] px-5 py-2.5 text-[13px] font-semibold text-white transition hover:bg-white/[0.1]"
         >
           <IconCopy className="size-[18px] text-white/60" />
           {copied === "summary" ? "Copied" : "Copy details"}
@@ -227,71 +280,72 @@ export function ConfirmationClient() {
         <button
           type="button"
           onClick={() => void handleDownloadPng()}
-          className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-white/[0.12] bg-transparent px-5 py-2.5 text-[13px] font-medium text-zinc-300 transition hover:bg-white/[0.06] hover:text-white"
+          className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-white/[0.14] bg-white/[0.06] px-5 py-2.5 text-[13px] font-semibold text-white transition hover:bg-white/[0.1]"
         >
           <IconDownload className="size-[18px] text-white/60" />
           {downloading ? "Preparing…" : "Download boarding pass"}
         </button>
-      </div>
+          </div>
 
-      <div>
-        <h2 className="mb-4 text-center text-[11px] font-semibold uppercase tracking-[0.2em] text-zinc-500">
-          Boarding passes
-        </h2>
-        <div
-          className={
-            passengers.length === 1
-              ? "flex justify-center"
-              : "grid gap-6 sm:grid-cols-2"
-          }
-        >
-          {passengers.map((p, i) => (
-            <ScratchReveal
-              key={`${p.email}-${i}`}
-              ref={(r) => {
-                scratchRefs.current[i] = r;
+          <div className="flex justify-start pt-2">
+            <button
+              type="button"
+              onClick={() => {
+                resetFlow();
+                router.push("/search");
               }}
-              className="rounded-2xl"
+              className="inline-flex min-h-11 items-center justify-center rounded-xl border border-white/[0.12] bg-transparent px-6 py-2.5 text-[13px] font-medium text-zinc-300 transition hover:bg-white/[0.06] hover:text-white"
             >
-              <BoardingPass
-                ref={(el) => {
-                  passRefs.current[i] = el;
-                }}
-                passengerNo={i + 1}
-                givenName={p.givenName}
-                familyName={p.familyName}
-                seatId={selectedSeatIds[i] ?? "—"}
-                flightNumber={selectedFlight.flightNumber}
-                originCode={search.origin}
-                destinationCode={search.destination}
-                departLabel={selectedFlight.departLabel}
-                arriveLabel={selectedFlight.arriveLabel}
-                departDateLabel={departDateLabel}
-                pnr={pnr}
-              />
-            </ScratchReveal>
-          ))}
+              Book another trip
+            </button>
+          </div>
+        </div>
+
+        <div className="min-w-0">
+          <p className="mb-4 text-center text-[11px] font-semibold uppercase tracking-[0.22em] text-zinc-500">
+            Boarding pass
+          </p>
+          <div className="flex justify-center">
+            {legsToRender.flatMap((leg, legIdx) =>
+              passengers.map((p, i) => {
+                const idx = legIdx * passengers.length + i;
+                return (
+                  <ScratchReveal
+                    key={`${leg.key}-${p.email}-${i}`}
+                    ref={(r) => {
+                      scratchRefs.current[idx] = r;
+                    }}
+                    className="w-full max-w-[520px] rounded-2xl"
+                  >
+                    <BoardingPass
+                      ref={(el) => {
+                        passRefs.current[idx] = el;
+                      }}
+                      passengerNo={i + 1}
+                      givenName={p.givenName}
+                      familyName={p.familyName}
+                      seatId={leg.seatIds[i] ?? "—"}
+                      flightNumber={leg.flightNumber}
+                      originCode={leg.originCode}
+                      destinationCode={leg.destinationCode}
+                      departLabel={leg.departLabel}
+                      arriveLabel={leg.arriveLabel}
+                      departDateLabel={leg.departDateLabel}
+                      pnr={pnr}
+                    />
+                  </ScratchReveal>
+                );
+              }),
+            )}
+          </div>
+
+          <p className="mt-4 text-center text-[11px] font-semibold uppercase tracking-[0.22em] text-zinc-500">
+            Reference <span className="tabular-nums text-white">{pnr}</span>
+            <span className="px-2 text-white/15">•</span>
+            {paidAtLabel ?? "Recently"}
+          </p>
         </div>
       </div>
-
-      <div className="flex justify-center">
-        <button
-          type="button"
-          onClick={() => {
-            resetFlow();
-            router.push("/search");
-          }}
-          className="rounded-xl bg-white px-10 py-3.5 text-sm font-semibold text-black shadow-lg shadow-black/30 transition hover:bg-zinc-100"
-        >
-          Book another trip
-        </button>
-      </div>
-
-      <p className="text-center text-[13px] text-zinc-600">
-        <Link href="/search" className="text-zinc-400 underline underline-offset-2 hover:text-white">
-          Back to search
-        </Link>
-      </p>
     </div>
   );
 }

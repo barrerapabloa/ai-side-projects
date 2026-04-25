@@ -26,7 +26,8 @@ export type BookingSnapshot = {
   selectedFlight: Flight | null;
   selectedReturnFlight: Flight | null;
   selectedFareTier: FareTier | null;
-  selectedSeatIds: string[];
+  selectedSeatIdsOutbound: string[];
+  selectedSeatIdsReturn: string[];
   passengers: PassengerDraft[];
   reviewAccepted: boolean;
   paidAt: string | null;
@@ -39,7 +40,8 @@ function emptySnapshot(): BookingSnapshot {
     selectedFlight: null,
     selectedReturnFlight: null,
     selectedFareTier: null,
-    selectedSeatIds: [],
+    selectedSeatIdsOutbound: [],
+    selectedSeatIdsReturn: [],
     passengers: [],
     reviewAccepted: false,
     paidAt: null,
@@ -91,7 +93,7 @@ type BookingContextValue = BookingSnapshot & {
   setSelectedFlight: (f: Flight | null) => void;
   setSelectedReturnFlight: (f: Flight | null) => void;
   setSelectedFareTier: (t: FareTier) => void;
-  toggleSeat: (seatId: string) => void;
+  toggleSeat: (seatId: string, leg?: "outbound" | "return") => void;
   setPassengers: (p: PassengerDraft[]) => void;
   setReviewAccepted: (v: boolean) => void;
   completePayment: () => string;
@@ -124,7 +126,8 @@ export function BookingProvider({ children }: { children: ReactNode }) {
       selectedFlight: null,
       selectedReturnFlight: null,
       selectedFareTier: null,
-      selectedSeatIds: [],
+      selectedSeatIdsOutbound: [],
+      selectedSeatIdsReturn: [],
       passengers: [],
       reviewAccepted: false,
       paidAt: null,
@@ -138,7 +141,8 @@ export function BookingProvider({ children }: { children: ReactNode }) {
       selectedFlight,
       selectedReturnFlight: null,
       selectedFareTier: selectedFlight ? inferFareTierFromLabel(selectedFlight.fareLabel) : null,
-      selectedSeatIds: [],
+      selectedSeatIdsOutbound: [],
+      selectedSeatIdsReturn: [],
       passengers: [],
       reviewAccepted: false,
       paidAt: null,
@@ -150,7 +154,8 @@ export function BookingProvider({ children }: { children: ReactNode }) {
     setSnap((prev) => ({
       ...prev,
       selectedReturnFlight,
-      selectedSeatIds: [],
+      selectedSeatIdsOutbound: prev.selectedSeatIdsOutbound,
+      selectedSeatIdsReturn: [],
       passengers: [],
       reviewAccepted: false,
       paidAt: null,
@@ -163,13 +168,15 @@ export function BookingProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const toggleSeat = useCallback(
-    (seatId: string) => {
+    (seatId: string, leg: "outbound" | "return" = "outbound") => {
       setSnap((prev) => {
         const max =
           prev.search?.passengers ??
           Math.max(1, prev.passengers.length || 1);
-        const flightId = prev.selectedFlight?.id;
-        const cabinTier = prev.selectedFlight?.cabinTier;
+        const flight =
+          leg === "return" ? prev.selectedReturnFlight : prev.selectedFlight;
+        const flightId = flight?.id;
+        const cabinTier = flight?.cabinTier;
         if (!flightId) return prev;
 
         const seats = buildSeatsForFlight(flightId, cabinTier);
@@ -177,7 +184,9 @@ export function BookingProvider({ children }: { children: ReactNode }) {
         const seat = map[seatId];
         if (!seat || seat.state !== "available") return prev;
 
-        const next = new Set(prev.selectedSeatIds);
+        const current =
+          leg === "return" ? prev.selectedSeatIdsReturn : prev.selectedSeatIdsOutbound;
+        const next = new Set(current);
         if (next.has(seatId)) {
           next.delete(seatId);
         } else if (next.size < max) {
@@ -193,10 +202,16 @@ export function BookingProvider({ children }: { children: ReactNode }) {
           return a.localeCompare(b);
         });
 
+        const nextPassengers =
+          prev.passengers.length >= max
+            ? prev.passengers.slice(0, max)
+            : Array.from({ length: max }, (_, i) => prev.passengers[i] ?? emptyPassenger());
+
         return {
           ...prev,
-          selectedSeatIds: sorted,
-          passengers: sorted.map((_, i) => prev.passengers[i] ?? emptyPassenger()),
+          selectedSeatIdsOutbound: leg === "outbound" ? sorted : prev.selectedSeatIdsOutbound,
+          selectedSeatIdsReturn: leg === "return" ? sorted : prev.selectedSeatIdsReturn,
+          passengers: nextPassengers,
         };
       });
     },
@@ -231,11 +246,14 @@ export function BookingProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const seatByFlightId = useMemo(() => {
-    const fid = snap.selectedFlight?.id;
-    const tier = snap.selectedFlight?.cabinTier;
-    if (!fid) return {};
-    return { [fid]: seatMapFromList(buildSeatsForFlight(fid, tier)) };
-  }, [snap.selectedFlight?.id, snap.selectedFlight?.cabinTier]);
+    const outId = snap.selectedFlight?.id;
+    const outTier = snap.selectedFlight?.cabinTier;
+    const retId = snap.selectedReturnFlight?.id;
+    const retTier = snap.selectedReturnFlight?.cabinTier;
+    const out = outId ? { [outId]: seatMapFromList(buildSeatsForFlight(outId, outTier)) } : {};
+    const ret = retId ? { [retId]: seatMapFromList(buildSeatsForFlight(retId, retTier)) } : {};
+    return { ...out, ...ret };
+  }, [snap.selectedFlight?.id, snap.selectedFlight?.cabinTier, snap.selectedReturnFlight?.id, snap.selectedReturnFlight?.cabinTier]);
 
   const value = useMemo<BookingContextValue>(
     () => ({

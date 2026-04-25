@@ -24,7 +24,8 @@ export function BookingSidebar() {
     selectedFlight,
     selectedReturnFlight,
     selectedFareTier,
-    selectedSeatIds,
+    selectedSeatIdsOutbound,
+    selectedSeatIdsReturn,
     passengers,
     reviewAccepted,
     paidAt,
@@ -49,7 +50,11 @@ export function BookingSidebar() {
 
     // Step 4: Seats unlocked once fare chosen
     const seatTarget = search.passengers ?? 1;
-    const seatsDone = selectedSeatIds.length === seatTarget && seatTarget > 0;
+    const seatsOutboundDone = selectedSeatIdsOutbound.length === seatTarget && seatTarget > 0;
+    const seatsReturnDone =
+      search.tripType !== "round-trip" ||
+      (selectedSeatIdsReturn.length === seatTarget && seatTarget > 0);
+    const seatsDone = seatsOutboundDone && seatsReturnDone;
     if (!seatsDone) return 3;
 
     // Step 5: Travelers unlocked once seats picked

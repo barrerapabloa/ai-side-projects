@@ -21,7 +21,8 @@ export default function PaymentPage() {
     search,
     selectedFlight,
     selectedReturnFlight,
-    selectedSeatIds,
+    selectedSeatIdsOutbound,
+    selectedSeatIdsReturn,
     passengers,
     selectedFareTier,
     reviewAccepted,
@@ -41,7 +42,17 @@ export default function PaymentPage() {
       return { seatFees: 0, total: 0 };
     const seats = buildSeatsForFlight(selectedFlight.id, selectedFlight.cabinTier);
     const map = seatMapFromList(seats);
-    const seatFees = totalSeatFees(selectedSeatIds, map);
+    const outFees = totalSeatFees(selectedSeatIdsOutbound, map);
+    const seatFees =
+      search.tripType === "round-trip" && selectedReturnFlight
+        ? outFees +
+          totalSeatFees(
+            selectedSeatIdsReturn,
+            seatMapFromList(
+              buildSeatsForFlight(selectedReturnFlight.id, selectedReturnFlight.cabinTier),
+            ),
+          )
+        : outFees;
     const addOn = fareTierAddOnUsdPerPax(selectedFareTier, selectedFlight.cabinTier);
     const legs = search.tripType === "round-trip" ? 2 : 1;
     const base =
@@ -49,7 +60,7 @@ export default function PaymentPage() {
       (search.tripType === "round-trip" ? selectedReturnFlight?.priceUsd ?? 0 : 0);
     const fareSubtotal = (base + addOn * legs) * search.passengers;
     return { seatFees, total: fareSubtotal + seatFees };
-  }, [search, selectedFlight, selectedReturnFlight, selectedSeatIds, selectedFareTier]);
+  }, [search, selectedFlight, selectedReturnFlight, selectedSeatIdsOutbound, selectedSeatIdsReturn, selectedFareTier]);
 
   const [busy, setBusy] = useState(false);
 
@@ -130,8 +141,16 @@ export default function PaymentPage() {
             flight={selectedFlight}
             returnFlight={search.tripType === "round-trip" ? selectedReturnFlight : null}
             seatExtrasUsd={seatFees}
-            seatIds={selectedSeatIds}
-            seatSummary={selectedSeatIds.length ? selectedSeatIds.join(", ") : undefined}
+            seatIds={
+              search.tripType === "round-trip"
+                ? [...selectedSeatIdsOutbound, ...selectedSeatIdsReturn]
+                : selectedSeatIdsOutbound
+            }
+            seatSummary={
+              search.tripType === "round-trip"
+                ? `Out: ${selectedSeatIdsOutbound.join(", ")} · Back: ${selectedSeatIdsReturn.join(", ")}`
+                : selectedSeatIdsOutbound.join(", ")
+            }
           />
         </aside>
       </div>
@@ -143,8 +162,16 @@ export default function PaymentPage() {
           flight={selectedFlight}
           returnFlight={search.tripType === "round-trip" ? selectedReturnFlight : null}
           seatExtrasUsd={seatFees}
-          seatIds={selectedSeatIds}
-          seatSummary={selectedSeatIds.length ? selectedSeatIds.join(", ") : undefined}
+          seatIds={
+            search.tripType === "round-trip"
+              ? [...selectedSeatIdsOutbound, ...selectedSeatIdsReturn]
+              : selectedSeatIdsOutbound
+          }
+          seatSummary={
+            search.tripType === "round-trip"
+              ? `Out: ${selectedSeatIdsOutbound.join(", ")} · Back: ${selectedSeatIdsReturn.join(", ")}`
+              : selectedSeatIdsOutbound.join(", ")
+          }
           variant="compact"
         />
       </div>

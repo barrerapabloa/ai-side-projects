@@ -1,8 +1,8 @@
 "use client";
 
 import { useMemo } from "react";
-import { useBooking } from "@/context/BookingContext";
 import type { Seat } from "@/types/booking";
+import type { Flight } from "@/types/booking";
 import { buildSeatsForFlight, ROWS } from "@/lib/seats";
 
 const ABC = ["A", "B", "C"] as const;
@@ -36,14 +36,18 @@ function bandIfNeeded(row: number): string | null {
   return null;
 }
 
-export function SeatMap() {
-  const { selectedFlight, selectedSeatIds, toggleSeat } = useBooking();
+export function SeatMap({
+  flight,
+  selectedSeatIds,
+  onToggleSeat,
+}: {
+  flight: Flight;
+  selectedSeatIds: string[];
+  onToggleSeat: (seatId: string) => void;
+}) {
 
   const { byId } = useMemo(() => {
-    if (!selectedFlight) {
-      return { byId: {} as Record<string, Seat> };
-    }
-    const s = buildSeatsForFlight(selectedFlight.id, selectedFlight.cabinTier);
+    const s = buildSeatsForFlight(flight.id, flight.cabinTier);
     const b = Object.fromEntries(s.map((x) => [x.id, x])) as Record<
       string,
       Seat
@@ -51,9 +55,7 @@ export function SeatMap() {
     return {
       byId: b,
     };
-  }, [selectedFlight]);
-
-  if (!selectedFlight) return null;
+  }, [flight.id, flight.cabinTier]);
 
   const selected = new Set(selectedSeatIds);
   const startRow = 1;
@@ -109,7 +111,7 @@ export function SeatMap() {
                             seatId={`${row}${letter}`}
                             seat={byId[`${row}${letter}`]}
                             selected={selected.has(`${row}${letter}`)}
-                            onToggle={() => toggleSeat(`${row}${letter}`)}
+                            onToggle={() => onToggleSeat(`${row}${letter}`)}
                           />
                         ))}
                         <div className="flex h-10 items-center justify-center rounded border border-white/[0.06] bg-zinc-900/40 text-[11px] tabular-nums text-zinc-500">
@@ -121,7 +123,7 @@ export function SeatMap() {
                             seatId={`${row}${letter}`}
                             seat={byId[`${row}${letter}`]}
                             selected={selected.has(`${row}${letter}`)}
-                            onToggle={() => toggleSeat(`${row}${letter}`)}
+                            onToggle={() => onToggleSeat(`${row}${letter}`)}
                           />
                         ))}
                         <div className="flex h-10 items-center justify-center text-white/55" aria-hidden>

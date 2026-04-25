@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import type { PassengerDraft } from "@/types/booking";
 import { useBooking } from "@/context/BookingContext";
 import { StickyBookingActions } from "@/components/StickyBookingActions";
@@ -14,28 +14,39 @@ import { StepHeading } from "@/components/StepHeading";
 export default function PassengersPage() {
   const router = useRouter();
   const formRef = useRef<HTMLFormElement>(null);
-  const { search, selectedFlight, selectedReturnFlight, selectedSeatIds, passengers, setPassengers } =
+  const { search, selectedFlight, selectedReturnFlight, selectedSeatIdsOutbound, selectedSeatIdsReturn, passengers, setPassengers } =
     useBooking();
 
   const seatOk =
     !!search &&
     !!selectedFlight &&
     (search.tripType !== "round-trip" || !!selectedReturnFlight) &&
-    selectedSeatIds.length === search.passengers;
+    selectedSeatIdsOutbound.length === search.passengers &&
+    (search.tripType !== "round-trip" || selectedSeatIdsReturn.length === search.passengers);
   useRedirectUnless(Boolean(seatOk), "/search");
 
-  const seatFees =
-    selectedFlight &&
-    totalSeatFees(
-      selectedSeatIds,
-      seatMapFromList(buildSeatsForFlight(selectedFlight.id, selectedFlight.cabinTier)),
-    );
+  const seatFees = useMemo(() => {
+    if (!selectedFlight) return 0;
+    const outMap = seatMapFromList(buildSeatsForFlight(selectedFlight.id, selectedFlight.cabinTier));
+    const out = totalSeatFees(selectedSeatIdsOutbound, outMap);
+    if (search?.tripType === "round-trip" && selectedReturnFlight) {
+      const retMap = seatMapFromList(
+        buildSeatsForFlight(selectedReturnFlight.id, selectedReturnFlight.cabinTier),
+      );
+      return out + totalSeatFees(selectedSeatIdsReturn, retMap);
+    }
+    return out;
+  }, [search?.tripType, selectedFlight, selectedReturnFlight, selectedSeatIdsOutbound, selectedSeatIdsReturn]);
 
   const [rows, setRows] = useState<PassengerDraft[]>(() =>
     passengers.length ? passengers : blankRows(search?.passengers ?? 1),
   );
 
   if (!search || !selectedFlight) return null;
+  const seatsSubtitle =
+    search.tripType === "round-trip"
+      ? `Out ${selectedSeatIdsOutbound.join(", ")} · Back ${selectedSeatIdsReturn.join(", ")}`
+      : `Seats ${selectedSeatIdsOutbound.join(", ")}`;
 
   function updateRow(i: number, patch: Partial<PassengerDraft>) {
     setRows((prev) => {
@@ -71,7 +82,7 @@ export default function PassengersPage() {
           <StepHeading
             step="Step 4 · Travelers"
             title="Traveler details"
-            subtitle={`Seats ${selectedSeatIds.join(", ")} · names must match government-issued ID.`}
+            subtitle={`${seatsSubtitle} · names must match government-issued ID.`}
           />
 
           <form
@@ -102,7 +113,10 @@ export default function PassengersPage() {
                       Traveler {i + 1}
                     </h2>
                     <p className="mt-1 text-[12px] leading-snug text-zinc-500">
-                      Seat {selectedSeatIds[i] ?? "—"} · match travel documents
+                      {search.tripType === "round-trip"
+                        ? `Out ${selectedSeatIdsOutbound[i] ?? "—"} · Back ${selectedSeatIdsReturn[i] ?? "—"}`
+                        : `Seat ${selectedSeatIdsOutbound[i] ?? "—"}`}{" "}
+                      · match travel documents
                     </p>
                   </div>
                 </div>
@@ -202,8 +216,12 @@ export default function PassengersPage() {
             flight={selectedFlight}
             returnFlight={search.tripType === "round-trip" ? selectedReturnFlight : null}
             seatExtrasUsd={seatFees ?? 0}
-            seatIds={selectedSeatIds}
-            seatSummary={selectedSeatIds.join(", ")}
+            seatIds={selectedSeatIdsOutbound}
+            seatSummary={
+              search.tripType === "round-trip"
+                ? `Out: ${selectedSeatIdsOutbound.join(", ")} · Back: ${selectedSeatIdsReturn.join(", ")}`
+                : selectedSeatIdsOutbound.join(", ")
+            }
           />
         </aside>
       </div>
@@ -214,8 +232,12 @@ export default function PassengersPage() {
           flight={selectedFlight}
           returnFlight={search.tripType === "round-trip" ? selectedReturnFlight : null}
           seatExtrasUsd={seatFees ?? 0}
-          seatIds={selectedSeatIds}
-          seatSummary={selectedSeatIds.join(", ")}
+          seatIds={selectedSeatIdsOutbound}
+          seatSummary={
+            search.tripType === "round-trip"
+              ? `Out: ${selectedSeatIdsOutbound.join(", ")} · Back: ${selectedSeatIdsReturn.join(", ")}`
+              : selectedSeatIdsOutbound.join(", ")
+          }
           variant="compact"
         />
       </div>

@@ -22,7 +22,8 @@ export default function ReviewPage() {
     search,
     selectedFlight,
     selectedReturnFlight,
-    selectedSeatIds,
+      selectedSeatIdsOutbound,
+      selectedSeatIdsReturn,
     passengers,
     selectedFareTier,
     reviewAccepted,
@@ -55,7 +56,17 @@ export default function ReviewPage() {
     }
     const seats = buildSeatsForFlight(selectedFlight.id, selectedFlight.cabinTier);
     const map = seatMapFromList(seats);
-    const seatFees = totalSeatFees(selectedSeatIds, map);
+    const outFees = totalSeatFees(selectedSeatIdsOutbound, map);
+    const seatFees =
+      search.tripType === "round-trip" && selectedReturnFlight
+        ? outFees +
+          totalSeatFees(
+            selectedSeatIdsReturn,
+            seatMapFromList(
+              buildSeatsForFlight(selectedReturnFlight.id, selectedReturnFlight.cabinTier),
+            ),
+          )
+        : outFees;
     const addOn = fareTierAddOnUsdPerPax(selectedFareTier, selectedFlight.cabinTier);
     const legs = search.tripType === "round-trip" ? 2 : 1;
     const base =
@@ -67,7 +78,7 @@ export default function ReviewPage() {
       seatFees,
       total: fareSubtotal + seatFees,
     };
-  }, [search, selectedFlight, selectedReturnFlight, selectedSeatIds, selectedFareTier]);
+  }, [search, selectedFlight, selectedReturnFlight, selectedSeatIdsOutbound, selectedSeatIdsReturn, selectedFareTier]);
 
   if (!search || !selectedFlight) return null;
 
@@ -125,19 +136,89 @@ export default function ReviewPage() {
               </div>
             </section>
 
+            {search.tripType === "round-trip" && selectedReturnFlight ? (
+              <section className="overflow-hidden rounded-2xl border border-white/[0.1] bg-gradient-to-br from-zinc-900/35 via-zinc-950/60 to-zinc-950 ring-1 ring-white/[0.06]">
+                <div className="border-b border-white/[0.06] bg-white/[0.03] px-5 py-4">
+                  <h2 className="text-[11px] font-semibold uppercase tracking-[0.2em] text-zinc-200">
+                    Return timeline
+                  </h2>
+                </div>
+                <div className="grid gap-0 sm:grid-cols-2">
+                  <div className="border-b border-white/[0.06] p-5 sm:border-b-0 sm:border-r">
+                    <p className="text-[11px] font-medium uppercase tracking-wide text-zinc-500">
+                      Leave {search.destination}
+                    </p>
+                    <p className="mt-2 text-3xl font-semibold tabular-nums text-white">
+                      {selectedReturnFlight.departLabel}
+                    </p>
+                    <p className="mt-2 text-[13px] text-zinc-400">
+                      {airportLabel(search.destination)}
+                    </p>
+                  </div>
+                  <div className="p-5">
+                    <p className="text-[11px] font-medium uppercase tracking-wide text-zinc-500">
+                      Arrive {search.origin}
+                    </p>
+                    <p className="mt-2 text-3xl font-semibold tabular-nums text-white">
+                      {selectedReturnFlight.arriveLabel}
+                    </p>
+                    <p className="mt-2 text-[13px] text-zinc-400">
+                      {airportLabel(search.origin)}
+                    </p>
+                    <p className="mt-3 text-[12px] text-zinc-500">
+                      {selectedReturnFlight.arriveDaySummary}
+                    </p>
+                  </div>
+                </div>
+                <div className="flex flex-wrap items-center gap-4 border-t border-white/[0.06] px-5 py-4 text-[13px] text-zinc-400">
+                  <span className="inline-flex items-center rounded-full bg-white/[0.06] px-2.5 py-1 text-[12px] leading-none text-zinc-300">
+                    {selectedReturnFlight.stopsLabel}
+                  </span>
+                  <span>{selectedReturnFlight.durationLabel} total travel</span>
+                  <span className="text-zinc-600">·</span>
+                  <span>{selectedReturnFlight.aircraftType}</span>
+                </div>
+              </section>
+            ) : null}
+
             <section className="rounded-2xl border border-white/[0.08] bg-zinc-950/50 p-5 ring-1 ring-white/[0.04]">
               <h2 className="text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-500">
                 Seats & bundles
               </h2>
-              <div className="mt-4 flex flex-wrap gap-3">
-                {selectedSeatIds.map((id) => (
-                  <span
-                    key={id}
-                      className="inline-flex items-center rounded-lg border border-white/[0.14] bg-white/[0.06] px-3 py-2 text-sm font-medium tabular-nums text-white"
-                  >
-                    {id}
-                  </span>
-                ))}
+              <div className="mt-4 space-y-4">
+                <div className="space-y-2">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-500">
+                    Outbound
+                  </p>
+                  <div className="flex flex-wrap gap-3">
+                    {selectedSeatIdsOutbound.map((id) => (
+                      <span
+                        key={`out-${id}`}
+                        className="inline-flex items-center rounded-lg border border-white/[0.14] bg-white/[0.06] px-3 py-2 text-sm font-medium tabular-nums text-white"
+                      >
+                        {id}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {search.tripType === "round-trip" ? (
+                  <div className="space-y-2">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-500">
+                      Return
+                    </p>
+                    <div className="flex flex-wrap gap-3">
+                      {selectedSeatIdsReturn.map((id) => (
+                        <span
+                          key={`ret-${id}`}
+                          className="inline-flex items-center rounded-lg border border-white/[0.14] bg-white/[0.06] px-3 py-2 text-sm font-medium tabular-nums text-white"
+                        >
+                          {id}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                ) : null}
               </div>
               <p className="mt-4 text-[13px] leading-relaxed text-zinc-400">
                 {selectedFlight.baggageIncluded}. Seat fees add to your base fare.
@@ -164,7 +245,10 @@ export default function ReviewPage() {
                       </p>
                       <p className="truncate text-[13px] text-zinc-500">{p.email}</p>
                       <p className="mt-1 text-[12px] text-zinc-600">
-                        Seat {selectedSeatIds[i]} · DOB {p.dateOfBirth}
+                        {search.tripType === "round-trip"
+                          ? `Out ${selectedSeatIdsOutbound[i]} · Back ${selectedSeatIdsReturn[i]}`
+                          : `Seat ${selectedSeatIdsOutbound[i]}`}{" "}
+                        · DOB {p.dateOfBirth}
                       </p>
                     </div>
                   </li>
@@ -174,7 +258,13 @@ export default function ReviewPage() {
           </div>
 
           <aside className="hidden space-y-4 lg:block lg:sticky lg:top-28 lg:self-start">
-            <div className="rounded-2xl border border-white/[0.1] bg-zinc-950/80 p-5 ring-1 ring-white/[0.05]">
+            <div
+              className={`rounded-2xl border border-white/[0.1] bg-zinc-950/80 p-5 ring-1 ring-white/[0.05] transition-[box-shadow,border-color] duration-200 ease-out ${
+                reviewAccepted
+                  ? "border-violet-300/30 shadow-[0_0_0_1px_rgba(168,85,247,0.16),0_28px_84px_-44px_rgba(168,85,247,0.35)]"
+                  : ""
+              }`}
+            >
               <h2 className="text-[13px] font-medium uppercase tracking-wide text-zinc-500">
                 Trip total
               </h2>
@@ -222,8 +312,12 @@ export default function ReviewPage() {
               flight={selectedFlight}
               returnFlight={search.tripType === "round-trip" ? selectedReturnFlight : null}
               seatExtrasUsd={seatFees}
-              seatIds={selectedSeatIds}
-              seatSummary={selectedSeatIds.join(", ")}
+              seatIds={selectedSeatIdsOutbound}
+              seatSummary={
+                search.tripType === "round-trip"
+                  ? `Out: ${selectedSeatIdsOutbound.join(", ")} · Back: ${selectedSeatIdsReturn.join(", ")}`
+                  : selectedSeatIdsOutbound.join(", ")
+              }
               showDepartArriveTiles={false}
             />
           </aside>
